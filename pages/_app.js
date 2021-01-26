@@ -1,7 +1,13 @@
-import '../styles/globals.css'
+import React from "react";
+import PropTypes from "prop-types";
+import wrapper from "../store/configureStore";
+// 전역으로 적용하고 싶은 것 임포트
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const Asker = ({ Component, pageProps }) => {
+  return <Component {...pageProps} />;
+};
 
-export default MyApp
+Asker.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+};
+export default wrapper.withRedux(Asker);
