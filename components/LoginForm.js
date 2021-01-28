@@ -12,7 +12,7 @@ const FormWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
 `;
-const Label = styled.label``;
+const Label = styled.span``;
 const Input = styled.input``;
 
 const ButtonWrapper = styled.div``;

@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import AskCard from "../components/AskCard";
@@ -6,8 +7,11 @@ import AskForm from "../components/AskForm";
 
 import { useSelector } from "react-redux";
 
+// Style
+const AskSection = styled.div``;
+
 export default function Home() {
-  const { asks } = useSelector((state) => state);
+  const { mainAsks } = useSelector((state) => state.ask);
   return (
     <>
       <Head>
@@ -16,9 +20,11 @@ export default function Home() {
       </Head>
       <Layout>
         <AskForm />
-        {asks.map((ask) => {
-          <AskCard key={ask.id} ask={ask} />;
-        })}
+        <AskSection>
+          {mainAsks.map((ask) => (
+            <AskCard key={ask.id} ask={ask} />
+          ))}
+        </AskSection>
       </Layout>
     </>
   );

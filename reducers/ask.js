@@ -1,29 +1,18 @@
 // 현재 더미데이터
 export const initialState = {
-  asks: [
+  mainAsks: [
     {
       id: 1,
       target_user: {
         id: 1,
-        username: "hyesech",
+        username: "",
       },
-      content: "님 배고프신가요?",
-      images: [
-        {
-          src: "https://www.fjeidk.com",
-        },
-        {
-          src: "https://www.343fff.com",
-        },
-        {
-          src: "https://www.3434234sdf.com",
-        },
-      ],
+      content: "배고파",
       answer: "",
-      imagePath: [],
-      isAnswered: false,
     },
   ],
+  isAnswered: false,
+  sentAsk: false,
 };
 
 // Action
@@ -38,10 +27,10 @@ const dummyAsk = {
   id: 2,
   target_user: {
     id: 1,
-    username: "hyesech",
+    username: "hye444sech",
   },
-  content: "님 배고프세요?? 배고프시냐구요!??",
-  images: [],
+  content: "님 배고프세요?",
+  answer: "",
 };
 
 // Reducer
@@ -50,13 +39,12 @@ const reducer = (state = initialState, action) => {
     case SEND_ASK:
       return {
         ...state,
-        asks: [dummyAsk, ...state.asks],
+        mainAsks: [dummyAsk, ...state.mainAsks],
+        sentAsk: true,
       };
     default:
       return state;
   }
 };
-
-// 여기서 더미데이터 작동 안돼서 약간 피곤해졌다... 내일 해...
 
 export default reducer;
