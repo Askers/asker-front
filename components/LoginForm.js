@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
-import { loginAction } from "../reducers/user";
+import { loginRequestAction } from "../reducers/user";
 
 const Form = styled.form``;
 const FormWrapper = styled.div`
@@ -29,7 +29,7 @@ const LoginForm = () => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(loginAction({ email, password }));
+      dispatch(loginRequestAction({ email, password }));
     },
     [email, password]
   );

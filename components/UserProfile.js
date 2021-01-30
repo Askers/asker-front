@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { logoutAction } from "../reducers/user";
+import { logoutRequestAction } from "../reducers/user";
 
 const Container = styled.div``;
 
@@ -21,7 +21,7 @@ const UserProfile = () => {
   const dispatch = useDispatch();
 
   const onClick = useCallback(() => {
-    dispatch(logoutAction());
+    dispatch(logoutRequestAction());
   });
 
   return (

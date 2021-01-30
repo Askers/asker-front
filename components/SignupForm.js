@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
-import { loginAction } from "../reducers/user";
+import { loginRequestAction } from "../reducers/user";
 
 const Form = styled.form``;
 const FormWrapper = styled.div`
@@ -40,7 +40,7 @@ const SignupForm = () => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(loginAction({ email, username, password }));
+      dispatch(loginRequestAction({ email, username, password }));
     },
     [email, username, password]
   );

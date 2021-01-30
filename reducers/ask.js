@@ -17,10 +17,14 @@ export const initialState = {
 
 // Action
 // Ask 보내기
-const SEND_ASK = "SEND_ASK";
-export const sendAsk = {
-  type: SEND_ASK,
-};
+const SEND_ASK_REQUEST = "SEND_ASK_REQUEST";
+const SEND_ASK_SUCCESS = "SEND_ASK_SUCCESS";
+const SEND_ASK_FAILURE = "SEND_ASK_FAILURE";
+
+export const sendAsk = (data) => ({
+  type: SEND_ASK_REQUEST,
+  data,
+});
 
 // DummyAsk
 const dummyAsk = {
@@ -36,12 +40,16 @@ const dummyAsk = {
 // Reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SEND_ASK:
+    case SEND_ASK_REQUEST:
+
+    case SEND_ASK_SUCCESS:
       return {
         ...state,
         mainAsks: [dummyAsk, ...state.mainAsks],
         sentAsk: true,
       };
+    case SEND_ASK_FAILURE:
+
     default:
       return state;
   }
