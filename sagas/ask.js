@@ -1,18 +1,18 @@
 import axios from "axios";
-import { delay, put, takeLatest, all, fork } from "redux-saga/effects";
+import { delay, call, put, takeLatest, all, fork } from "redux-saga/effects";
 
 // SEND ASK
-// function sendAskApi(data) {
-//   return axios.post("/api/ask", data);
-// }
+function sendAskApi(data) {
+  return axios.post("/api/ask", data);
+}
 
 function* sendAsk(action) {
   try {
-    // const result = yield call(sendAskApi, action.data);
+    const result = yield call(sendAskApi, action.data);
     yield delay(1000);
     yield put({
-      type: "SEND_ASK_SUCESS",
-      //   data: result.data,
+      type: "SEND_ASK_SUCCESS",
+      data: result.data,
     });
   } catch (err) {
     yield put({
@@ -27,5 +27,5 @@ function* watchSendAsk() {
 }
 
 export default function* askSaga() {
-  all([fork(watchSendAsk)]);
+  yield all([fork(watchSendAsk)]);
 }
