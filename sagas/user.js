@@ -9,7 +9,6 @@ function loginApi() {
 function* login() {
   try {
     const result = yield call(loginApi);
-    yield delay(1000);
     yield put({
       type: "LOG_IN_SUCCESS",
       data: result.data,
@@ -43,12 +42,36 @@ function* logout(action) {
   }
 }
 
+// Sign Up
+function signupApi() {
+  return axios.post("/user");
+}
+
+function* signup(action) {
+  try {
+    const result = yield call(signupApi, action.data);
+    yield put({
+      type: "LOG_OUT_SUCCESS",
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: "LOG_OUT_FAILURE",
+      data: err.response.data,
+    });
+  }
+}
+
 function* watchLogin() {
   yield takeLatest("LOG_IN_REQUEST", login);
 }
 
 function* watchLogout() {
   yield takeLatest("LOG_OUT_REQUEST", logout);
+}
+
+function* watchSignup() {
+  yield takeLatest("SIGN_UP_REQUEST", signup);
 }
 
 export default function* userSaga() {
