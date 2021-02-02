@@ -43,16 +43,16 @@ function* logout(action) {
 }
 
 // Sign Up
-function signupApi() {
-  return axios.post("/user");
+function signupApi(data) {
+  return axios.post("http://localhost:3065/user", data);
 }
 
 function* signup(action) {
   try {
     const result = yield call(signupApi, action.data);
+    console.log(result);
     yield put({
       type: "LOG_OUT_SUCCESS",
-      data: result.data,
     });
   } catch (err) {
     yield put({
@@ -75,5 +75,5 @@ function* watchSignup() {
 }
 
 export default function* userSaga() {
-  yield all([fork(watchLogin), fork(watchLogout)]);
+  yield all([fork(watchLogin), fork(watchLogout)], fork(watchSignup));
 }
