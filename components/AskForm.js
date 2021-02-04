@@ -20,7 +20,7 @@ const Button = styled.input``;
 
 const AskForm = () => {
   // const { imagePaths } = useSelector((state) => state.ask);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [text, setText] = useState("");
   const imageInput = useRef();
 
@@ -34,7 +34,7 @@ const AskForm = () => {
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();
-    dispatch(sendAsk);
+    // dispatch(sendAsk);
   }, []);
 
   const onClickImageUpload = useCallback(() => {

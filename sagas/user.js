@@ -2,13 +2,13 @@ import axios from "axios";
 import { delay, call, put, takeLatest, all, fork } from "redux-saga/effects";
 
 // LOGIN
-function loginApi() {
+function loginAPI() {
   return axios.post("/api/login");
 }
 
 function* login() {
   try {
-    const result = yield call(loginApi);
+    const result = yield call(loginAPI);
     yield put({
       type: "LOG_IN_SUCCESS",
       data: result.data,
@@ -22,13 +22,13 @@ function* login() {
 }
 
 // LOGOUT
-function logoutApi(data) {
+function logoutAPI(data) {
   return axios.post("/api/logout", data);
 }
 
 function* logout(action) {
   try {
-    const result = yield call(logoutApi, action.data);
+    const result = yield call(logoutAPI, action.data);
     yield delay(1000);
     yield put({
       type: "LOG_OUT_SUCCESS",
@@ -43,13 +43,13 @@ function* logout(action) {
 }
 
 // Sign Up
-function signupApi(data) {
+function signupAPI(data) {
   return axios.post("http://localhost:3065/user", data);
 }
 
 function* signup(action) {
   try {
-    const result = yield call(signupApi, action.data);
+    const result = yield call(signupAPI, action.data);
     console.log(result);
     yield put({
       type: "LOG_OUT_SUCCESS",
