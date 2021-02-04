@@ -1,3 +1,6 @@
+// Immer
+import produce from "immer";
+
 // Init
 export const initialState = {
   isLoggingIn: false, // 로긘 시도 중
@@ -34,56 +37,50 @@ export const logoutRequestAction = () => {
   };
 };
 
-// Reducer
+// Immer 적용 Reducer
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case LOG_IN_REQUEST:
-      return {
-        ...state,
-        isLoggingIn: true,
-        user: action.data,
-      };
-    case LOG_IN_SUCCESS:
-      return {
-        ...state,
-        isLoggingIn: false,
-        isLoggedIn: true,
-        user: action.data,
-      };
-    case LOG_IN_FAILURE:
-      return {
-        ...state,
-        isLoggingIn: false,
-        isLoggedIn: true,
-        user: action.data,
-      };
+  return produce(state, (draft) => {
+    // 기존의 switch문
+    switch (action.type) {
+      case LOG_IN_REQUEST:
+        draft.isLoggingIn = true;
+        draft.user = action.data;
+        break;
 
-    case LOG_OUT_REQUEST:
-      return {
-        ...state,
-        isLoggingOut: true,
-        isLoggedIn: false,
-        user: null,
-      };
+      case LOG_IN_SUCCESS:
+        draft.isLoggingIn = false;
+        draft.isLoggedIn = true;
+        draft.user = action.data;
+        break;
 
-    case LOG_OUT_SUCCESS:
-      return {
-        ...state,
-        isLoggingOut: false,
-        isLoggedIn: false,
-        user: null,
-      };
-    case LOG_OUT_FAILURE:
-      return {
-        ...state,
-        isLoggingOut: false,
-        isLoggedIn: true,
-        user: null,
-      };
+      case LOG_IN_FAILURE:
+        draft.isLoggingIn = false;
+        draft.isLoggedIn = true;
+        draft.user = action.data;
+        break;
 
-    default:
-      return state;
-  }
+      case LOG_OUT_REQUEST:
+        draft.isLoggingOut = true;
+        draft.isLoggedIn = false;
+        draft.user = null;
+        break;
+
+      case LOG_OUT_SUCCESS:
+        draft.isLoggingOut = false;
+        draft.isLoggedIn = false;
+        draft.user = null;
+        break;
+
+      case LOG_OUT_FAILURE:
+        draft.isLoggingOut = false;
+        draft.isLoggedIn = true;
+        draft.user = null;
+        break;
+
+      default:
+        break;
+    }
+  });
 };
 
 export default reducer;

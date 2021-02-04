@@ -1,3 +1,6 @@
+// Immer
+import produce from "immer";
+
 // InitialState
 const initialState = {
   addAskLoading: false,
@@ -46,78 +49,62 @@ export const removeAnswerRequestAction = () => {
   };
 };
 
-// Reducer
+// Immer 적용한 Reducer
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_ASK_REQUEST:
-      return {
-        ...state,
-        addAskLoading: true,
-        addAskDone: false,
-        addAskError: null,
-      };
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case ADD_ASK_REQUEST:
+        draft.addAskLoading = true;
+        draft.addAskDone = false;
+        draft.addAskError = null;
+        break;
 
-    case ADD_ASK_SUCCESS:
-      return {
-        ...state,
-        addAskLoading: false,
-        addAskDone: true,
-      };
+      case ADD_ASK_SUCCESS:
+        draft.addAskLoading = false;
+        draft.addAskDone = true;
+        break;
 
-    case ADD_ASK_FAILURE:
-      return {
-        ...state,
-        addAskLoading: false,
-        addAskError: action.error,
-      };
+      case ADD_ASK_FAILURE:
+        draft.addAskLoading = false;
+        draft.addAskError = action.error;
+        break;
 
-    case ADD_ANSWER_REQUEST:
-      return {
-        ...state,
-        addAnswerLoading: true,
-        addAnswerDone: false,
-        addAnswerError: null,
-      };
+      case ADD_ANSWER_REQUEST:
+        draft.addAnswerLoading = true;
+        draft.addAnswerDone = false;
+        draft.addAnswerError = null;
+        break;
 
-    case ADD_ANSWER_SUCCESS:
-      return {
-        ...state,
-        addAnswerLoading: false,
-        addAnswerDone: true,
-      };
+      case ADD_ANSWER_SUCCESS:
+        draft.addAnswerLoading = false;
+        draft.addAnswerDone = true;
+        break;
 
-    case ADD_ANSWER_FAILURE:
-      return {
-        ...state,
-        addAnswerLoading: false,
-        addAnswerError: action.error,
-      };
+      case ADD_ANSWER_FAILURE:
+        draft.addAnswerLoading = false;
+        draft.addAnswerError = action.error;
+        break;
 
-    case REMOVE_ANSWER_REQUEST:
-      return {
-        ...state,
-        removeAnswerLoading: true,
-        removeAnswerDone: false,
-        removeAnswerError: null,
-      };
+      case REMOVE_ANSWER_REQUEST:
+        draft.removeAnswerLoading = true;
+        draft.removeAnswerDone = false;
+        draft.removeAnswerError = null;
+        break;
 
-    case REMOVE_ANSWER_SUCCESS:
-      return {
-        ...state,
-        removeAnswerLoading: false,
-        removeAnswerDone: true,
-      };
+      case REMOVE_ANSWER_SUCCESS:
+        draft.removeAnswerLoading = false;
+        draft.removeAnswerDone = true;
+        break;
 
-    case REMOVE_ANSWER_FAILURE:
-      return {
-        ...state,
-        removeAnswerLoading: false,
-        removeAnswerError: action.error,
-      };
+      case REMOVE_ANSWER_FAILURE:
+        draft.removeAnswerLoading = false;
+        draft.removeAnswerError = action.error;
+        break;
 
-    default:
-      return state;
-  }
+      default:
+        break;
+    }
+  });
 };
 
 export default reducer;
