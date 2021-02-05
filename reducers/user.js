@@ -41,7 +41,7 @@ export const loginRequestAction = (data) => {
 
 export const logoutRequestAction = () => {
   return {
-    type: LOG_IN_SUCCESS,
+    type: LOG_OUT_REQUEST,
   };
 };
 
@@ -59,7 +59,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
       case LOG_IN_REQUEST:
         draft.isLoggingIn = true;
-        draft.user = action.data;
+        draft.user = null;
         break;
 
       case LOG_IN_SUCCESS:
@@ -70,8 +70,8 @@ const reducer = (state = initialState, action) => {
 
       case LOG_IN_FAILURE:
         draft.isLoggingIn = false;
-        draft.isLoggedIn = true;
-        draft.user = action.data;
+        draft.isLoggedIn = false;
+        draft.user = null;
         draft.isLoginError = action.error;
         break;
 
@@ -108,6 +108,7 @@ const reducer = (state = initialState, action) => {
       case SIGN_UP_FAILURE:
         draft.isSigningUp = false;
         draft.isSignedUp = false;
+        draft.user = null;
         draft.isSignupError = action.error;
         break;
 

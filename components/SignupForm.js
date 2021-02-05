@@ -89,7 +89,7 @@ const SignupForm = () => {
           />
         </FormWrapper>
         <ButtonWrapper>
-          <Button type="submit" />
+          <Button type="submit" value="회원가입" />
         </ButtonWrapper>
       </Form>
       {passwordError ? (
