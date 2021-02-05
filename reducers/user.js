@@ -5,7 +5,15 @@ import produce from "immer";
 export const initialState = {
   isLoggingIn: false, // 로긘 시도 중
   isLoggedIn: false,
+  isLoginError: null,
+
   isLoggingOut: false, // 로그아웃 시도중
+  isLogoutError: null,
+
+  isSigningUp: false, // 회원가입 시도중
+  isSignedUp: false,
+  isSignupError: null,
+
   user: null,
   signupData: {},
   loginData: {},
@@ -37,6 +45,13 @@ export const logoutRequestAction = () => {
   };
 };
 
+export const signupRequestAction = (data) => {
+  return {
+    type: SIGN_UP_REQUEST,
+    data: data,
+  };
+};
+
 // Immer 적용 Reducer
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
@@ -57,6 +72,7 @@ const reducer = (state = initialState, action) => {
         draft.isLoggingIn = false;
         draft.isLoggedIn = true;
         draft.user = action.data;
+        draft.isLoginError = action.error;
         break;
 
       case LOG_OUT_REQUEST:
@@ -74,7 +90,25 @@ const reducer = (state = initialState, action) => {
       case LOG_OUT_FAILURE:
         draft.isLoggingOut = false;
         draft.isLoggedIn = true;
+        draft.isLogoutError = action.error;
         draft.user = null;
+        break;
+
+      case SIGN_UP_REQUEST:
+        draft.isSigningUp = true;
+        draft.isSignupError = null;
+        break;
+
+      case SIGN_UP_SUCCESS:
+        draft.isSigningUp = false;
+        draft.isSignedUp = true;
+        draft.isSignupError = null;
+        break;
+
+      case SIGN_UP_FAILURE:
+        draft.isSigningUp = false;
+        draft.isSignedUp = false;
+        draft.isSignupError = action.error;
         break;
 
       default:
