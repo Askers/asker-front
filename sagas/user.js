@@ -1,5 +1,5 @@
-import axios from "axios";
-import { call, put, takeLatest, all, fork } from "redux-saga/effects";
+import axios from 'axios';
+import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import {
   LOG_IN_FAILURE,
   LOG_IN_REQUEST,
@@ -10,12 +10,14 @@ import {
   SIGN_UP_FAILURE,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
-} from "../reducers/user";
+} from '../reducers/user';
 
 // LOGIN
 function loginAPI(data) {
-  return axios.post("/user/login", data);
+  return axios.post('/user/login', data);
 }
+
+// 프론트 요청 axios에서 옵션으로 withCredentials: true를 해주어야 합니
 
 function* login(action) {
   try {
@@ -33,16 +35,15 @@ function* login(action) {
 }
 
 // LOGOUT
-function logoutAPI(data) {
-  return axios.post("/user/logout", data);
+function logoutAPI() {
+  return axios.post('/user/logout');
 }
 
-function* logout(action) {
+function* logout() {
   try {
-    const result = yield call(logoutAPI, action.data);
+    yield call(logoutAPI);
     yield put({
       type: LOG_OUT_SUCCESS,
-      data: result.data,
     });
   } catch (err) {
     yield put({
@@ -54,7 +55,7 @@ function* logout(action) {
 
 // Sign Up
 function signupAPI(data) {
-  return axios.post("/user", data);
+  return axios.post('/user', data);
 }
 
 function* signup(action) {

@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
-import styled from "styled-components";
-import Link from "next/link";
-import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
-import { loginRequestAction } from "../reducers/user";
+import React, { useCallback, useEffect } from 'react';
+import styled from 'styled-components';
+import Link from 'next/link';
+import useInput from '../hooks/useInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginRequestAction } from '../reducers/user';
 
 const Form = styled.form``;
 const FormWrapper = styled.div`
@@ -23,15 +23,23 @@ const LinkButton = styled.button``;
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const [email, onChangeEmail] = useInput("");
-  const [password, onChangePassword] = useInput("");
+  const { loginError } = useSelector((state) => state.user);
+  const [email, onChangeEmail] = useInput('');
+  const [password, onChangePassword] = useInput('');
+
+  // login Error시
+  useEffect(() => {
+    if (loginError) {
+      alert(loginError);
+    }
+  }, loginError);
 
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
       dispatch(loginRequestAction({ email, password }));
     },
-    [email, password]
+    [email, password],
   );
 
   return (

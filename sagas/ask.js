@@ -1,5 +1,5 @@
-import axios from "axios";
-import { delay, call, put, takeLatest, all, fork } from "redux-saga/effects";
+import axios from 'axios';
+import { delay, call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import {
   ADD_ASK_REQUEST,
   ADD_ASK_SUCCESS,
@@ -10,11 +10,11 @@ import {
   REMOVE_ANSWER_REQUEST,
   REMOVE_ANSWER_SUCCESS,
   REMOVE_ANSWER_FAILURE,
-} from "../reducers/ask";
+} from '../reducers/ask';
 
 // ADD ASK
 function addAskAPI(data) {
-  return axios.post("/api/ask", data);
+  return axios.post('/api/ask', data);
 }
 
 function* addAsk(action) {
@@ -35,7 +35,7 @@ function* addAsk(action) {
 
 // Add Answer
 function addAnswerAPI(data) {
-  return axios.post("/api/answer", data);
+  return axios.post('/api/answer', data);
 }
 
 function* addAnswer(action) {
@@ -56,7 +56,7 @@ function* addAnswer(action) {
 
 // REMOVE ANSWER
 function removeAnswerAPI(data) {
-  return axios.post("/api/remove/id", data);
+  return axios.post('/api/remove/id', data);
 }
 
 function* removeAnswer(action) {

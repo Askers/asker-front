@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from "react";
-import styled from "styled-components";
-import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
-import { signupRequestAction } from "../reducers/user";
+import React, { useState, useCallback } from 'react';
+import styled from 'styled-components';
+import useInput from '../hooks/useInput';
+import { useDispatch } from 'react-redux';
+import { signupRequestAction } from '../reducers/user';
 
 const Form = styled.form``;
 const FormWrapper = styled.div`
@@ -20,11 +20,11 @@ const Button = styled.input``;
 const ErrorMsg = styled.div``;
 
 const SignupForm = () => {
-  const [email, onChangeEmail] = useInput("");
-  const [username, onChangeUsername] = useInput("");
-  const [password, onChangePassword] = useInput("");
+  const [email, onChangeEmail] = useInput('');
+  const [username, onChangeUsername] = useInput('');
+  const [password, onChangePassword] = useInput('');
 
-  const [passwordCheck, setPasswordCheck] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState('');
   const [passwordError, setPasswordError] = useState(false);
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const SignupForm = () => {
       setPasswordCheck(e.target.value);
       setPasswordError(e.target.value !== password);
     },
-    [password]
+    [password],
   );
 
   const onSubmit = useCallback(
@@ -42,7 +42,7 @@ const SignupForm = () => {
       e.preventDefault();
       dispatch(signupRequestAction({ email, username, password }));
     },
-    [email, username, password]
+    [email, username, password],
   );
 
   return (

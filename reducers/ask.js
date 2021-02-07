@@ -1,5 +1,5 @@
 // Immer
-import produce from "immer";
+import produce from 'immer';
 
 // InitialState
 const initialState = {
@@ -16,42 +16,36 @@ const initialState = {
   answers: [],
 };
 
-export const ADD_ASK_REQUEST = "ADD_ASK_REQUEST";
-export const ADD_ASK_SUCCESS = "ADD_ASK_SUCCESS";
-export const ADD_ASK_FAILURE = "ADD_ASK_FAILURE";
+export const ADD_ASK_REQUEST = 'ADD_ASK_REQUEST';
+export const ADD_ASK_SUCCESS = 'ADD_ASK_SUCCESS';
+export const ADD_ASK_FAILURE = 'ADD_ASK_FAILURE';
 
-export const ADD_ANSWER_REQUEST = "ADD_ANSWER_REQUEST";
-export const ADD_ANSWER_SUCCESS = "ADD_ANSWER_SUCCESS";
-export const ADD_ANSWER_FAILURE = "ADD_ANSWER_FAILURE";
+export const ADD_ANSWER_REQUEST = 'ADD_ANSWER_REQUEST';
+export const ADD_ANSWER_SUCCESS = 'ADD_ANSWER_SUCCESS';
+export const ADD_ANSWER_FAILURE = 'ADD_ANSWER_FAILURE';
 
-export const REMOVE_ANSWER_REQUEST = "REMOVE_ANSWER_REQUEST";
-export const REMOVE_ANSWER_SUCCESS = "REMOVE_ANSWER_SUCCESS";
-export const REMOVE_ANSWER_FAILURE = "REMOVE_ANSWER_FAILURE";
+export const REMOVE_ANSWER_REQUEST = 'REMOVE_ANSWER_REQUEST';
+export const REMOVE_ANSWER_SUCCESS = 'REMOVE_ANSWER_SUCCESS';
+export const REMOVE_ANSWER_FAILURE = 'REMOVE_ANSWER_FAILURE';
 
 // Actions
-export const addAskRequestAction = (data) => {
-  return {
-    type: ADD_ASK_REQUEST,
-    data: data,
-  };
-};
+export const addAskRequestAction = (data) => ({
+  type: ADD_ASK_REQUEST,
+  data,
+});
 
-export const addAnswerRequestAction = (data) => {
-  return {
-    type: ADD_ANSWER_REQUEST,
-    data: data,
-  };
-};
+export const addAnswerRequestAction = (data) => ({
+  type: ADD_ANSWER_REQUEST,
+  data,
+});
 
-export const removeAnswerRequestAction = () => {
-  return {
-    type: REMOVE_ANSWER_REQUEST,
-  };
-};
+export const removeAnswerRequestAction = () => ({
+  type: REMOVE_ANSWER_REQUEST,
+});
 
 // Immer 적용한 Reducer
-const reducer = (state = initialState, action) => {
-  return produce(state, (draft) => {
+const reducer = (state = initialState, action) =>
+  produce(state, (draft) => {
     switch (action.type) {
       case ADD_ASK_REQUEST:
         draft.addAskLoading = true;
@@ -105,6 +99,5 @@ const reducer = (state = initialState, action) => {
         break;
     }
   });
-};
 
 export default reducer;

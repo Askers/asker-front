@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import Head from "next/head";
-import Layout from "../components/Layout";
+import React from 'react';
+import styled from 'styled-components';
+import Head from 'next/head';
+import Layout from '../components/Layout';
 // import AskCard from "../components/AskCard";
-import AskForm from "../components/AskForm";
+import AskForm from '../components/AskForm';
 
 // import { useSelector } from "react-redux";
 

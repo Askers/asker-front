@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
-import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { logoutRequestAction } from "../reducers/user";
+import React, { useCallback } from 'react';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { logoutRequestAction } from '../reducers/user';
 
 const Container = styled.div``;
 

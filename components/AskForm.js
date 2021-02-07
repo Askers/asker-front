@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useRef } from "react";
-import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { sendAsk } from "../reducers/ask";
+import React, { useState, useCallback, useRef } from 'react';
+import styled from 'styled-components';
+// import { useDispatch } from "react-redux";
+// import { sendAsk } from "../reducers/ask";
 
 // Style
 const Form = styled.form``;
@@ -21,7 +21,7 @@ const Button = styled.input``;
 const AskForm = () => {
   // const { imagePaths } = useSelector((state) => state.ask);
   // const dispatch = useDispatch();
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const imageInput = useRef();
 
   // Functions
@@ -29,7 +29,7 @@ const AskForm = () => {
     (e) => {
       setText(e.target.value);
     },
-    [text]
+    [text],
   );
 
   const onSubmit = useCallback((e) => {
