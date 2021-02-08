@@ -1,8 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { addAskRequestAction } from '../reducers/ask';
-import useInput from '../hooks/useInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { addAnswerRequestAction } from '../reducers/ask';
 
 // Style
 const Form = styled.form``;
@@ -19,50 +18,41 @@ const Input = styled.input``;
 const ButtonWrapper = styled.div``;
 const Button = styled.input``;
 
-const AskForm = () => {
+const AnswerForm = () => {
+  const { addAskDone } = useSelector((state) => state.ask);
   const dispatch = useDispatch();
-  const [nickname, onChangeNickname] = useInput('');
-  const [content, onChangeContent] = useInput('');
-  // const imageInput = useRef();
+  //   const id = useSelector((state)=>state.) ??????
+  const [text, setText] = useState('');
+  const imageInput = useRef();
 
   // Functions
+  useEffect(() => {
+    if (addAskDone) {
+      setText('');
+    }
+  }, [addAskDone]);
 
-  const onSubmitForm = useCallback(
-    (e) => {
-      e.preventDefault();
-      dispatch(addAskRequestAction({ nickname, content }));
-    },
-    [nickname, content],
-  );
-
-  // const onClickImageUpload = useCallback(() => {
-  //   imageInput.current.click();
-  // }, [imageInput.current]);
+  const onSubmitForm = useCallback((e) => {
+    e.preventDefault();
+    dispatch(addAnswerRequestAction(text));
+  }, []);
 
   return (
     <Form onSubmit={onSubmitForm}>
       <FormWrapper>
-        <Label>Your Nickname</Label>
-        <Input
-          type="text"
-          name="text"
-          value={nickname}
-          onChange={onChangeNickname}
-          required
-        />
         <Label>Ask what you want!</Label>
         <Input
           type="text"
           name="text"
-          value={content}
-          onChange={onChangeContent}
+          value={text}
+          onChange={onChange}
           required
         />
       </FormWrapper>
-      {/* <FormWrapper>
+      <FormWrapper>
         <Input type="file" name="file" hidden ref={imageInput} />
         <button onClick={onClickImageUpload}>이미지 업로드</button>
-      </FormWrapper> */}
+      </FormWrapper>
 
       <ButtonWrapper>
         <Button type="submit" />
@@ -79,4 +69,4 @@ const AskForm = () => {
   );
 };
 
-export default AskForm;
+export default AnswerForm;

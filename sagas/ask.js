@@ -14,13 +14,12 @@ import {
 
 // ADD ASK
 function addAskAPI(data) {
-  return axios.post('/api/ask', data);
+  return axios.post('/ask', data);
 }
 
 function* addAsk(action) {
   try {
     const result = yield call(addAskAPI, action.data);
-    yield delay(1000);
     yield put({
       type: ADD_ASK_SUCCESS,
       data: result.data,
@@ -35,13 +34,12 @@ function* addAsk(action) {
 
 // Add Answer
 function addAnswerAPI(data) {
-  return axios.post('/api/answer', data);
+  return axios.post('/answer', data);
 }
 
 function* addAnswer(action) {
   try {
     const result = yield call(addAnswerAPI, action.data);
-    yield delay(1000);
     yield put({
       type: ADD_ANSWER_SUCCESS,
       data: result.data,

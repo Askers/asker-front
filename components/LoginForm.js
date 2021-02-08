@@ -23,18 +23,10 @@ const LinkButton = styled.button``;
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const { loginError } = useSelector((state) => state.user);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
 
-  // login Error시
-  useEffect(() => {
-    if (loginError) {
-      alert(loginError);
-    }
-  }, loginError);
-
-  const onSubmit = useCallback(
+  const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
       dispatch(loginRequestAction({ email, password }));
@@ -43,7 +35,7 @@ const LoginForm = () => {
   );
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmitForm}>
       <FormWrapper>
         <Label htmlFor="email">Email</Label>
         <Input
