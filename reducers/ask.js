@@ -3,18 +3,29 @@ import produce from 'immer';
 
 // InitialState
 const initialState = {
+  loadAsksLoading: false,
+  loadAsksDone: false,
+  loadAsksError: null,
+
   addAskLoading: false,
   addAskDone: false,
   addAskError: null,
+
   addAnswerLoading: false,
   addAnswerDone: false,
   addAnswerError: null,
+
   removeAnswerLoading: false,
   removeAnswerDone: false,
   removeAnswerError: null,
+
   asks: [],
   answers: [],
 };
+
+export const LOAD_ASKS_REQUEST = 'LOAD_ASKS_REQUEST';
+export const LOAD_ASKS_SUCCESS = 'LOAD_ASKS_SUCCESS';
+export const LOAD_ASKS_FAILURE = 'LOAD_ASKS_FAILURE';
 
 export const ADD_ASK_REQUEST = 'ADD_ASK_REQUEST';
 export const ADD_ASK_SUCCESS = 'ADD_ASK_SUCCESS';
@@ -47,6 +58,23 @@ export const removeAnswerRequestAction = () => ({
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
+      case LOAD_ASKS_REQUEST:
+        draft.loadAsksLoading = true;
+        draft.loadAsksDone = false;
+        draft.loadAsksError = null;
+        break;
+
+      case LOAD_ASKS_SUCCESS:
+        draft.loadAsksLoading = false;
+        draft.loadAsksDone = true;
+        draft.asks = unshift(action.data);
+        break;
+
+      case LOAD_ASKS_FAILURE:
+        draft.loadAsksLoading = false;
+        draft.loadAsksError = action.data;
+        break;
+
       case ADD_ASK_REQUEST:
         draft.addAskLoading = true;
         draft.addAskDone = false;
@@ -56,11 +84,12 @@ const reducer = (state = initialState, action) =>
       case ADD_ASK_SUCCESS:
         draft.addAskLoading = false;
         draft.addAskDone = true;
+        draft.asks = unshift(action.data);
         break;
 
       case ADD_ASK_FAILURE:
         draft.addAskLoading = false;
-        draft.addAskError = action.error;
+        draft.addAskError = action.data;
         break;
 
       case ADD_ANSWER_REQUEST:
@@ -72,11 +101,12 @@ const reducer = (state = initialState, action) =>
       case ADD_ANSWER_SUCCESS:
         draft.addAnswerLoading = false;
         draft.addAnswerDone = true;
+        draft.answers = unshift(action.data);
         break;
 
       case ADD_ANSWER_FAILURE:
         draft.addAnswerLoading = false;
-        draft.addAnswerError = action.error;
+        draft.addAnswerError = action.data;
         break;
 
       case REMOVE_ANSWER_REQUEST:
@@ -92,7 +122,7 @@ const reducer = (state = initialState, action) =>
 
       case REMOVE_ANSWER_FAILURE:
         draft.removeAnswerLoading = false;
-        draft.removeAnswerError = action.error;
+        draft.removeAnswerError = action.data;
         break;
 
       default:

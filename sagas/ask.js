@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { delay, call, put, takeLatest, all, fork } from 'redux-saga/effects';
+import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import {
   ADD_ASK_REQUEST,
   ADD_ASK_SUCCESS,
@@ -12,7 +12,7 @@ import {
   REMOVE_ANSWER_FAILURE,
 } from '../reducers/ask';
 
-// ADD ASK
+// ADD ASK, POST ASK
 function addAskAPI(data) {
   return axios.post('/ask', data);
 }
@@ -60,7 +60,6 @@ function removeAnswerAPI(data) {
 function* removeAnswer(action) {
   try {
     const result = yield call(removeAnswerAPI, action.data);
-    yield delay(1000);
     yield put({
       type: REMOVE_ANSWER_SUCCESS,
       data: result.data,

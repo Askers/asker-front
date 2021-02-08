@@ -1,9 +1,13 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
 import useInput from '../hooks/useInput';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginRequestAction } from '../reducers/user';
+import {
+  loginRequestAction,
+  twitterLoginRequestAction,
+  googleLoginRequestAction,
+} from '../reducers/user';
 
 const Form = styled.form``;
 const FormWrapper = styled.div`
@@ -34,6 +38,13 @@ const LoginForm = () => {
     [email, password],
   );
 
+  const twitterAuth = () => {
+    dispatch(twitterLoginRequestAction());
+  };
+  const googleAuth = () => {
+    dispatch(googleLoginRequestAction());
+  };
+
   return (
     <Form onSubmit={onSubmitForm}>
       <FormWrapper>
@@ -62,6 +73,20 @@ const LoginForm = () => {
       <LinkWrapper href="/signup">
         <LinkButton>회원가입</LinkButton>
       </LinkWrapper>
+      <ButtonWrapper>
+        <Button
+          type="button"
+          onClick={twitterAuth}
+          value="트위터 계정으로 로그인하기"
+        />
+      </ButtonWrapper>
+      <ButtonWrapper>
+        <Button
+          type="button"
+          onClick={googleAuth}
+          value="구글 계정으로 로그인하기"
+        />
+      </ButtonWrapper>
     </Form>
   );
 };

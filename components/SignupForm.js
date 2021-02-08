@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import useInput from '../hooks/useInput';
 import { useDispatch } from 'react-redux';
+import useInput from '../hooks/useInput';
 import { signupRequestAction } from '../reducers/user';
 
 const Form = styled.form``;

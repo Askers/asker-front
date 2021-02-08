@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
+import { LOAD_ASKS_REQUEST } from '../reducers/ask';
 import Layout from '../components/Layout';
-// import AskCard from "../components/AskCard";
 import AskForm from '../components/AskForm';
-
-// import { useSelector } from "react-redux";
 
 // Style
 const AskSection = styled.div``;
 
 export default function Home() {
-  // const { mainAsks } = useSelector((state) => state.ask);
+  const dispatch = useDispatch();
+
+  // My info Loading
+  useEffect(() => {
+    dispatch({
+      type: LOAD_MY_INFO_REQUEST,
+    });
+    dispatch({
+      type: LOAD_ASKS_REQUEST,
+    });
+  }, []);
   return (
     <>
       <Head>
