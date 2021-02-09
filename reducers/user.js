@@ -48,6 +48,7 @@ export const GOOGLE_LOGIN_SUCCESS = 'GOOGLE_LOGIN_SUCCESS';
 export const GOOGLE_LOGIN_FAILURE = 'GOOGLE_LOGIN_FAILURE';
 
 // Actions
+
 export const loginRequestAction = (data) => ({
   type: LOG_IN_REQUEST,
   data,
@@ -89,7 +90,7 @@ const reducer = (state = initialState, action) =>
 
       case LOAD_MY_INFO_FAILURE:
         draft.isLoadingMyInfo = false;
-        draft.loadMyInfoError = action.data;
+        draft.loadMyInfoError = action.error;
         break;
 
       case LOG_IN_REQUEST:
@@ -106,7 +107,7 @@ const reducer = (state = initialState, action) =>
 
       case LOG_IN_FAILURE:
         draft.isLoggingIn = false;
-        draft.loginError = action.data;
+        draft.loginError = action.error;
         break;
 
       case LOG_OUT_REQUEST:
@@ -124,7 +125,7 @@ const reducer = (state = initialState, action) =>
       case LOG_OUT_FAILURE:
         draft.isLoggingOut = false;
         draft.isLoggedIn = true;
-        draft.logoutError = action.data;
+        draft.logoutError = action.error;
         draft.user = null;
         break;
 
@@ -143,7 +144,7 @@ const reducer = (state = initialState, action) =>
         draft.isSigningUp = false;
         draft.isSignedUp = false;
         draft.user = null;
-        draft.signupError = action.data;
+        draft.signupError = action.error;
         break;
 
       case TWITTER_LOGIN_REQUEST:
@@ -162,7 +163,7 @@ const reducer = (state = initialState, action) =>
         draft.isSigningUp = false;
         draft.isSignedUp = false;
         draft.user = null;
-        draft.signupError = action.data;
+        draft.signupError = action.error;
         break;
 
       case GOOGLE_LOGIN_REQUEST:
@@ -181,7 +182,7 @@ const reducer = (state = initialState, action) =>
         draft.isSigningUp = false;
         draft.isSignedUp = false;
         draft.user = null;
-        draft.signupError = action.data;
+        draft.signupError = action.error;
         break;
 
       default:

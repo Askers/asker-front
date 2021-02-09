@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { func } from 'prop-types';
 import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import {
   GOOGLE_LOGIN_FAILURE,
@@ -27,14 +26,15 @@ function loadMyInfoAPI() {
   return axios.get('/user');
 }
 
-function* loadMyInfo(action) {
+function* loadMyInfo() {
   try {
-    const result = yield call(loadMyInfoAPI, action.data);
+    const result = yield call(loadMyInfoAPI);
     yield put({
       type: LOAD_MY_INFO_SUCCESS,
       data: result.data,
     });
   } catch (err) {
+    console.log(err.response);
     yield put({
       type: LOAD_MY_INFO_FAILURE,
       error: err.response.data,
@@ -59,7 +59,7 @@ function* login(action) {
   } catch (err) {
     yield put({
       type: LOG_IN_FAILURE,
-      data: err.response.data,
+      error: err.response.data,
     });
   }
 }
@@ -78,7 +78,7 @@ function* logout() {
   } catch (err) {
     yield put({
       type: LOG_OUT_FAILURE,
-      data: err.response.data,
+      error: err.response.data,
     });
   }
 }
@@ -94,11 +94,12 @@ function* signup(action) {
     console.log(result);
     yield put({
       type: SIGN_UP_SUCCESS,
+      data: result.data,
     });
   } catch (err) {
     yield put({
       type: SIGN_UP_FAILURE,
-      data: err.response.data,
+      error: err.response.data,
     });
   }
 }
@@ -108,18 +109,17 @@ function twitterLoginAPI() {
   return axios.get('/auth/twitter');
 }
 
-function* twitterLogin(action) {
+function* twitterLogin() {
   try {
     const result = yield call(twitterLoginAPI);
-    console.log(result);
     yield put({
       type: TWITTER_LOGIN_SUCCESS,
-      data: action.data,
+      data: result.data,
     });
   } catch (err) {
     yield put({
       type: TWITTER_LOGIN_FAILURE,
-      data: err.response.data,
+      error: err.response.data,
     });
   }
 }
@@ -129,18 +129,18 @@ function googleLoginAPI() {
   return axios.get('/auth/google');
 }
 
-function* googleLogin(action) {
+function* googleLogin() {
   try {
     const result = yield call(googleLoginAPI);
-    console.log(result);
     yield put({
       type: GOOGLE_LOGIN_SUCCESS,
-      data: action.data,
+      data: result.data,
     });
   } catch (err) {
+    console.log(err);
     yield put({
       type: GOOGLE_LOGIN_FAILURE,
-      data: err.response.data,
+      error: err.response.data,
     });
   }
 }

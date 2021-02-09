@@ -3,6 +3,8 @@ import produce from 'immer';
 
 // InitialState
 const initialState = {
+  asks: [],
+  answers: [],
   loadAsksLoading: false,
   loadAsksDone: false,
   loadAsksError: null,
@@ -18,9 +20,6 @@ const initialState = {
   removeAnswerLoading: false,
   removeAnswerDone: false,
   removeAnswerError: null,
-
-  asks: [],
-  answers: [],
 };
 
 export const LOAD_ASKS_REQUEST = 'LOAD_ASKS_REQUEST';
@@ -67,12 +66,12 @@ const reducer = (state = initialState, action) =>
       case LOAD_ASKS_SUCCESS:
         draft.loadAsksLoading = false;
         draft.loadAsksDone = true;
-        draft.asks = unshift(action.data);
+        draft.asks = action.data.concat(draft.asks);
         break;
 
       case LOAD_ASKS_FAILURE:
         draft.loadAsksLoading = false;
-        draft.loadAsksError = action.data;
+        draft.loadAsksError = action.error;
         break;
 
       case ADD_ASK_REQUEST:
@@ -84,12 +83,12 @@ const reducer = (state = initialState, action) =>
       case ADD_ASK_SUCCESS:
         draft.addAskLoading = false;
         draft.addAskDone = true;
-        draft.asks = unshift(action.data);
+        draft.asks = action.data.concat(draft.asks);
         break;
 
       case ADD_ASK_FAILURE:
         draft.addAskLoading = false;
-        draft.addAskError = action.data;
+        draft.addAskError = action.error;
         break;
 
       case ADD_ANSWER_REQUEST:
@@ -101,12 +100,12 @@ const reducer = (state = initialState, action) =>
       case ADD_ANSWER_SUCCESS:
         draft.addAnswerLoading = false;
         draft.addAnswerDone = true;
-        draft.answers = unshift(action.data);
+        draft.answers = action.data.concat(draft.asks);
         break;
 
       case ADD_ANSWER_FAILURE:
         draft.addAnswerLoading = false;
-        draft.addAnswerError = action.data;
+        draft.addAnswerError = action.error;
         break;
 
       case REMOVE_ANSWER_REQUEST:
@@ -122,7 +121,7 @@ const reducer = (state = initialState, action) =>
 
       case REMOVE_ANSWER_FAILURE:
         draft.removeAnswerLoading = false;
-        draft.removeAnswerError = action.data;
+        draft.removeAnswerError = action.error;
         break;
 
       default:

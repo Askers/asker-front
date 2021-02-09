@@ -4,19 +4,18 @@ import { combineReducers } from 'redux';
 import user from './user';
 import ask from './ask';
 
-// ssr 때문에 HYDRATE 추가하려고 index 추가한 것임
-const rootReducer = combineReducers({
-  index: (state = {}, action) => {
-    switch (action.type) {
-      case HYDRATE:
-        return { ...state, ...action.payload };
-
-      default:
-        return state;
+const rootReducer = (state, action) => {
+  switch (action.type) {
+    case HYDRATE:
+      return action.payload;
+    default: {
+      const combinedReducer = combineReducers({
+        user,
+        ask,
+      });
+      return combinedReducer(state, action);
     }
-  },
-  user,
-  ask,
-});
+  }
+};
 
 export default rootReducer;
