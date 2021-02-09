@@ -29,15 +29,15 @@ function loadMyInfoAPI() {
 function* loadMyInfo() {
   try {
     const result = yield call(loadMyInfoAPI);
+    console.log(result);
     yield put({
       type: LOAD_MY_INFO_SUCCESS,
       data: result.data,
     });
   } catch (err) {
-    console.log(err.response);
     yield put({
       type: LOAD_MY_INFO_FAILURE,
-      error: err.response.data,
+      error: err.name,
     });
   }
 }
@@ -59,7 +59,7 @@ function* login(action) {
   } catch (err) {
     yield put({
       type: LOG_IN_FAILURE,
-      error: err.response.data,
+      error: err.name,
     });
   }
 }
@@ -78,7 +78,7 @@ function* logout() {
   } catch (err) {
     yield put({
       type: LOG_OUT_FAILURE,
-      error: err.response.data,
+      error: err.name,
     });
   }
 }
@@ -99,7 +99,7 @@ function* signup(action) {
   } catch (err) {
     yield put({
       type: SIGN_UP_FAILURE,
-      error: err.response.data,
+      error: err.name,
     });
   }
 }
@@ -119,7 +119,7 @@ function* twitterLogin() {
   } catch (err) {
     yield put({
       type: TWITTER_LOGIN_FAILURE,
-      error: err.response.data,
+      error: err.name,
     });
   }
 }
@@ -140,7 +140,7 @@ function* googleLogin() {
     console.log(err);
     yield put({
       type: GOOGLE_LOGIN_FAILURE,
-      error: err.response.data,
+      error: err.name,
     });
   }
 }

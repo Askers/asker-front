@@ -30,7 +30,7 @@ function* addAsk(action) {
   } catch (err) {
     yield put({
       type: ADD_ASK_FAILURE,
-      data: err.response.data,
+      error: err.name,
     });
   }
 }
@@ -40,7 +40,7 @@ function loadAsksAPI() {
   return axios.get('/asks');
 }
 
-function* loadAsks(action) {
+function* loadAsks() {
   try {
     const result = yield call(loadAsksAPI);
     yield put({
@@ -50,7 +50,7 @@ function* loadAsks(action) {
   } catch (err) {
     yield put({
       type: LOAD_ASKS_FAILURE,
-      error: err.response.data,
+      error: err.name,
     });
   }
 }
@@ -70,7 +70,7 @@ function* addAnswer(action) {
   } catch (err) {
     yield put({
       type: ADD_ANSWER_FAILURE,
-      error: err.response.data,
+      error: err.name,
     });
   }
 }
@@ -90,7 +90,7 @@ function* removeAnswer(action) {
   } catch (err) {
     yield put({
       type: REMOVE_ANSWER_FAILURE,
-      error: err.response.data,
+      error: err.name,
     });
   }
 }
