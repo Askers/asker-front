@@ -29,6 +29,7 @@ const Home = () => (
   </>
 );
 
+// SSR
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     // Cookie
