@@ -11,22 +11,21 @@ import wrapper from '../store/configureStore';
 
 const Login = () => {
   const { isLoggedIn, loginError, user } = useSelector((state) => state.user);
-
   // 이미 로그인 했을 시
   useEffect(() => {
     if (user && user.id) {
-      Router.replace('/');
+      Router.replace(`/${user.id}`);
     }
   }, [user && user.id]);
 
-  // 회원가입 성공시
+  // 로그인 성공시
   useEffect(() => {
     if (isLoggedIn) {
-      Router.replace('/');
+      Router.replace(`/${user.id}`);
     }
   }, [isLoggedIn]);
 
-  // 회원가입 에러
+  // 로그인 에러
   useEffect(() => {
     if (loginError) {
       alert(loginError);

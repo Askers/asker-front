@@ -85,6 +85,7 @@ const reducer = (state = initialState, action) =>
       case LOAD_MY_INFO_SUCCESS:
         draft.isLoadingMyInfo = false;
         draft.isLoadedMyInfo = true;
+        draft.isLoggedIn = true;
         draft.user = action.data;
         break;
 

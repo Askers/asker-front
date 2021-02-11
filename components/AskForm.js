@@ -19,14 +19,13 @@ const Input = styled.input``;
 const ButtonWrapper = styled.div``;
 const Button = styled.input``;
 
-const AskForm = () => {
+const AskForm = ({ targetUserId }) => {
   const dispatch = useDispatch();
   const [nickname, onChangeNickname] = useInput('');
   const [content, onChangeContent] = useInput('');
-  // const imageInput = useRef();
+  console.log(targetUserId);
 
   // Functions
-
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
@@ -34,10 +33,6 @@ const AskForm = () => {
     },
     [nickname, content],
   );
-
-  // const onClickImageUpload = useCallback(() => {
-  //   imageInput.current.click();
-  // }, [imageInput.current]);
 
   return (
     <Form onSubmit={onSubmitForm}>
