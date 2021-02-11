@@ -10,7 +10,6 @@ import AskForm from '../components/AskForm';
 import wrapper from '../store/configureStore';
 
 // Style
-const AskSection = styled.div``;
 
 const Home = () => (
   <>
@@ -21,11 +20,6 @@ const Home = () => (
     </Head>
     <Layout>
       <AskForm />
-      <AskSection>
-        {/* {mainAsks.map((ask) => (
-            <AskCard key={ask.id} ask={ask} />
-          ))} */}
-      </AskSection>
     </Layout>
   </>
 );

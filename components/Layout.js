@@ -1,11 +1,8 @@
 // index, profile, signup이 공통적으로 사용하는 레이아웃임
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Footer from './Footer';
 import Header from './Header';
-
-const Container = styled.article;
 
 const Layout = ({ children }) => (
   <>

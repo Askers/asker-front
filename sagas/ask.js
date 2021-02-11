@@ -13,6 +13,9 @@ import {
   LOAD_ASKS_REQUEST,
   LOAD_ASKS_FAILURE,
   LOAD_ASKS_SUCCESS,
+  LOAD_ANSWERS_SUCCESS,
+  LOAD_ANSWERS_FAILURE,
+  LOAD_ANSWERS_REQUEST,
 } from '../reducers/ask';
 
 // ADD ASK, POST ASK
@@ -50,6 +53,26 @@ function* loadAsks() {
   } catch (err) {
     yield put({
       type: LOAD_ASKS_FAILURE,
+      error: err.name,
+    });
+  }
+}
+
+// LOAD ANSWER, GET ANSWERS
+function loadAnswersAPI() {
+  return axios.get('/answers');
+}
+
+function* loadAnswers() {
+  try {
+    const result = yield call(loadAnswersAPI);
+    yield put({
+      type: LOAD_ANSWERS_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: LOAD_ANSWERS_FAILURE,
       error: err.name,
     });
   }
@@ -104,6 +127,10 @@ function* watchLoadAsks() {
   yield takeLatest(LOAD_ASKS_REQUEST, loadAsks);
 }
 
+function* watchLoadAnswers() {
+  yield takeLatest(LOAD_ANSWERS_REQUEST, loadAnswers);
+}
+
 function* watchAddAnswer() {
   yield takeLatest(ADD_ANSWER_REQUEST, addAnswer);
 }
@@ -116,6 +143,7 @@ export default function* askSaga() {
   yield all([
     fork(watchAddAsk),
     fork(watchLoadAsks),
+    fork(watchLoadAnswers),
     fork(watchAddAnswer),
     fork(watchRemoveAnswer),
   ]);

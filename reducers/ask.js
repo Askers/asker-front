@@ -9,6 +9,10 @@ const initialState = {
   loadAsksDone: false,
   loadAsksError: null,
 
+  loadAnswersLoading: false,
+  loadAnswersDone: false,
+  loadAnswersError: null,
+
   addAskLoading: false,
   addAskDone: false,
   addAskError: null,
@@ -25,6 +29,10 @@ const initialState = {
 export const LOAD_ASKS_REQUEST = 'LOAD_ASKS_REQUEST';
 export const LOAD_ASKS_SUCCESS = 'LOAD_ASKS_SUCCESS';
 export const LOAD_ASKS_FAILURE = 'LOAD_ASKS_FAILURE';
+
+export const LOAD_ANSWERS_REQUEST = 'LOAD_ANSWERS_REQUEST';
+export const LOAD_ANSWERS_SUCCESS = 'LOAD_ANSWERS_SUCCESS';
+export const LOAD_ANSWERS_FAILURE = 'LOAD_ANSWERS_FAILURE';
 
 export const ADD_ASK_REQUEST = 'ADD_ASK_REQUEST';
 export const ADD_ASK_SUCCESS = 'ADD_ASK_SUCCESS';
@@ -70,8 +78,25 @@ const reducer = (state = initialState, action) =>
         break;
 
       case LOAD_ASKS_FAILURE:
-        draft.loadAsksLoading = false;
-        draft.loadAsksError = action.error;
+        draft.loadAnswersLoading = false;
+        draft.loadAnswersError = action.error;
+        break;
+
+      case LOAD_ANSWERS_REQUEST:
+        draft.loadAnswersLoading = true;
+        draft.loadAnswersDone = false;
+        draft.loadAnswersError = null;
+        break;
+
+      case LOAD_ANSWERS_SUCCESS:
+        draft.loadAnswersLoading = false;
+        draft.loadAnswersDone = true;
+        draft.answers = action.data.concat(draft.answers);
+        break;
+
+      case LOAD_ANSWERS_FAILURE:
+        draft.loadAnswersLoading = false;
+        draft.loadAnswersError = action.error;
         break;
 
       case ADD_ASK_REQUEST:

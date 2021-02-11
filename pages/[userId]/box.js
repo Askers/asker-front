@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
-import styled from 'styled-components';
 import { END } from 'redux-saga';
+import AskCard from '../../components/AskCard';
 import { LOAD_MY_INFO_REQUEST } from '../../reducers/user';
 import { LOAD_ASKS_REQUEST } from '../../reducers/ask';
 import wrapper from '../../store/configureStore';
 
 const UserBox = () => {
-  return <div></div>;
+  const { asks } = useSelector((state) => state.ask);
+  const { user } = useSelector((state) => state.user);
+
+  const userId = user.id;
+  const username = user.username;
+
+  return (
+    <>
+      {asks.map((ask) => (
+        <AskCard nickname={ask.nickname} content={ask.content} />
+      ))}
+    </>
+  );
 };
 
 // SSR
