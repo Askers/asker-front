@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { addAskRequestAction } from '../reducers/ask';
 import useInput from '../hooks/useInput';
+import Button from '../components/Button';
 
 // Style
 const Form = styled.form``;
@@ -17,19 +18,17 @@ const Label = styled.span``;
 const Input = styled.input``;
 
 const ButtonWrapper = styled.div``;
-const Button = styled.input``;
 
 const AskForm = ({ targetUserId }) => {
   const dispatch = useDispatch();
   const [nickname, onChangeNickname] = useInput('');
   const [content, onChangeContent] = useInput('');
-  console.log(targetUserId);
 
   // Functions
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(addAskRequestAction({ nickname, content }));
+      dispatch(addAskRequestAction({ nickname, content, targetUserId }));
     },
     [nickname, content],
   );
@@ -54,22 +53,10 @@ const AskForm = ({ targetUserId }) => {
           required
         />
       </FormWrapper>
-      {/* <FormWrapper>
-        <Input type="file" name="file" hidden ref={imageInput} />
-        <button onClick={onClickImageUpload}>이미지 업로드</button>
-      </FormWrapper> */}
 
       <ButtonWrapper>
-        <Button type="submit" />
+        <Button name="제출" />
       </ButtonWrapper>
-
-      {/* <div>
-        {imagePaths.map((v) => (
-          <div key={v.id}>
-            <img src={v} alt={v} />
-          </div>
-        ))}
-      </div> */}
     </Form>
   );
 };

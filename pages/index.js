@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import Head from 'next/head';
 import { END } from 'redux-saga';
 import { LOAD_MY_INFO_REQUEST } from '../reducers/user';

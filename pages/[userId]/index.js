@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Head from 'next/head';
 import { END } from 'redux-saga';
 import { useRouter } from 'next/router';
 import { LOAD_MY_INFO_REQUEST } from '../../reducers/user';
@@ -14,16 +13,12 @@ const AnswerSection = styled.div``;
 
 const UserHome = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { userId } = router.query;
 
   return (
     <>
-      <Head>
-        <title>Asker</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Layout>
-        <AskForm targetUserId={id} />
+        <AskForm targetUserId={userId} />
         <AnswerSection>{/* 답변 */}</AnswerSection>
       </Layout>
     </>

@@ -20,7 +20,7 @@ import {
 
 // ADD ASK, POST ASK
 function addAskAPI(data) {
-  return axios.post('/ask', data);
+  return axios.post('/asks', data);
 }
 
 function* addAsk(action) {
