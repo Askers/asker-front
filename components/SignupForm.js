@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import useInput from '../hooks/useInput';
-import { signupRequestAction } from '../reducers/user';
+import { signupRequestAction } from '../reducers/auth';
 
 const Form = styled.form``;
 const FormWrapper = styled.div`
