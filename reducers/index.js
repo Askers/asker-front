@@ -3,6 +3,10 @@ import { combineReducers } from 'redux';
 
 import user from './user';
 import ask from './ask';
+import asks from './asks';
+import auth from './auth';
+import answer from './answer';
+import answers from './answers';
 
 const rootReducer = (state, action) => {
   switch (action.type) {
@@ -12,6 +16,10 @@ const rootReducer = (state, action) => {
       const combinedReducer = combineReducers({
         user,
         ask,
+        asks,
+        auth,
+        answer,
+        answers,
       });
       return combinedReducer(state, action);
     }
