@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import Layout from '../components/Layout';
 import SignupForm from '../components/SignupForm';
 import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
-import { LOAD_ASKS_REQUEST } from '../reducers/ask';
 import wrapper from '../store/configureStore';
 
 const Signup = () => {
@@ -15,7 +14,7 @@ const Signup = () => {
   // 이미 로그인 했을 시
   useEffect(() => {
     if (user && user.id) {
-      Router.replace('/');
+      Router.replace(`/${user.id}`);
     }
   }, [user && user.id]);
 
@@ -39,8 +38,10 @@ const Signup = () => {
     </Layout>
   );
 };
-
-// SSR
+/*
+  SSR Dispatch
+  LOAD_MY_INFO_REQUEST
+*/
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     // Cookie
@@ -48,9 +49,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
     axios.defaults.headers.Cookie = cookie;
     context.store.dispatch({
       type: LOAD_MY_INFO_REQUEST,
-    });
-    context.store.dispatch({
-      type: LOAD_ASKS_REQUEST,
     });
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();

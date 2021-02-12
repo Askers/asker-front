@@ -8,8 +8,6 @@ export const initialState = {
   loadMyInfoError: null,
 
   user: null,
-  signupData: {},
-  loginData: {},
 };
 
 export const LOAD_MY_INFO_REQUEST = 'LOAD_MY_INFO_REQUEST';

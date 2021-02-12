@@ -13,9 +13,7 @@ export const initialState = {
   isSignedUp: false,
   signupError: null,
 
-  user: null,
-  signupData: {},
-  loginData: {},
+  me: null,
 };
 
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
@@ -75,7 +73,7 @@ const reducer = (state = initialState, action) =>
       case LOG_IN_SUCCESS:
         draft.isLoggingIn = false;
         draft.isLoggedIn = true;
-        draft.user = action.data;
+        draft.me = action.data;
         break;
 
       case LOG_IN_FAILURE:
@@ -86,20 +84,20 @@ const reducer = (state = initialState, action) =>
       case LOG_OUT_REQUEST:
         draft.isLoggingOut = true;
         draft.isLoggedIn = false;
-        draft.user = null;
+        draft.me = null;
         break;
 
       case LOG_OUT_SUCCESS:
         draft.isLoggingOut = false;
         draft.isLoggedIn = false;
-        draft.user = null;
+        draft.me = null;
         break;
 
       case LOG_OUT_FAILURE:
         draft.isLoggingOut = false;
         draft.isLoggedIn = true;
         draft.logoutError = action.error;
-        draft.user = null;
+        draft.me = null;
         break;
 
       case SIGN_UP_REQUEST:
@@ -116,7 +114,7 @@ const reducer = (state = initialState, action) =>
       case SIGN_UP_FAILURE:
         draft.isSigningUp = false;
         draft.isSignedUp = false;
-        draft.user = null;
+        draft.me = null;
         draft.signupError = action.error;
         break;
 
@@ -129,13 +127,13 @@ const reducer = (state = initialState, action) =>
         draft.isSigningUp = false;
         draft.isSignedUp = true;
         draft.signupError = null;
-        draft.user = action.data;
+        draft.me = action.data;
         break;
 
       case TWITTER_LOGIN_FAILURE:
         draft.isSigningUp = false;
         draft.isSignedUp = false;
-        draft.user = null;
+        draft.me = null;
         draft.signupError = action.error;
         break;
 
@@ -148,13 +146,13 @@ const reducer = (state = initialState, action) =>
         draft.isSigningUp = false;
         draft.isSignedUp = true;
         draft.signupError = null;
-        draft.user = action.data;
+        draft.me = action.data;
         break;
 
       case GOOGLE_LOGIN_FAILURE:
         draft.isSigningUp = false;
         draft.isSignedUp = false;
-        draft.user = null;
+        draft.me = null;
         draft.signupError = action.error;
         break;
 

@@ -6,7 +6,6 @@ import axios from 'axios';
 import Layout from '../components/Layout';
 import LoginForm from '../components/LoginForm';
 import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
-import { LOAD_ASKS_REQUEST } from '../reducers/ask';
 import wrapper from '../store/configureStore';
 
 const Login = () => {
@@ -39,7 +38,10 @@ const Login = () => {
   );
 };
 
-// SSR
+/*
+  SSR Dispatch
+  LOAD_MY_INFO_REQUEST
+*/
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     // Cookie
@@ -48,9 +50,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     context.store.dispatch({
       type: LOAD_MY_INFO_REQUEST,
     });
-    context.store.dispatch({
-      type: LOAD_ASKS_REQUEST,
-    });
+
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
   },

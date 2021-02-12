@@ -1,29 +1,34 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import { END } from 'redux-saga';
-import AskCard from '../../components/AskCard';
+import { useRouter } from 'next/router';
 import { LOAD_MY_INFO_REQUEST } from '../../reducers/user';
-import { LOAD_ASKS_REQUEST } from '../../reducers/ask';
+import { LOAD_ANSWER_REQUEST } from '../../reducers/answer';
+import Layout from '../../components/Layout';
 import wrapper from '../../store/configureStore';
 
-const UserBox = () => {
-  const { asks } = useSelector((state) => state.ask);
-  const { user } = useSelector((state) => state.user);
+const AnswerSection = styled.div``;
 
-  const userId = user.id;
-  const username = user.username;
+const UserIndex = () => {
+  const router = useRouter();
+  const { userId } = router.query;
 
   return (
     <>
-      {asks.map((ask) => (
-        <AskCard nickname={ask.nickname} content={ask.content} />
-      ))}
+      <Layout>
+        <AnswerSection>344</AnswerSection>
+      </Layout>
     </>
   );
 };
 
-// SSR
+/*
+  SSR Dispatch
+  LOAD_MY_INFO_REQUEST
+  LOAD_ANSWERS_REQUEST
+*/
+
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     // Cookie
@@ -33,11 +38,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
       type: LOAD_MY_INFO_REQUEST,
     });
     context.store.dispatch({
-      type: LOAD_ASKS_REQUEST,
+      type: LOAD_ANSWER_REQUEST,
     });
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
   },
 );
 
-export default UserBox;
+export default UserIndex;

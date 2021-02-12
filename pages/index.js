@@ -3,7 +3,6 @@ import axios from 'axios';
 import Head from 'next/head';
 import { END } from 'redux-saga';
 import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
-import { LOAD_ASKS_REQUEST } from '../reducers/ask';
 import Layout from '../components/Layout';
 import AskForm from '../components/AskForm';
 import wrapper from '../store/configureStore';
@@ -32,9 +31,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     context.store.dispatch({
       type: LOAD_MY_INFO_REQUEST,
     });
-    context.store.dispatch({
-      type: LOAD_ASKS_REQUEST,
-    });
+
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
   },

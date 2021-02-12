@@ -6,9 +6,9 @@ import {
   LOAD_MY_INFO_SUCCESS,
 } from '../reducers/user';
 
-// LOAD MY INFO
+//  본인 로그인 정보: /users
 function loadMyInfoAPI() {
-  return axios.get('/user');
+  return axios.get('/users');
 }
 
 function* loadMyInfo() {
@@ -25,6 +25,9 @@ function* loadMyInfo() {
     });
   }
 }
+
+// 유저 메인 홈: users/1
+// GET /users/<:userId>
 
 function* watchLoadMyInfo() {
   yield takeLatest(LOAD_MY_INFO_REQUEST, loadMyInfo);
