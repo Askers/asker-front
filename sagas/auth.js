@@ -20,7 +20,7 @@ import {
 
 // LOGIN
 function loginAPI(data) {
-  return axios.post('/user/login', data);
+  return axios.post('/auth/login', data);
 }
 
 // 프론트 요청 axios에서 옵션으로 withCredentials: true를 해주어야 합니

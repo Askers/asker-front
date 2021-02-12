@@ -9,18 +9,19 @@ import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
 
 const Login = () => {
-  const { isLoggedIn, loginError, user } = useSelector((state) => state.user);
+  const { isLoggedIn, loginError, me } = useSelector((state) => state.user);
+
   // 이미 로그인 했을 시
   useEffect(() => {
-    if (user && user.id) {
-      Router.replace(`/${user.id}`);
+    if (me && me.id) {
+      Router.replace(`/${me.id}`);
     }
-  }, [user && user.id]);
+  }, [me && me.id]);
 
   // 로그인 성공시
   useEffect(() => {
     if (isLoggedIn) {
-      Router.replace(`/${user.id}`);
+      Router.replace(`/${me.id}`);
     }
   }, [isLoggedIn]);
 

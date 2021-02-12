@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { END } from 'redux-saga';
 import { useRouter } from 'next/router';
 import { LOAD_MY_INFO_REQUEST } from '../../reducers/user';
-import { LOAD_ANSWERS_REQUEST } from '../../reducers/ask';
+import { LOAD_ANSWERS_REQUEST } from '../../reducers/answers';
 import Layout from '../../components/Layout';
 import AskForm from '../../components/AskForm';
 import wrapper from '../../store/configureStore';

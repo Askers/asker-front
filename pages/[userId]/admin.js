@@ -2,17 +2,28 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { END } from 'redux-saga';
+import Router, { useRouter } from 'next/router';
 import AskCard from '../../components/AskCard';
 import { LOAD_MY_INFO_REQUEST } from '../../reducers/user';
-import { LOAD_ASKS_REQUEST } from '../../reducers/ask';
+import { LOAD_ASKS_REQUEST } from '../../reducers/asks';
 import wrapper from '../../store/configureStore';
 
 const UserAdmin = () => {
-  const { asks } = useSelector((state) => state.ask);
-  const { user } = useSelector((state) => state.user);
+  const { asks } = useSelector((state) => state.asks);
+  const { me } = useSelector((state) => state.user);
+  const router = useRouter();
+  const { userId } = router.query;
 
-  const userId = user.id;
-  const username = user.username;
+  // type 변환 -> String
+  const myID = String(me.id);
+  const userID = userId;
+
+  // 프론트 단에서 me의 정보와 user의 정보가 다르면 본인 index로 redirect
+  useEffect(() => {
+    if (myID !== userID) {
+      Router.replace(`/${me.id}`);
+    }
+  }, [me.id]);
 
   return (
     <>

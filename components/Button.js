@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
-const Container = styled.button`
+const BtnContainer = styled.button`
   all: unset;
   padding: 14px 24px;
 
@@ -14,8 +15,10 @@ const Container = styled.button`
   background: #0346f2;
   border-radius: 12px;
 `;
-const Button = ({ name }) => {
-  return <Container type="submit">{name}</Container>;
-};
+const Button = ({ name, dest }) => (
+  <Link href={`/${dest}`}>
+    <BtnContainer>{name}</BtnContainer>
+  </Link>
+);
 
 export default Button;

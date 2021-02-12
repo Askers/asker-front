@@ -7,7 +7,7 @@ import {
   loginRequestAction,
   twitterLoginRequestAction,
   googleLoginRequestAction,
-} from '../reducers/user';
+} from '../reducers/auth';
 
 const Form = styled.form``;
 const FormWrapper = styled.div`
