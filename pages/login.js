@@ -5,8 +5,8 @@ import { END } from 'redux-saga';
 import axios from 'axios';
 import Layout from '../components/Layout';
 import LoginForm from '../components/LoginForm';
-import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
+import { LOAD_AUTH_REQUEST } from '../reducers/auth';
 
 const Login = () => {
   const { isLoggedIn, loginError, me } = useSelector((state) => state.auth);
@@ -49,7 +49,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const cookie = context.req ? context.req.headers.cookie : '';
     axios.defaults.headers.Cookie = cookie;
     context.store.dispatch({
-      type: LOAD_MY_INFO_REQUEST,
+      type: LOAD_AUTH_REQUEST,
     });
 
     context.store.dispatch(END);

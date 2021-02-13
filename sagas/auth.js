@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import {
+  LOAD_AUTH_REQUEST,
+  LOAD_AUTH_SUCCESS,
+  LOAD_AUTH_FAILURE,
   GOOGLE_LOGIN_FAILURE,
   GOOGLE_LOGIN_REQUEST,
   GOOGLE_LOGIN_SUCCESS,
@@ -17,6 +20,26 @@ import {
   TWITTER_LOGIN_REQUEST,
   TWITTER_LOGIN_SUCCESS,
 } from '../reducers/auth';
+
+// Load Auth
+function loadAuthAPI() {
+  return axios.get('/auth');
+}
+
+function* loadAuth() {
+  try {
+    const result = yield call(loadAuthAPI);
+    yield put({
+      type: LOAD_AUTH_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: LOAD_AUTH_FAILURE,
+      error: err.name,
+    });
+  }
+}
 
 // LOGIN
 function loginAPI(data) {
@@ -121,6 +144,10 @@ function* googleLogin() {
   }
 }
 
+function* watchLoadAuth() {
+  yield takeLatest(LOAD_AUTH_REQUEST, loadAuth);
+}
+
 function* watchLogin() {
   yield takeLatest(LOG_IN_REQUEST, login);
 }
@@ -143,6 +170,7 @@ function* watchGoogleLogin() {
 
 export default function* authSaga() {
   yield all([
+    fork(watchLoadAuth),
     fork(watchLogin),
     fork(watchLogout),
     fork(watchSignup),

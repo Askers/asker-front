@@ -2,6 +2,10 @@ import produce from 'immer';
 
 // Init
 export const initialState = {
+  isLoadingAuth: false, // Auth
+  isLoadedAuth: false,
+  loadAuthError: null,
+
   isLoggingIn: false, // 로그인 시도 중
   isLoggedIn: false,
   loginError: null,
@@ -15,6 +19,10 @@ export const initialState = {
 
   me: null,
 };
+
+export const LOAD_AUTH_REQUEST = 'LOAD_AUTH_REQUEST';
+export const LOAD_AUTH_SUCCESS = 'LOAD_AUTH_SUCCESS';
+export const LOAD_AUTH_FAILURE = 'LOAD_AUTH_FAILURE';
 
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
@@ -64,6 +72,24 @@ const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
     // 기존의 switch문
     switch (action.type) {
+      case LOAD_AUTH_REQUEST:
+        draft.isLoadingAuth = true;
+        draft.loadAuthError = null;
+        draft.isLoadedAuth = false;
+        break;
+
+      case LOAD_AUTH_SUCCESS:
+        draft.isLoadingAuth = false;
+        draft.isLoadedAuth = true;
+        draft.isLoggedIn = true;
+        draft.me = action.data;
+        break;
+
+      case LOAD_AUTH_FAILURE:
+        draft.isLoadingAuth = false;
+        draft.loadAuthError = action.error;
+        break;
+
       case LOG_IN_REQUEST:
         draft.isLoggingIn = true;
         draft.loginError = null;

@@ -1,7 +1,6 @@
 import { HYDRATE } from 'next-redux-wrapper';
 import { combineReducers } from 'redux';
 
-import user from './user';
 import ask from './ask';
 import asks from './asks';
 import auth from './auth';
@@ -14,7 +13,6 @@ const rootReducer = (state, action) => {
       return action.payload;
     default: {
       const combinedReducer = combineReducers({
-        user,
         ask,
         asks,
         auth,

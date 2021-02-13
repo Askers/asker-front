@@ -4,26 +4,27 @@ import axios from 'axios';
 import { END } from 'redux-saga';
 import Router, { useRouter } from 'next/router';
 import AskCard from '../../components/AskCard';
-import { LOAD_MY_INFO_REQUEST } from '../../reducers/user';
+import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
 import { LOAD_ASKS_REQUEST } from '../../reducers/asks';
 import wrapper from '../../store/configureStore';
 
 const UserAdmin = () => {
+  const { user } = useSelector((state) => state.user);
   const { asks } = useSelector((state) => state.asks);
-  const { me } = useSelector((state) => state.user);
   const router = useRouter();
-  const { userId } = router.query;
+  const { routeID } = router.query;
+
+  console.log(routeID);
 
   // type 변환 -> String
-  const myID = String(me.id);
-  const userID = userId;
+  const myID = String(user.id);
 
   // 프론트 단에서 me의 정보와 user의 정보가 다르면 본인 index로 redirect
   useEffect(() => {
-    if (myID !== userID) {
-      Router.replace(`/${me.id}`);
+    if (myID !== routeID) {
+      Router.replace(`/${user.id}`);
     }
-  }, [me.id]);
+  }, [user.id]);
 
   return (
     <>
@@ -45,7 +46,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const cookie = context.req ? context.req.headers.cookie : '';
     axios.defaults.headers.Cookie = cookie;
     context.store.dispatch({
-      type: LOAD_MY_INFO_REQUEST,
+      type: LOAD_AUTH_REQUEST,
     });
     context.store.dispatch({
       type: LOAD_ASKS_REQUEST,
