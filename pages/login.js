@@ -9,7 +9,7 @@ import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
 
 const Login = () => {
-  const { isLoggedIn, loginError, me } = useSelector((state) => state.user);
+  const { isLoggedIn, loginError, me } = useSelector((state) => state.auth);
 
   // 이미 로그인 했을 시
   useEffect(() => {

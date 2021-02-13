@@ -10,8 +10,9 @@ import {
 } from '../reducers/ask';
 
 // POST ASK
+// 특졍유저에게 질문하기
 function addAskAPI(data) {
-  return axios.post('/asks', data);
+  return axios.post(`/ask/${data.targetUserId}`, data);
 }
 
 function* addAsk(action) {

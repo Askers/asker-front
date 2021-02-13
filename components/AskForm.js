@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { addAskRequestAction } from '../reducers/ask';
 import useInput from '../hooks/useInput';
-import Button from '../components/Button';
 
 // Style
 const Form = styled.form``;
@@ -17,7 +16,7 @@ const FormWrapper = styled.div`
 const Label = styled.span``;
 const Input = styled.input``;
 
-const ButtonWrapper = styled.div``;
+const InputWrapper = styled.div``;
 
 const AskForm = ({ targetUserId }) => {
   const dispatch = useDispatch();
@@ -54,9 +53,9 @@ const AskForm = ({ targetUserId }) => {
         />
       </FormWrapper>
 
-      <ButtonWrapper>
-        <Button name="제출" />
-      </ButtonWrapper>
+      <InputWrapper>
+        <Input type="submit" value="제출" />
+      </InputWrapper>
     </Form>
   );
 };
