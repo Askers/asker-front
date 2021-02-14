@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { addAnswerRequestAction } from '../reducers/ask';
+import { addAnswerRequestAction } from '../reducers/answer';
 
 // Style
 const Form = styled.form``;

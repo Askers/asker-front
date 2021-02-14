@@ -11,12 +11,15 @@ import { LOAD_AUTH_REQUEST } from '../reducers/auth';
 const Login = () => {
   const { isLoggedIn, loginError, me } = useSelector((state) => state.auth);
 
-  // 이미 로그인 했을 시
+  console.log(me);
+
+  // 로그인 했는데 로그인창 접근시
   useEffect(() => {
     if (me && me.id) {
+      alert('이미 로그인 되어 있습니다.');
       Router.replace(`/${me.id}`);
     }
-  }, [me && me.id]);
+  }, []);
 
   // 로그인 성공시
   useEffect(() => {
@@ -41,13 +44,17 @@ const Login = () => {
 
 /*
   SSR Dispatch
-  LOAD_MY_INFO_REQUEST
+  LOAD_AUTH_REQUEST
+  LOAD_ASKS_REQUEST
 */
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     // Cookie
     const cookie = context.req ? context.req.headers.cookie : '';
-    axios.defaults.headers.Cookie = cookie;
+    axios.defaults.headers.Cookie = '';
+    if (context.req && cookie) {
+      axios.defaults.headers.Cookie = cookie;
+    }
     context.store.dispatch({
       type: LOAD_AUTH_REQUEST,
     });

@@ -29,6 +29,7 @@ function loadAuthAPI() {
 function* loadAuth() {
   try {
     const result = yield call(loadAuthAPI);
+
     yield put({
       type: LOAD_AUTH_SUCCESS,
       data: result.data,
@@ -36,7 +37,7 @@ function* loadAuth() {
   } catch (err) {
     yield put({
       type: LOAD_AUTH_FAILURE,
-      error: err.name,
+      error: err.message,
     });
   }
 }
@@ -65,7 +66,7 @@ function* login(action) {
 
 // LOGOUT
 function logoutAPI() {
-  return axios.post('/user/logout');
+  return axios.post('/auth/logout');
 }
 
 function* logout() {
@@ -77,20 +78,22 @@ function* logout() {
   } catch (err) {
     yield put({
       type: LOG_OUT_FAILURE,
-      error: err.name,
+      error: err.message,
     });
   }
 }
 
 // Sign Up
 function signupAPI(data) {
-  return axios.post('/user', data);
+  return axios.post('/auth/signup', data);
 }
 
 function* signup(action) {
   try {
     const result = yield call(signupAPI, action.data);
+    console.log('----------');
     console.log(result);
+    console.log('----------');
     yield put({
       type: SIGN_UP_SUCCESS,
       data: result.data,
@@ -98,7 +101,7 @@ function* signup(action) {
   } catch (err) {
     yield put({
       type: SIGN_UP_FAILURE,
-      error: err.name,
+      error: err.response.data,
     });
   }
 }
@@ -136,7 +139,7 @@ function* googleLogin() {
       data: result.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     yield put({
       type: GOOGLE_LOGIN_FAILURE,
       error: err.name,

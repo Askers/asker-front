@@ -1,9 +1,8 @@
 import React from 'react';
-import Button from '../components/Button';
 // import axios from 'axios';
 // import { END } from 'redux-saga';
-// import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
-// import AskForm from '../components/AskForm';
+import Button from '../components/Button';
+// import { LOAD_AUTH_REQUEST } from '../reducers/auth';
 // import wrapper from '../store/configureStore';
 
 // Style
@@ -21,7 +20,7 @@ const Home = () => (
 //     const cookie = context.req ? context.req.headers.cookie : '';
 //     axios.defaults.headers.Cookie = cookie;
 //     context.store.dispatch({
-//       type: LOAD_MY_INFO_REQUEST,
+//       type: LOAD_AUTH_REQUEST,
 //     });
 
 //     context.store.dispatch(END);

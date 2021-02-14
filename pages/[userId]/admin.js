@@ -9,22 +9,17 @@ import { LOAD_ASKS_REQUEST } from '../../reducers/asks';
 import wrapper from '../../store/configureStore';
 
 const UserAdmin = () => {
-  const { user } = useSelector((state) => state.user);
+  const { me } = useSelector((state) => state.auth);
   const { asks } = useSelector((state) => state.asks);
   const router = useRouter();
-  const { routeID } = router.query;
+  const { userId: routeAddress } = router.query;
 
-  console.log(routeID);
-
-  // type 변환 -> String
-  const myID = String(user.id);
-
-  // 프론트 단에서 me의 정보와 user의 정보가 다르면 본인 index로 redirect
+  // 프론트 단에서 me의 정보와 me의 정보가 다르면 본인 index로 redirect
   useEffect(() => {
-    if (myID !== routeID) {
-      Router.replace(`/${user.id}`);
+    if (me !== routeAddress) {
+      Router.replace(`/${me.id}`);
     }
-  }, [user.id]);
+  }, [me.id]);
 
   return (
     <>
@@ -37,14 +32,17 @@ const UserAdmin = () => {
 
 /*
   SSR Dispatch
-  LOAD_MY_INFO_REQUEST
+  LOAD_AUTH_REQUEST
   LOAD_ASKS_REQUEST
 */
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     // Cookie
     const cookie = context.req ? context.req.headers.cookie : '';
-    axios.defaults.headers.Cookie = cookie;
+    axios.defaults.headers.Cookie = '';
+    if (context.req && cookie) {
+      axios.defaults.headers.Cookie = cookie;
+    }
     context.store.dispatch({
       type: LOAD_AUTH_REQUEST,
     });
