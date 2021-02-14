@@ -32,6 +32,11 @@ const AskForm = ({ targetUserId }) => {
     [nickname, content],
   );
 
+  const handlePopUp = () => {
+    alert('ask를 성공ㄱ적으로 보냈습니다.');
+    window.location.reload();
+  };
+
   return (
     <Form onSubmit={onSubmitForm}>
       <FormWrapper>
@@ -54,7 +59,7 @@ const AskForm = ({ targetUserId }) => {
       </FormWrapper>
 
       <InputWrapper>
-        <Input type="submit" value="제출" />
+        <Input type="submit" onClick={handlePopUp} value="제출" />
       </InputWrapper>
     </Form>
   );
