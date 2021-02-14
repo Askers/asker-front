@@ -9,7 +9,7 @@ import Button from '../components/Button';
 
 const Home = () => (
   <>
-    <Button name="Join" dest="login" />
+    <Button name="시작하기" dest="login" />
   </>
 );
 
