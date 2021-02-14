@@ -45,7 +45,6 @@ const Login = () => {
 /*
   SSR Dispatch
   LOAD_AUTH_REQUEST
-  LOAD_ASKS_REQUEST
 */
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
