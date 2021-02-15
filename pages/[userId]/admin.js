@@ -12,14 +12,17 @@ const UserAdmin = () => {
   const { me } = useSelector((state) => state.auth);
   const { asks } = useSelector((state) => state.asks);
   const router = useRouter();
-  const { userId: routeAddress } = router.query;
+  const { userId } = router.query;
 
   // 프론트 단에서 me의 정보와 me의 정보가 다르면 본인 index로 redirect
+  // routeAdress와 me.id는 자료형이 다르다.
+  const myID = me.id;
+  const routeID = Number(userId);
   useEffect(() => {
-    if (me !== routeAddress) {
-      Router.replace(`/${me.id}`);
+    if (myID !== routeID) {
+      Router.replace(`/${myID}`);
     }
-  }, [me.id]);
+  }, [myID]);
 
   return (
     <>
