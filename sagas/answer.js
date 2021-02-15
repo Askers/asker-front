@@ -34,7 +34,7 @@ function* loadAnswer() {
 
 // Add Answer
 function addAnswerAPI(data) {
-  return axios.post('/answer', data);
+  return axios.post(`/answers/${data.targetAskId}`, data);
 }
 
 function* addAnswer(action) {

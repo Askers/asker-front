@@ -9,10 +9,10 @@ import {
   LOAD_ASK_FAILURE,
 } from '../reducers/ask';
 
-// POST ASK
+// POST ASKS/ID
 // 특졍유저에게 질문하기
 function addAskAPI(data) {
-  return axios.post(`/ask/${data.targetUserId}`, data);
+  return axios.post(`/asks/${data.targetUserId}`, data);
 }
 
 function* addAsk(action) {

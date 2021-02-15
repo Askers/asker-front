@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { END } from 'redux-saga';
 import { useRouter } from 'next/router';
 import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
+import { LOAD_ANSWER_REQUEST } from '../../reducers/answer';
 import Layout from '../../components/Layout';
 import AskForm from '../../components/AskForm';
 import wrapper from '../../store/configureStore';
@@ -39,6 +40,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
     }
     context.store.dispatch({
       type: LOAD_AUTH_REQUEST,
+    });
+
+    context.store.dispatch({
+      type: LOAD_ANSWER_REQUEST,
     });
 
     context.store.dispatch(END);
