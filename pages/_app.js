@@ -5,7 +5,6 @@ import { ThemeProvider } from 'styled-components';
 import wrapper from '../store/configureStore';
 import GrobalStyles from '../assets/globalStyles';
 import theme from '../assets/theme';
-import media from '../assets/media';
 // 전역으로 적용하고 싶은 것 임포트
 
 const Asker = ({ Component }) => (
@@ -16,7 +15,7 @@ const Asker = ({ Component }) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <GrobalStyles />
-    <ThemeProvider theme={{ theme, ...media }}>
+    <ThemeProvider theme={{ theme }}>
       <Component />
     </ThemeProvider>
   </>

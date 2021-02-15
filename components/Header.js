@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import media from '../assets/module';
 
 const Container = styled.footer`
   width: 1280px;

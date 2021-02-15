@@ -6,9 +6,12 @@ import Footer from './Footer';
 import Header from './Header';
 
 // STYLED COMPONENTS
-const LayoutContainer = styled.section`
+const LayoutContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const Layout = ({ children }) => (
