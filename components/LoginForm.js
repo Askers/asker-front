@@ -9,12 +9,15 @@ import {
   googleLoginRequestAction,
 } from '../reducers/auth';
 import theme from '../assets/theme';
+import LogoSvg from '../public/logo.svg';
+
+const LogoContainer = styled.div``;
+const Svg = styled.img``;
 
 const Form = styled.form`
   width: ${theme.width.mobile};
   height: ${theme.height.mobile};
   border-radius: ${theme.radius.mobile};
-
   background-color: ${theme.colors.white};
   box-shadow: ${theme.colors.shadow};
 
@@ -49,7 +52,6 @@ const Input = styled.input`
   height: ${theme.inputButton.height};
   border-radius: ${theme.inputButton.radius};
   background-color: ${theme.colors.lightblue};
-  border-radius: ${theme.inputButton.radius};
   color: ${theme.colors.gray};
 
   @media only screen and (min-width: 768px) {
@@ -62,12 +64,26 @@ const Input = styled.input`
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
 `;
-const Button = styled.input``;
 
-const LinkWrapper = styled(Link)``;
-const LinkButton = styled.button``;
+const Button = styled.input`
+  all: unset;
+  width: ${theme.linkButton.width_md};
+  height: ${theme.linkButton.height};
+  border-radius: ${theme.linkButton.radius};
+  background-color: ${theme.colors.lightblue};
+  color: ${theme.colors.gray};
+  text-align: center;
+  margin: ${theme.gap.small};
+
+  @media only screen and (min-width: 768px) {
+    width: ${theme.linkButton.width_lg};
+  }
+
+  transition: all 0.5s ease-in-out;
+`;
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -91,6 +107,9 @@ const LoginForm = () => {
 
   return (
     <Form onSubmit={onSubmitForm}>
+      <LogoContainer>
+        <Svg src={LogoSvg} alt="Asker Logo" />
+      </LogoContainer>
       <FormWrapper>
         <Label htmlFor="email">Email</Label>
         <Input
@@ -113,23 +132,9 @@ const LoginForm = () => {
       </FormWrapper>
       <ButtonWrapper>
         <Button type="submit" value="로그인" />
-      </ButtonWrapper>
-      <LinkWrapper href="/signup">
-        <LinkButton>회원가입</LinkButton>
-      </LinkWrapper>
-      <ButtonWrapper>
-        <Button
-          type="button"
-          onClick={twitterAuth}
-          value="트위터 계정으로 로그인하기"
-        />
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <Button
-          type="button"
-          onClick={googleAuth}
-          value="구글 계정으로 로그인하기"
-        />
+        <Button type="button" value="회원가입" />
+        <Button type="button" onClick={googleAuth} value="구글로 로그인하기" />
+        <Button type="button" onClick={twitterAuth} value="트위터로 로그인" />
       </ButtonWrapper>
     </Form>
   );

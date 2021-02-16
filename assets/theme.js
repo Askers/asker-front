@@ -34,15 +34,19 @@ const radius = {
 /*
     Button Size
 */
-const routeButton = {
-  radius: calcRem(5),
-};
 
 const inputButton = {
   radius: calcRem(10),
   height: calcRem(50),
   width_md: calcRem(250),
   width_lg: calcRem(300),
+};
+
+const linkButton = {
+  radius: calcRem(10),
+  height: calcRem(50),
+  width_md: calcRem(150),
+  width_lg: calcRem(200),
 };
 
 /*
@@ -101,7 +105,7 @@ const theme = {
   radius,
   width,
   height,
-  routeButton,
+  linkButton,
   inputButton,
   gap,
 };
