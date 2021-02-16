@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import useInput from '../hooks/useInput';
 import { signupRequestAction } from '../reducers/auth';
 import theme from '../assets/theme';
@@ -149,7 +150,7 @@ const SignupForm = () => {
           />
         </FormWrapper>
         <FormWrapper>
-          <Label htmlFor="username">Usernamed</Label>
+          <Label htmlFor="username">Username</Label>
           <Input
             type="text"
             name="username"

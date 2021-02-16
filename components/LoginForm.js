@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/link';
+import { useRouter } from 'next/router';
 import useInput from '../hooks/useInput';
 import {
   loginRequestAction,
