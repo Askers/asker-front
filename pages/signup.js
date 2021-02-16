@@ -1,12 +1,20 @@
 import Router from 'next/router';
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { END } from 'redux-saga';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import Layout from '../components/Layout';
 import SignupForm from '../components/SignupForm';
 import wrapper from '../store/configureStore';
 import { LOAD_AUTH_REQUEST } from '../reducers/auth';
+
+const SignupContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Signup = () => {
   const { isSignedUp, signupError, me } = useSelector((state) => state.auth);
@@ -33,9 +41,9 @@ const Signup = () => {
   }, [signupError]);
 
   return (
-    <Layout>
+    <SignupContainer>
       <SignupForm />
-    </Layout>
+    </SignupContainer>
   );
 };
 

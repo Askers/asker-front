@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import wrapper from '../store/configureStore';
@@ -9,11 +8,6 @@ import theme from '../assets/theme';
 
 const Asker = ({ Component }) => (
   <>
-    <Head>
-      <title>Asker</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
     <GrobalStyles />
     <ThemeProvider theme={{ theme }}>
       <Component />

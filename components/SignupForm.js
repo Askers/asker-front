@@ -4,12 +4,19 @@ import { useDispatch } from 'react-redux';
 import useInput from '../hooks/useInput';
 import { signupRequestAction } from '../reducers/auth';
 import theme from '../assets/theme';
+import LogoSvg from './Image/LogoSvg';
+
+const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: ${theme.margins.xxxl};
+`;
 
 const Form = styled.form`
   width: ${theme.width.mobile};
   height: ${theme.height.mobile};
   border-radius: ${theme.radius.mobile};
-
   background-color: ${theme.colors.white};
   box-shadow: ${theme.colors.shadow};
 
@@ -29,16 +36,75 @@ const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  margin: ${theme.gap.small};
 `;
 
-const Label = styled.label``;
-const Input = styled.input``;
+const Label = styled.span`
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.gray};
+`;
 
-const ButtonWrapper = styled.div``;
-const Button = styled.input``;
+const Input = styled.input`
+  all: unset;
+  width: ${theme.inputButton.width_lg};
+  height: ${theme.inputButton.height};
+  border-radius: ${theme.inputButton.radius};
+  background-color: ${theme.colors.lightblue};
+  color: ${theme.colors.gray};
 
-const ErrorMsg = styled.div``;
+  @media only screen and (min-width: 768px) {
+    width: ${theme.inputButton.width_xl};
+  }
+
+  transition: all 0.5s ease-in-out;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Button = styled.input`
+  all: unset;
+  width: ${theme.linkButton.width_lg};
+  height: ${theme.linkButton.height};
+  border-radius: ${theme.linkButton.radius};
+  background-color: ${(props) =>
+    props.type === 'submit'
+      ? `${theme.colors.blue}`
+      : `${theme.colors.lightblue}`};
+  color: ${(props) =>
+    props.type === 'submit' ? `${theme.colors.white}` : `${theme.colors.gray}`};
+  text-align: center;
+  margin: ${theme.gap.small};
+
+  :hover {
+    cursor: pointer;
+    background-color: ${(props) =>
+      props.type === 'submit'
+        ? `${theme.colors.lightblue}`
+        : `${theme.colors.blue}`};
+    color: ${(props) =>
+      props.type === 'submit'
+        ? `${theme.colors.lightblue}`
+        : `${theme.colors.white}`};
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: ${theme.linkButton.width_xl};
+  }
+
+  transition: all 0.5s ease-in-out;
+`;
+
+const SubTitle = styled.span`
+  margin-top: ${theme.margins.xxxl};
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.gray};
+`;
 
 const SignupForm = () => {
   const [email, onChangeEmail] = useInput('');
@@ -69,6 +135,9 @@ const SignupForm = () => {
   return (
     <>
       <Form onSubmit={onSubmit}>
+        <LogoContainer>
+          <LogoSvg width={'5rem'} />
+        </LogoContainer>
         <FormWrapper>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -110,14 +179,15 @@ const SignupForm = () => {
           />
         </FormWrapper>
         <ButtonWrapper>
+          <SubTitle>Welcome!!!</SubTitle>
           <Button type="submit" value="회원가입" />
         </ButtonWrapper>
       </Form>
-      {passwordError ? (
+      {/* {passwordError ? (
         <ErrorMsg>일치하지 않음</ErrorMsg>
       ) : (
         <ErrorMsg>일치함</ErrorMsg>
-      )}
+      )} */}
     </>
   );
 };

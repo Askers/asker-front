@@ -19,15 +19,13 @@ const LoginContainer = styled.div`
 const Login = () => {
   const { isLoggedIn, loginError, me } = useSelector((state) => state.auth);
 
-  console.log(me);
-
   // 로그인 했는데 로그인창 접근시
   useEffect(() => {
     if (me && me.id) {
       alert('이미 로그인 되어 있습니다.');
       Router.replace(`/${me.id}`);
     }
-  }, []);
+  }, [me && me.id]);
 
   // 로그인 성공시
   useEffect(() => {

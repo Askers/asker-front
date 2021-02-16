@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { userRouter } from 'next/link';
+import { useRouter } from 'next/link';
 import useInput from '../hooks/useInput';
 import {
   loginRequestAction,
@@ -10,7 +10,6 @@ import {
 } from '../reducers/auth';
 import theme from '../assets/theme';
 import LogoSvg from './Image/LogoSvg';
-import { useRouter } from 'next/router';
 
 const LogoContainer = styled.div`
   display: flex;
