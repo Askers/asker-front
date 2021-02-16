@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
+import { userRouter } from 'next/link';
 import useInput from '../hooks/useInput';
 import {
   loginRequestAction,
@@ -9,6 +10,7 @@ import {
 } from '../reducers/auth';
 import theme from '../assets/theme';
 import LogoSvg from './Image/LogoSvg';
+import { useRouter } from 'next/router';
 
 const LogoContainer = styled.div`
   display: flex;
@@ -111,6 +113,7 @@ const SubTitle = styled.span`
 `;
 
 const LoginForm = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
@@ -160,7 +163,11 @@ const LoginForm = () => {
       </ButtonWrapper>
       <ButtonWrapper>
         <SubTitle>유저가 아니신가요? 지금 가입하세요!</SubTitle>
-        <Button type="button" value="회원가입" />
+        <Button
+          type="button"
+          onClick={() => router.push('/signup')}
+          value="회원가입"
+        />
         <Button type="button" onClick={googleAuth} value="구글로 로그인하기" />
         <Button type="button" onClick={twitterAuth} value="트위터로 로그인" />
       </ButtonWrapper>

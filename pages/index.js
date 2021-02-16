@@ -1,17 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import { END } from 'redux-saga';
-import Button from '../components/Button';
 import { LOAD_AUTH_REQUEST } from '../reducers/auth';
 import wrapper from '../store/configureStore';
 
 // Style
 
-const Home = () => (
-  <>
-    <Button name="시작하기" dest="login" />
-  </>
-);
+const Home = () => <div>tlwkrgkrl</div>;
 
 /*
   SSR Dispatch
