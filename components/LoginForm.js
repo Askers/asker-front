@@ -135,7 +135,7 @@ const LoginForm = () => {
   return (
     <Form onSubmit={onSubmitForm}>
       <LogoContainer>
-        <LogoSvg width={'5rem'} />
+        <LogoSvg width="5rem" />
       </LogoContainer>
       <FormWrapper>
         <Label htmlFor="email">Email</Label>

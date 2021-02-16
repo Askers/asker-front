@@ -15,8 +15,6 @@ const Container = styled.footer`
   transition: all 0.5s ease-in-out;
 `;
 
-const Footer = () => {
-  return <Container>Footer</Container>;
-};
+const Footer = () => <Container>Footer</Container>;
 
 export default Footer;

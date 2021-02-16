@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from 'styled-components';
+import Head from 'next/head';
 import wrapper from '../store/configureStore';
 import GrobalStyles from '../assets/globalStyles';
-import theme from '../assets/theme';
 // 전역으로 적용하고 싶은 것 임포트
 
 const Asker = ({ Component }) => (
   <>
+    <Head>
+      <meta charset="utf-8" />
+      <title>Asker</title>
+    </Head>
     <GrobalStyles />
-    <ThemeProvider theme={{ theme }}>
-      <Component />
-    </ThemeProvider>
+    <Component />
   </>
 );
 

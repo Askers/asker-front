@@ -19,10 +19,9 @@ const LoginContainer = styled.div`
 const Login = () => {
   const { isLoggedIn, loginError, me } = useSelector((state) => state.auth);
 
-  // 로그인 했는데 로그인창 접근시
+  // 이미 로그인 했을 시
   useEffect(() => {
     if (me && me.id) {
-      alert('이미 로그인 되어 있습니다.');
       Router.replace(`/${me.id}`);
     }
   }, [me && me.id]);
@@ -55,6 +54,8 @@ const Login = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     // Cookie
+    console.log('getServerSideProps start');
+    console.log(context.req.headers);
     const cookie = context.req ? context.req.headers.cookie : '';
     axios.defaults.headers.Cookie = '';
     if (context.req && cookie) {
@@ -65,6 +66,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
     });
 
     context.store.dispatch(END);
+    console.log('getServerSideProps end');
+
     await context.store.sagaTask.toPromise();
   },
 );
