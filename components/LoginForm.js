@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import useInput from '../hooks/useInput';
 import {
@@ -9,10 +8,14 @@ import {
   googleLoginRequestAction,
 } from '../reducers/auth';
 import theme from '../assets/theme';
-import LogoSvg from '../public/logo.svg';
+import LogoSvg from './Image/LogoSvg';
 
-const LogoContainer = styled.div``;
-const Svg = styled.img``;
+const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: ${theme.margins.xxxl};
+`;
 
 const Form = styled.form`
   width: ${theme.width.mobile};
@@ -48,14 +51,14 @@ const Label = styled.span`
 
 const Input = styled.input`
   all: unset;
-  width: ${theme.inputButton.width_md};
+  width: ${theme.inputButton.width_lg};
   height: ${theme.inputButton.height};
   border-radius: ${theme.inputButton.radius};
   background-color: ${theme.colors.lightblue};
   color: ${theme.colors.gray};
 
   @media only screen and (min-width: 768px) {
-    width: ${theme.inputButton.width_lg};
+    width: ${theme.inputButton.width_xl};
   }
 
   transition: all 0.5s ease-in-out;
@@ -70,7 +73,7 @@ const ButtonWrapper = styled.div`
 
 const Button = styled.input`
   all: unset;
-  width: ${theme.linkButton.width_md};
+  width: ${theme.linkButton.width_lg};
   height: ${theme.linkButton.height};
   border-radius: ${theme.linkButton.radius};
   background-color: ${theme.colors.lightblue};
@@ -78,11 +81,23 @@ const Button = styled.input`
   text-align: center;
   margin: ${theme.gap.small};
 
+  :hover {
+    cursor: pointer;
+    background-color: ${theme.colors.blue};
+    color: ${theme.colors.white};
+  }
+
   @media only screen and (min-width: 768px) {
-    width: ${theme.linkButton.width_lg};
+    width: ${theme.linkButton.width_xl};
   }
 
   transition: all 0.5s ease-in-out;
+`;
+
+const SubTitle = styled.span`
+  margin-top: ${theme.margins.xxl};
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.gray};
 `;
 
 const LoginForm = () => {
@@ -108,7 +123,7 @@ const LoginForm = () => {
   return (
     <Form onSubmit={onSubmitForm}>
       <LogoContainer>
-        <Svg src={LogoSvg} alt="Asker Logo" />
+        <LogoSvg width={'5rem'} />
       </LogoContainer>
       <FormWrapper>
         <Label htmlFor="email">Email</Label>
@@ -132,6 +147,9 @@ const LoginForm = () => {
       </FormWrapper>
       <ButtonWrapper>
         <Button type="submit" value="로그인" />
+      </ButtonWrapper>
+      <ButtonWrapper>
+        <SubTitle>유저가 아니신가요? 지금 가입하세요!</SubTitle>
         <Button type="button" value="회원가입" />
         <Button type="button" onClick={googleAuth} value="구글로 로그인하기" />
         <Button type="button" onClick={twitterAuth} value="트위터로 로그인" />

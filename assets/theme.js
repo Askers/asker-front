@@ -22,8 +22,8 @@ const width = {
 };
 
 const height = {
-  mobile: calcRem(400),
-  pc: calcRem(500),
+  mobile: calcRem(600),
+  pc: calcRem(600),
 };
 
 const radius = {
@@ -34,19 +34,20 @@ const radius = {
 /*
     Button Size
 */
-
 const inputButton = {
-  radius: calcRem(10),
-  height: calcRem(50),
-  width_md: calcRem(250),
-  width_lg: calcRem(300),
-};
-
-const linkButton = {
   radius: calcRem(10),
   height: calcRem(50),
   width_md: calcRem(150),
   width_lg: calcRem(200),
+  width_xl: calcRem(300),
+};
+
+const linkButton = {
+  radius: calcRem(5),
+  height: calcRem(50),
+  width_md: calcRem(150),
+  width_lg: calcRem(200),
+  width_xl: calcRem(300),
 };
 
 /*
@@ -56,9 +57,9 @@ const paddings = {
   mobile: `${calcRem(16)} ${calcRem(16)}`,
   pc: `${calcRem(24)} ${calcRem(12)}`,
   lg: calcRem(12),
-  xl: calcRem(14),
-  xxl: calcRem(16),
-  xxxl: calcRem(18),
+  xl: calcRem(18),
+  xxl: calcRem(24),
+  xxxl: calcRem(36),
 };
 
 const margins = {
@@ -66,9 +67,9 @@ const margins = {
   pc: calcRem(24),
   base: calcRem(10),
   lg: calcRem(12),
-  xl: calcRem(14),
-  xxl: calcRem(16),
-  xxxl: calcRem(18),
+  xl: calcRem(18),
+  xxl: calcRem(24),
+  xxxl: calcRem(36),
 };
 
 const interval = {
