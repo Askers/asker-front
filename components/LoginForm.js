@@ -34,12 +34,36 @@ const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  margin: ${theme.gap.small};
 `;
-const Label = styled.span``;
-const Input = styled.input``;
 
-const ButtonWrapper = styled.div``;
+const Label = styled.span`
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.gray};
+`;
+
+const Input = styled.input`
+  all: unset;
+  width: ${theme.inputButton.width_md};
+  height: ${theme.inputButton.height};
+  border-radius: ${theme.inputButton.radius};
+  background-color: ${theme.colors.lightblue};
+  border-radius: ${theme.inputButton.radius};
+  color: ${theme.colors.gray};
+
+  @media only screen and (min-width: 768px) {
+    width: ${theme.inputButton.width_lg};
+  }
+
+  transition: all 0.5s ease-in-out;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
 const Button = styled.input``;
 
 const LinkWrapper = styled(Link)``;

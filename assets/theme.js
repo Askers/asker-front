@@ -4,7 +4,7 @@ const calcRem = (size) => `${size / 16}rem`;
     Font Size
  */
 const fontSizes = {
-  small: calcRem(14),
+  small: calcRem(12),
   base: calcRem(16),
   lg: calcRem(18),
   xl: calcRem(20),
@@ -14,16 +14,16 @@ const fontSizes = {
 };
 
 /*
-    Card Size
+    LOGIN, SIGNUP Card Size
 */
 const width = {
   mobile: calcRem(300),
-  pc: calcRem(500),
+  pc: calcRem(400),
 };
 
 const height = {
   mobile: calcRem(400),
-  pc: calcRem(600),
+  pc: calcRem(500),
 };
 
 const radius = {
@@ -31,6 +31,23 @@ const radius = {
   pc: calcRem(24),
 };
 
+/*
+    Button Size
+*/
+const routeButton = {
+  radius: calcRem(5),
+};
+
+const inputButton = {
+  radius: calcRem(10),
+  height: calcRem(50),
+  width_md: calcRem(250),
+  width_lg: calcRem(300),
+};
+
+/*
+    Layout Structure
+*/
 const paddings = {
   mobile: `${calcRem(16)} ${calcRem(16)}`,
   pc: `${calcRem(24)} ${calcRem(12)}`,
@@ -57,8 +74,10 @@ const interval = {
   xxl: calcRem(200),
 };
 
-const verticalInterval = {
-  base: `${calcRem(10)} 0 ${calcRem(10)} 0`,
+const gap = {
+  small: calcRem(4),
+  base: calcRem(8),
+  large: calcRem(12),
 };
 
 const colors = {
@@ -69,6 +88,7 @@ const colors = {
   lightgray: '#E7E9F0',
   stroke: '#EBEBF9',
   blue: '#0346F2',
+  lightblue: '#F2F5FE',
   shadow: '8px 8px 16px 4px rgba(133, 139, 146, 0.06)',
 };
 
@@ -79,9 +99,11 @@ const theme = {
   margins,
   interval,
   radius,
-  verticalInterval,
   width,
   height,
+  routeButton,
+  inputButton,
+  gap,
 };
 
 export default theme;
