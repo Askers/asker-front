@@ -3,10 +3,18 @@ import Router from 'next/router';
 import { useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 import axios from 'axios';
-import Layout from '../components/Layout';
+import styled from 'styled-components';
 import LoginForm from '../components/LoginForm';
 import wrapper from '../store/configureStore';
 import { LOAD_AUTH_REQUEST } from '../reducers/auth';
+
+const LoginContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Login = () => {
   const { isLoggedIn, loginError, me } = useSelector((state) => state.auth);
@@ -36,9 +44,9 @@ const Login = () => {
   }, [loginError]);
 
   return (
-    <Layout>
+    <LoginContainer>
       <LoginForm />
-    </Layout>
+    </LoginContainer>
   );
 };
 

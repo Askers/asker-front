@@ -8,8 +8,28 @@ import {
   twitterLoginRequestAction,
   googleLoginRequestAction,
 } from '../reducers/auth';
+import theme from '../assets/theme';
 
-const Form = styled.form``;
+const Form = styled.form`
+  width: ${theme.width.mobile};
+  height: ${theme.height.mobile};
+  border-radius: ${theme.radius.mobile};
+
+  background-color: ${theme.colors.white};
+  box-shadow: ${theme.colors.shadow};
+
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (min-width: 768px) {
+    border-radius: ${theme.radius.pc};
+    width: ${theme.width.pc};
+    height: ${theme.height.pc};
+  }
+
+  transition: all 0.5s ease-in-out;
+`;
+
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;

@@ -1,14 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import theme from '../assets/theme';
 
 const Container = styled.footer`
-  width: 1280px;
-  height: 112px;
-  padding: 32px 32px 6px 60px;
-  border-radius: 20px;
-  box-shadow: 8px 8px 16px 4px rgba(133, 139, 146, 0.06);
-  border: solid 0.5px #ebebf9;
-  background-color: #ffffff;
+  width: inherit;
+  height: inherit;
+  background-color: ${theme.colors.white};
+  box-shadow: ${theme.colors.shadow};
+  border-radius: ${theme.radius.mobile};
+
+  @media only screen and (min-width: 768px) {
+    border-radius: ${theme.radius.pc};
+  }
+  transition: all 0.5s ease-in-out;
 `;
 
 const Footer = () => {

@@ -4,21 +4,52 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Header from './Header';
+import theme from '../assets/theme';
 
 // STYLED COMPONENTS
 const LayoutContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: ${theme.margins.mobile};
+
+  @media only screen and (min-width: 768px) {
+    margin: ${theme.margins.pc};
+  }
+`;
+
+const HeaderContainer = styled.header`
+  width: 100%;
+  max-width: 1000px;
+  align-self: center;
+  height: 10vh;
+  max-height: 10vh;
+`;
+
+const ChildernContainer = styled.main`
+  width: 100%;
+  max-width: 1000px;
+  align-self: center;
+  height: 80vh;
+  max-height: 80vh;
+`;
+
+const FooterContainer = styled.footer`
+  width: 100%;
+  max-width: 1000px;
+  align-self: center;
+  height: 10vh;
+  max-height: 10vh;
 `;
 
 const Layout = ({ children }) => (
   <LayoutContainer>
-    <Header />
-    {children}
-    <Footer />
+    <HeaderContainer>
+      <Header />
+    </HeaderContainer>
+    <ChildernContainer>{children}</ChildernContainer>
+    <FooterContainer>
+      <Footer />
+    </FooterContainer>
   </LayoutContainer>
 );
 
