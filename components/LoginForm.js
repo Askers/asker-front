@@ -76,15 +76,25 @@ const Button = styled.input`
   width: ${theme.linkButton.width_lg};
   height: ${theme.linkButton.height};
   border-radius: ${theme.linkButton.radius};
-  background-color: ${theme.colors.lightblue};
-  color: ${theme.colors.gray};
+  background-color: ${(props) =>
+    props.type === 'submit'
+      ? `${theme.colors.blue}`
+      : `${theme.colors.lightblue}`};
+  color: ${(props) =>
+    props.type === 'submit' ? `${theme.colors.white}` : `${theme.colors.gray}`};
   text-align: center;
   margin: ${theme.gap.small};
 
   :hover {
     cursor: pointer;
-    background-color: ${theme.colors.blue};
-    color: ${theme.colors.white};
+    background-color: ${(props) =>
+      props.type === 'submit'
+        ? `${theme.colors.lightblue}`
+        : `${theme.colors.blue}`};
+    color: ${(props) =>
+      props.type === 'submit'
+        ? `${theme.colors.lightblue}`
+        : `${theme.colors.white}`};
   }
 
   @media only screen and (min-width: 768px) {
