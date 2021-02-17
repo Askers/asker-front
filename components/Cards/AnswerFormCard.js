@@ -4,9 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addAnswerRequestAction } from '../../reducers/answer';
 import useInput from '../../hooks/useInput';
 import theme from '../../assets/theme';
+import XbtnSvg from '../../components/Image/XbtnSvg';
 
 // Style
-
+const ToggleContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: ${theme.paddings.xl} ${theme.paddings.xl} 0 0;
+`;
 const Form = styled.form`
   width: 100%;
   min-width: ${theme.width.mb_sm};
@@ -28,6 +34,40 @@ const Form = styled.form`
   transition: all 0.5s ease-in-out;
 `;
 
+const AskWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: ${theme.gap.small};
+  padding: ${theme.paddings.mobile};
+  color: ${theme.colors.gray};
+`;
+
+const AskDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Nickname = styled.span`
+  margin-left: ${theme.margins.xs};
+  color: ${theme.colors.dark};
+  font-size: ${theme.fontSizes.lg};
+  font-weight: bold;
+`;
+const Date = styled.span`
+  margin-left: ${theme.margins.xs};
+  color: ${theme.colors.dark};
+  font-size: ${theme.fontSizes.lg};
+  font-weight: bold;
+`;
+
+const AskContent = styled.div`
+  margin: ${theme.margins.sm};
+  color: ${theme.colors.gray};
+  font-size: ${theme.fontSizes.medium};
+  line-height: 1.4rem;
+`;
+
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,7 +78,13 @@ const FormWrapper = styled.div`
   color: ${theme.colors.gray};
 `;
 
-const Label = styled.span``;
+const Label = styled.span`
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.gray};
+  margin-top: ${theme.margins.mobile};
+  margin-left: ${theme.margins.xs};
+  line-height: 1rem;
+`;
 
 const AnswerInput = styled.textarea`
   all: unset;
@@ -55,7 +101,6 @@ const AnswerInput = styled.textarea`
 `;
 
 const ButtonWrapper = styled.div`
-  align-self: flex-end;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,7 +108,7 @@ const ButtonWrapper = styled.div`
   margin: ${theme.margins.base};
 `;
 
-const Button = styled.input`
+const Button = styled.button`
   all: unset;
   width: ${theme.submitButton.width_mb_md};
   height: ${theme.submitButton.height_mb_md};
@@ -95,7 +140,12 @@ const Button = styled.input`
   transition: all 0.5s ease-in-out;
 `;
 
-const AnswerFormCard = ({ nickname, content }) => {
+const ButtonName = styled.span`
+  font-size: ${theme.fontSizes.small};
+  line-height: 1rem;
+`;
+
+const AnswerFormCard = ({ nickname, content, date }) => {
   const { addAskDone } = useSelector((state) => state.ask);
   const dispatch = useDispatch();
   //   const id = useSelector((state)=>state.) ??????
@@ -109,6 +159,8 @@ const AnswerFormCard = ({ nickname, content }) => {
     }
   }, [addAskDone]);
 
+  const handdleDelete = () => {};
+
   const onSubmitForm = useCallback((e) => {
     e.preventDefault();
     dispatch(addAnswerRequestAction(answer));
@@ -116,8 +168,19 @@ const AnswerFormCard = ({ nickname, content }) => {
 
   return (
     <Form onSubmit={onSubmitForm}>
+      <ToggleContainer onClick={handdleDelete}>
+        <XbtnSvg width="1.25rem" />
+      </ToggleContainer>
+      <AskWrapper>
+        <AskDetail>
+          <Label>From.</Label>
+          <Nickname>{nickname}</Nickname>
+          <Date>{date}</Date>
+        </AskDetail>
+        <AskContent>{content}</AskContent>
+      </AskWrapper>
       <FormWrapper>
-        <Label>Ask what you want!</Label>
+        <Label>질문에 대답하세요....</Label>
         <AnswerInput
           name="text"
           value={text}
@@ -127,7 +190,9 @@ const AnswerFormCard = ({ nickname, content }) => {
       </FormWrapper>
 
       <ButtonWrapper>
-        <Button type="submit" value="SEND" />
+        <Button type="submit">
+          <ButtonName>Answer</ButtonName>
+        </Button>
       </ButtonWrapper>
     </Form>
   );

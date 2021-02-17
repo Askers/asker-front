@@ -5,6 +5,7 @@ const calcRem = (size) => `${size / 16}rem`;
  */
 const fontSizes = {
   small: calcRem(12),
+  medium: calcRem(14),
   base: calcRem(16),
   lg: calcRem(18),
   xl: calcRem(20),
@@ -141,7 +142,7 @@ const gap = {
 
 const colors = {
   black: '#000000',
-  dark: '#1A1E2C',
+  dark: '#474C5E',
   white: '#FFFFFF',
   gray: '#8E94A7',
   lightgray: '#E7E9F0',
