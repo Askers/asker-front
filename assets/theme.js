@@ -14,7 +14,7 @@ const fontSizes = {
 };
 
 /*
-    LOGIN, SIGNUP Card Size
+    Card Size
 */
 const width = {
   mobile: calcRem(300),
@@ -83,6 +83,8 @@ const gap = {
   small: calcRem(4),
   base: calcRem(8),
   large: calcRem(12),
+  mobile: calcRem(16),
+  pc: calcRem(24),
 };
 
 const colors = {

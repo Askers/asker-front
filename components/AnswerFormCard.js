@@ -18,7 +18,7 @@ const Input = styled.input``;
 const ButtonWrapper = styled.div``;
 const Button = styled.input``;
 
-const AnswerForm = () => {
+const AnswerFormCard = () => {
   const { addAskDone } = useSelector((state) => state.ask);
   const dispatch = useDispatch();
   //   const id = useSelector((state)=>state.) ??????
@@ -69,4 +69,4 @@ const AnswerForm = () => {
   );
 };
 
-export default AnswerForm;
+export default AnswerFormCard;

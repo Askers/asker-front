@@ -1,36 +1,24 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
-import useInput from '../hooks/useInput';
-import {
-  loginRequestAction,
-  twitterLoginRequestAction,
-  googleLoginRequestAction,
-} from '../reducers/auth';
-import theme from '../assets/theme';
-import LogoSvg from './Image/LogoSvg';
+import { addAskRequestAction } from '../../reducers/ask';
+import useInput from '../../hooks/useInput';
+import theme from '../../assets/theme';
 
-const LogoContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: ${theme.margins.xxxl};
-`;
-
+/* Style */
 const Form = styled.form`
-  width: ${theme.width.mobile};
-  height: ${theme.height.mobile};
+  width: 100%;
+  height: auto;
   border-radius: ${theme.radius.mobile};
   background-color: ${theme.colors.white};
   box-shadow: ${theme.colors.shadow};
+  margin: ${theme.margins.mobile} 0;
 
   display: flex;
   flex-direction: column;
 
   @media only screen and (min-width: 768px) {
     border-radius: ${theme.radius.pc};
-    width: ${theme.width.pc};
     height: ${theme.height.pc};
   }
 
@@ -106,73 +94,50 @@ const Button = styled.input`
   transition: all 0.5s ease-in-out;
 `;
 
-const SubTitle = styled.span`
-  margin-top: ${theme.margins.xxl};
-  font-size: ${theme.fontSizes.small};
-  color: ${theme.colors.gray};
-`;
-
-const LoginForm = () => {
-  const router = useRouter();
+const AskFormCard = ({ targetUserId }) => {
   const dispatch = useDispatch();
-  const [email, onChangeEmail] = useInput('');
-  const [password, onChangePassword] = useInput('');
+  const [nickname, onChangeNickname] = useInput('');
+  const [content, onChangeContent] = useInput('');
 
+  // Functions
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(loginRequestAction({ email, password }));
+      dispatch(addAskRequestAction({ nickname, content, targetUserId }));
     },
-    [email, password],
+    [nickname, content],
   );
 
-  const twitterAuth = () => {
-    dispatch(twitterLoginRequestAction());
-  };
-  const googleAuth = () => {
-    dispatch(googleLoginRequestAction());
+  const handlePopUp = () => {
+    alert('ask를 성공ㄱ적으로 보냈습니다.');
+    window.location.reload();
   };
 
   return (
     <Form onSubmit={onSubmitForm}>
-      <LogoContainer>
-        <LogoSvg width="5rem" />
-      </LogoContainer>
       <FormWrapper>
-        <Label htmlFor="email">Email</Label>
+        <Label>Your Nickname</Label>
         <Input
-          type="email"
-          name="email"
-          value={email}
-          onChange={onChangeEmail}
+          type="text"
+          name="text"
+          value={nickname}
+          onChange={onChangeNickname}
           required
         />
-      </FormWrapper>
-      <FormWrapper>
-        <Label htmlFor="password">Password</Label>
+        <Label>Ask what you want!</Label>
         <Input
-          type="password"
-          name="password"
-          value={password}
-          onChange={onChangePassword}
+          type="text"
+          name="text"
+          value={content}
+          onChange={onChangeContent}
           required
         />
+        <ButtonWrapper>
+          <Button type="submit" onClick={handlePopUp} value="제출" />
+        </ButtonWrapper>
       </FormWrapper>
-      <ButtonWrapper>
-        <Button type="submit" value="로그인" />
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <SubTitle>유저가 아니신가요? 지금 가입하세요!</SubTitle>
-        <Button
-          type="button"
-          onClick={() => router.push('/signup')}
-          value="회원가입"
-        />
-        <Button type="button" onClick={googleAuth} value="구글로 로그인하기" />
-        <Button type="button" onClick={twitterAuth} value="트위터로 로그인" />
-      </ButtonWrapper>
     </Form>
   );
 };
 
-export default LoginForm;
+export default AskFormCard;

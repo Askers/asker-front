@@ -6,10 +6,24 @@ import { useRouter } from 'next/router';
 import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
 import { LOAD_ANSWER_REQUEST } from '../../reducers/answer';
 import Layout from '../../components/Layout';
-import AskForm from '../../components/AskForm';
+import ProfileCard from '../../components/Cards/ProfileCard';
 import wrapper from '../../store/configureStore';
+import AskFormCard from '../../components/Cards/AskFormCard';
+import theme from '../../assets/theme';
 
-const AnswerSection = styled.div``;
+const UserIndexSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: ${theme.gap.large};
+  }
+
+  transition: all 0.5s ease-in-out;
+`;
 
 const UserIndex = () => {
   const router = useRouter();
@@ -18,8 +32,10 @@ const UserIndex = () => {
   return (
     <>
       <Layout>
-        <AskForm targetUserId={userId} />
-        <AnswerSection>{/* 답변 */}</AnswerSection>
+        <UserIndexSection>
+          <ProfileCard />
+          <AskFormCard targetUserId={userId} />
+        </UserIndexSection>
       </Layout>
     </>
   );
