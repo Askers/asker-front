@@ -10,6 +10,7 @@ import ProfileCard from '../../components/Cards/ProfileCard';
 import wrapper from '../../store/configureStore';
 import AskFormCard from '../../components/Cards/AskFormCard';
 import theme from '../../assets/theme';
+import AnswerCard from '../../components/Cards/AnswerCard';
 
 const UserIndexSection = styled.section`
   display: flex;
@@ -25,6 +26,19 @@ const UserIndexSection = styled.section`
   transition: all 0.5s ease-in-out;
 `;
 
+const AnswerSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
+const AnswerSectionTitle = styled.div`
+  margin: ${theme.margins.base} 0;
+  padding-left: ${theme.paddings.lg};
+  font-size: ${theme.fontSizes.xxxl};
+  font-weight: bold;
+`;
+
 const UserIndex = () => {
   const router = useRouter();
   const { userId } = router.query;
@@ -36,6 +50,10 @@ const UserIndex = () => {
           <ProfileCard />
           <AskFormCard targetUserId={userId} />
         </UserIndexSection>
+        <AnswerSection>
+          <AnswerSectionTitle>Answers</AnswerSectionTitle>
+          <AnswerCard />
+        </AnswerSection>
       </Layout>
     </>
   );

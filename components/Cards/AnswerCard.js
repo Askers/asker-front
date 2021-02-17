@@ -1,16 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import theme from '../../assets/theme';
 
 const Container = styled.div`
-  width: 400px;
-  height: 324px;
-  margin: 35.4px 15px 0 0;
-  padding: 32px 32px 45px;
-  border-radius: 20px;
-  box-shadow: 8px 8px 16px 4px rgba(137, 143, 150, 0.04);
-  border: solid 0.5px #ebebf9;
-  background-color: #ffffff;
+  width: 100%;
+  min-height: ${theme.height.mb_sm};
+  border-radius: ${theme.radius.mobile};
+  background-color: ${theme.colors.white};
+  box-shadow: ${theme.colors.shadow};
+  margin: ${theme.margins.mobile} 0;
+
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (min-width: 768px) {
+    border-radius: ${theme.radius.pc};
+    min-height: ${theme.height.pc_sm};
+  }
+
+  transition: all 0.5s ease-in-out;
 `;
 const Header = styled.div`
   display: flex;

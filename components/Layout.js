@@ -28,7 +28,7 @@ const HeaderContainer = styled.header`
 const ChildernContainer = styled.main`
   width: 100%;
   max-width: 1000px;
-  max-height: 80vh;
+  max-height: auto;
   align-self: center;
 `;
 

@@ -151,10 +151,8 @@ const AskFormCard = ({ targetUserId }) => {
         />
         <Label>
           &#x26A0; 본 서비스는 익명 유저의 식별자를 임의로 생성하여 저장할 수
-          있으며,
-          <br />
-          해당 정보는 형사소송법에 의한 요청에 따라 관련 기관에 제공될 수
-          있습니다.
+          있으며, 해당 정보는 형사소송법에 의한 요청에 따라 관련 기관에 제공될
+          수 있습니다.
         </Label>
         <ButtonWrapper>
           <Button type="submit" onClick={handlePopUp} value="SEND" />
