@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import theme from '../assets/theme';
 
@@ -29,6 +30,9 @@ const NavSection = styled.nav`
 const Span = styled.span``;
 
 const Header = () => {
+  const { me } = useSelector((state) => state.auth);
+  const { username } = me;
+
   return (
     <Container>
       <LogoSection>

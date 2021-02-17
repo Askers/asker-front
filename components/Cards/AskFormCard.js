@@ -80,7 +80,7 @@ const ButtonWrapper = styled.div`
   margin: ${theme.margins.base};
 `;
 
-const Button = styled.input`
+const Button = styled.button`
   all: unset;
   width: ${theme.submitButton.width_mb_md};
   height: ${theme.submitButton.height_mb_md};
@@ -110,6 +110,11 @@ const Button = styled.input`
   }
 
   transition: all 0.5s ease-in-out;
+`;
+
+const ButtonName = styled.span`
+  font-size: ${theme.fontSizes.small};
+  line-height: 1rem;
 `;
 
 const AskFormCard = ({ targetUserId }) => {
@@ -155,7 +160,9 @@ const AskFormCard = ({ targetUserId }) => {
           수 있습니다.
         </Label>
         <ButtonWrapper>
-          <Button type="submit" onClick={handlePopUp} value="SEND" />
+          <Button type="submit" onClick={handlePopUp}>
+            <ButtonName>Send</ButtonName>
+          </Button>
         </ButtonWrapper>
       </FormWrapper>
     </Form>

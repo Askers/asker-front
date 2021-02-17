@@ -1,13 +1,32 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { END } from 'redux-saga';
 import Router, { useRouter } from 'next/router';
-import AskCard from '../../components/AskCard';
 import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
 import { LOAD_ASKS_REQUEST } from '../../reducers/asks';
 import wrapper from '../../store/configureStore';
 import Layout from '../../components/Layout';
+import theme from '../../assets/theme';
+import AnswerFormCard from '../../components/Cards/AnswerFormCard';
+import AdminBlock from '../../components/Blocks/AdminBlock';
+
+const UserAdminSection = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @media only screen and (min-width: 768px) {
+    justify-content: space-between;
+    gap: ${theme.gap.large};
+  }
+
+  transition: all 0.5s ease-in-out;
+`;
+
+const AskListSection = styled.section``;
 
 const UserAdmin = () => {
   const { me } = useSelector((state) => state.auth);
@@ -27,9 +46,14 @@ const UserAdmin = () => {
 
   return (
     <Layout>
-      {asks.map((ask) => (
-        <AskCard nickname={ask.nickname} content={ask.content} />
-      ))}
+      <UserAdminSection>
+        <AdminBlock />
+      </UserAdminSection>
+      <AskListSection>
+        {asks.map((ask) => (
+          <AnswerFormCard nickname={ask.nickname} content={ask.content} />
+        ))}
+      </AskListSection>
     </Layout>
   );
 };

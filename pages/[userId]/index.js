@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
 import { END } from 'redux-saga';
@@ -7,7 +6,7 @@ import { useRouter } from 'next/router';
 import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
 import { LOAD_ANSWER_REQUEST } from '../../reducers/answer';
 import Layout from '../../components/Layout';
-import ProfileCard from '../../components/Cards/ProfileCard';
+import ProfileBlock from '../../components/Blocks/ProfileBlock';
 import wrapper from '../../store/configureStore';
 import AskFormCard from '../../components/Cards/AskFormCard';
 import theme from '../../assets/theme';
@@ -58,7 +57,7 @@ const UserIndex = () => {
     <>
       <Layout>
         <UserIndexSection>
-          <ProfileCard />
+          <ProfileBlock />
           <AskFormCard targetUserId={userId} />
         </UserIndexSection>
         <AnswerSection>

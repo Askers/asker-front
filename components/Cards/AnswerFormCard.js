@@ -6,9 +6,12 @@ import useInput from '../../hooks/useInput';
 import theme from '../../assets/theme';
 
 // Style
+
 const Form = styled.form`
   width: 100%;
+  min-width: ${theme.width.mb_sm};
   min-height: ${theme.height.mb_sm};
+
   border-radius: ${theme.radius.mobile};
   background-color: ${theme.colors.white};
   box-shadow: ${theme.colors.shadow};
@@ -30,6 +33,9 @@ const FormWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  margin: ${theme.gap.small};
+  padding: ${theme.paddings.mobile};
+  color: ${theme.colors.gray};
 `;
 
 const Label = styled.span``;
@@ -89,7 +95,7 @@ const Button = styled.input`
   transition: all 0.5s ease-in-out;
 `;
 
-const AnswerFormCard = () => {
+const AnswerFormCard = ({ nickname, content }) => {
   const { addAskDone } = useSelector((state) => state.ask);
   const dispatch = useDispatch();
   //   const id = useSelector((state)=>state.) ??????
