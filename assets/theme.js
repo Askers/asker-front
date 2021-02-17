@@ -19,16 +19,56 @@ const fontSizes = {
 const width = {
   mobile: calcRem(300),
   pc: calcRem(400),
+
+  mb_sm: calcRem(300),
+  mb_md: calcRem(400),
+
+  pc_sm: calcRem(300),
+  pc_md: calcRem(400),
+  pc_lg: calcRem(500),
 };
 
 const height = {
   mobile: calcRem(600),
   pc: calcRem(600),
+
+  mb_xs: calcRem(200),
+  mb_sm: calcRem(300),
+  mb_md: calcRem(400),
+
+  pc_sm: calcRem(300),
+  pc_md: calcRem(400),
 };
 
 const radius = {
   mobile: calcRem(16),
   pc: calcRem(24),
+};
+
+/*
+    Form Size
+*/
+const form = {
+  width_mb_xs: calcRem(100),
+  width_mb_sm: calcRem(150),
+  width_mb_md: calcRem(200),
+  width_mb_lg: calcRem(250),
+  width_mb_xl: calcRem(300),
+
+  radius_mb_xs: calcRem(4),
+  radius_mb_sm: calcRem(8),
+  radius_mb_md: calcRem(16),
+  radius_mb_lg: calcRem(25),
+  radius_mb_xl: calcRem(36),
+
+  width_pc_xs: calcRem(100),
+
+  height_mb_xs: calcRem(25),
+  height_mb_sm: calcRem(50),
+  height_mb_md: calcRem(100),
+  height_mb_lg: calcRem(150),
+  height_mb_xl: calcRem(200),
+  height_mb_xl: calcRem(300),
 };
 
 /*
@@ -40,6 +80,16 @@ const inputButton = {
   width_md: calcRem(150),
   width_lg: calcRem(200),
   width_xl: calcRem(300),
+};
+
+const submitButton = {
+  radius_mb_md: calcRem(5),
+  height_mb_sm: calcRem(25),
+  height_mb_md: calcRem(35),
+  height_mb_lg: calcRem(50),
+  width_mb_sm: calcRem(50),
+  width_mb_md: calcRem(100),
+  width_mb_lg: calcRem(150),
 };
 
 const linkButton = {
@@ -96,7 +146,9 @@ const colors = {
   stroke: '#EBEBF9',
   blue: '#0346F2',
   lightblue: '#F2F5FE',
+  bgColor: '#F6F7FB',
   shadow: '8px 8px 16px 4px rgba(133, 139, 146, 0.06)',
+  special: 'rgba(133, 139, 146, 0.2)',
 };
 
 const theme = {
@@ -110,6 +162,8 @@ const theme = {
   height,
   linkButton,
   inputButton,
+  submitButton,
+  form,
   gap,
 };
 

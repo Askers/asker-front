@@ -28,9 +28,8 @@ const HeaderContainer = styled.header`
 const ChildernContainer = styled.main`
   width: 100%;
   max-width: 1000px;
-  align-self: center;
-  height: 80vh;
   max-height: 80vh;
+  align-self: center;
 `;
 
 const FooterContainer = styled.footer`

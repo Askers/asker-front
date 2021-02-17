@@ -8,7 +8,7 @@ import theme from '../../assets/theme';
 /* Style */
 const Form = styled.form`
   width: 100%;
-  height: auto;
+  min-height: ${theme.height.mb_sm};
   border-radius: ${theme.radius.mobile};
   background-color: ${theme.colors.white};
   box-shadow: ${theme.colors.shadow};
@@ -19,7 +19,7 @@ const Form = styled.form`
 
   @media only screen and (min-width: 768px) {
     border-radius: ${theme.radius.pc};
-    height: ${theme.height.pc};
+    min-height: ${theme.height.pc_sm};
   }
 
   transition: all 0.5s ease-in-out;
@@ -29,42 +29,59 @@ const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin: ${theme.gap.small};
+  padding: ${theme.paddings.mobile};
   color: ${theme.colors.gray};
 `;
 
 const Label = styled.span`
   font-size: ${theme.fontSizes.small};
   color: ${theme.colors.gray};
+  margin-top: ${theme.margins.mobile};
 `;
 
-const Input = styled.input`
+const NicknameInput = styled.input`
   all: unset;
-  width: ${theme.inputButton.width_lg};
-  height: ${theme.inputButton.height};
-  border-radius: ${theme.inputButton.radius};
+  width: ${theme.form.width_mb_xs};
+  height: ${theme.form.height_mb_xs};
+  border-radius: ${theme.form.radius_mb_xs};
   background-color: ${theme.colors.lightblue};
-  padding-left: 1rem;
 
   @media only screen and (min-width: 768px) {
-    width: ${theme.inputButton.width_xl};
+    width: ${theme.form.width_pc_xs};
+  }
+
+  transition: all 0.5s ease-in-out;
+`;
+
+const AskInput = styled.textarea`
+  all: unset;
+  width: 100%;
+  height: ${theme.form.height_mb_md};
+  border-radius: ${theme.form.radius_mb_sm};
+  background-color: ${theme.colors.lightblue};
+
+  @media only screen and (min-width: 768px) {
+    min-height: ${theme.form.height_mb_md};
   }
 
   transition: all 0.5s ease-in-out;
 `;
 
 const ButtonWrapper = styled.div`
+  align-self: flex-end;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: ${theme.margins.base};
 `;
 
 const Button = styled.input`
   all: unset;
-  width: ${theme.linkButton.width_lg};
-  height: ${theme.linkButton.height};
+  width: ${theme.submitButton.width_mb_md};
+  height: ${theme.submitButton.height_mb_md};
   border-radius: ${theme.linkButton.radius};
   background-color: ${(props) =>
     props.type === 'submit'
@@ -73,7 +90,6 @@ const Button = styled.input`
   color: ${(props) =>
     props.type === 'submit' ? `${theme.colors.white}` : `${theme.colors.gray}`};
   text-align: center;
-  margin: ${theme.gap.small};
 
   :hover {
     cursor: pointer;
@@ -88,7 +104,7 @@ const Button = styled.input`
   }
 
   @media only screen and (min-width: 768px) {
-    width: ${theme.linkButton.width_xl};
+    width: ${theme.submitButton.width_mb_md};
   }
 
   transition: all 0.5s ease-in-out;
@@ -117,16 +133,15 @@ const AskFormCard = ({ targetUserId }) => {
     <Form onSubmit={onSubmitForm}>
       <FormWrapper>
         <Label>Your Nickname</Label>
-        <Input
+        <NicknameInput
           type="text"
           name="text"
           value={nickname}
           onChange={onChangeNickname}
           required
         />
-        <Label>Ask what you want!</Label>
-        <Input
-          type="text"
+        <Label>Ask Something</Label>
+        <AskInput
           name="text"
           value={content}
           onChange={onChangeContent}
