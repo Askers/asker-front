@@ -34,6 +34,12 @@ const LogoWrapper = styled.div`
   align-items: center;
 `;
 
+const UserName = styled.span`
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.special};
+  font-weight: bold;
+`;
+
 const AdminWrapper = styled.div`
   display: none;
 
@@ -50,18 +56,13 @@ const AdminWrapper = styled.div`
   transition: all 0.5s ease-in-out;
 `;
 
+const NavSection = styled.div``;
 const SocialSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   color: ${theme.colors.special};
-`;
-
-const UserName = styled.span`
-  font-size: ${theme.fontSizes.small};
-  color: ${theme.colors.special};
-  font-weight: bold;
 `;
 
 const AdminBlock = () => {
@@ -72,7 +73,7 @@ const AdminBlock = () => {
         <UserName>@username</UserName>
       </LogoWrapper>
       <AdminWrapper>
-        <UserName>@username</UserName>
+        <NavSection>@username</NavSection>
         <SocialSection></SocialSection>
       </AdminWrapper>
     </AdminBlockContainer>
