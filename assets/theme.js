@@ -115,6 +115,8 @@ const paddings = {
 const margins = {
   mobile: calcRem(16),
   pc: calcRem(24),
+  xs: calcRem(4),
+  sm: calcRem(8),
   base: calcRem(10),
   lg: calcRem(12),
   xl: calcRem(18),
