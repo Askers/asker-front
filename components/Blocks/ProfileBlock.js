@@ -5,7 +5,7 @@ import theme from '../../assets/theme';
 import LogoSvg from '../Image/LogoSvg';
 
 // Style
-const ProfileCardContainer = styled.div`
+const ProfileBlockContainer = styled.div`
   width: 100%;
   height: ${theme.height.mb_xs};
   border-radius: ${theme.radius.mobile};
@@ -52,33 +52,18 @@ const UserBio = styled.div`
   margin: ${theme.margins.base};
 `;
 
-const Input = styled.input`
-  all: unset;
-  width: ${theme.inputButton.width_lg};
-  height: ${theme.inputButton.height};
-  border-radius: ${theme.inputButton.radius};
-  background-color: ${theme.colors.lightblue};
-  padding-left: 1rem;
-
-  @media only screen and (min-width: 768px) {
-    width: ${theme.inputButton.width_xl};
-  }
-
-  transition: all 0.5s ease-in-out;
-`;
-
-const ProfileCard = () => {
+const ProfileBlock = () => {
   return (
-    <ProfileCardContainer>
+    <ProfileBlockContainer>
       <LogoWrapper>
         <LogoSvg width="4rem" fill={theme.colors.special} />
       </LogoWrapper>
       <ProfileWrapper>
         <UserName>`@username`</UserName>
-        <UserBio>모든 것은 너의 스탠스로부터 시작된다.</UserBio>
+        <UserBio>Everything begins with your stance.</UserBio>
       </ProfileWrapper>
-    </ProfileCardContainer>
+    </ProfileBlockContainer>
   );
 };
 
-export default ProfileCard;
+export default ProfileBlock;
