@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
 import { END } from 'redux-saga';
@@ -33,10 +34,20 @@ const AnswerSection = styled.section`
 `;
 
 const AnswerSectionTitle = styled.div`
-  margin: ${theme.margins.base} 0;
+  margin: ${theme.margins.xl} 0 0;
   padding-left: ${theme.paddings.lg};
   font-size: ${theme.fontSizes.xxxl};
   font-weight: bold;
+  color: ${theme.colors.special};
+`;
+
+const AnswerCardList = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 const UserIndex = () => {
@@ -52,7 +63,9 @@ const UserIndex = () => {
         </UserIndexSection>
         <AnswerSection>
           <AnswerSectionTitle>Answers</AnswerSectionTitle>
-          <AnswerCard />
+          <AnswerCardList>
+            <AnswerCard />
+          </AnswerCardList>
         </AnswerSection>
       </Layout>
     </>

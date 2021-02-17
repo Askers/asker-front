@@ -74,7 +74,7 @@ const ProfileCard = () => {
         <LogoSvg width="4rem" fill={theme.colors.special} />
       </LogoWrapper>
       <ProfileWrapper>
-        <UserName>@유저네임</UserName>
+        <UserName>`@username`</UserName>
         <UserBio>모든 것은 너의 스탠스로부터 시작된다.</UserBio>
       </ProfileWrapper>
     </ProfileCardContainer>

@@ -7,6 +7,7 @@ import AskCard from '../../components/AskCard';
 import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
 import { LOAD_ASKS_REQUEST } from '../../reducers/asks';
 import wrapper from '../../store/configureStore';
+import Layout from '../../components/Layout';
 
 const UserAdmin = () => {
   const { me } = useSelector((state) => state.auth);
@@ -25,11 +26,11 @@ const UserAdmin = () => {
   }, [myID]);
 
   return (
-    <>
+    <Layout>
       {asks.map((ask) => (
         <AskCard nickname={ask.nickname} content={ask.content} />
       ))}
-    </>
+    </Layout>
   );
 };
 

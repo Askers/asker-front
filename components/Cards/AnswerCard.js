@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import theme from '../../assets/theme';
 
-const Container = styled.div`
+const AnswerCardContainer = styled.div`
   width: 100%;
   min-height: ${theme.height.mb_sm};
   border-radius: ${theme.radius.mobile};
@@ -21,7 +21,7 @@ const Container = styled.div`
 
   transition: all 0.5s ease-in-out;
 `;
-const Header = styled.div`
+const AskerInfoSection = styled.div`
   display: flex;
   flex-direction: column;
   height: 20%;
@@ -39,13 +39,13 @@ const Content = styled.div`
 `;
 
 const AnswerCard = ({ nickname, content }) => (
-  <Container>
-    <Header>
+  <AnswerCardContainer>
+    <AskerInfoSection>
       <Label>Asker Nickname</Label>
       <Nickname>{nickname}</Nickname>
-    </Header>
+    </AskerInfoSection>
     <Content>{content}</Content>
-  </Container>
+  </AnswerCardContainer>
 );
 
 AnswerCard.propTypes = {
