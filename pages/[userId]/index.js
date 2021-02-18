@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { END } from 'redux-saga';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
 import { LOAD_ANSWER_REQUEST } from '../../reducers/answer';
 import Layout from '../../components/Layout';
@@ -50,6 +51,7 @@ const AnswerCardList = styled.section`
 `;
 
 const UserIndex = () => {
+  const { answers } = useSelector((state) => state.answers);
   const router = useRouter();
   const { userId } = router.query;
 
@@ -63,7 +65,13 @@ const UserIndex = () => {
         <AnswerSection>
           <AnswerSectionTitle>Answers</AnswerSectionTitle>
           <AnswerCardList>
-            <AnswerCard />
+            {answers.map((answer) => (
+              <AnswerCard
+                nickname={answer.nickname}
+                content={answer.content}
+                data={answer.createdAt}
+              />
+            ))}
           </AnswerCardList>
         </AnswerSection>
       </Layout>

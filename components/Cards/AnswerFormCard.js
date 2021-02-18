@@ -106,7 +106,7 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: ${theme.margins.base};
+  margin: ${theme.margins.xl};
 `;
 
 const Button = styled.button`
