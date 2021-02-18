@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAnswerRequestAction } from '../../reducers/answer';
 import useInput from '../../hooks/useInput';
@@ -56,9 +57,11 @@ const Nickname = styled.span`
   font-weight: bold;
 `;
 const Date = styled.span`
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.gray};
+  margin-top: ${theme.margins.sm};
   margin-left: ${theme.margins.xs};
-  color: ${theme.colors.dark};
-  font-size: ${theme.fontSizes.lg};
+  line-height: 1rem;
   font-weight: bold;
 `;
 
@@ -145,6 +148,9 @@ const ButtonName = styled.span`
   line-height: 1rem;
 `;
 
+// dayjs
+dayjs.locale('ko');
+
 const AnswerFormCard = ({ nickname, content, date }) => {
   const { addAskDone } = useSelector((state) => state.ask);
   const dispatch = useDispatch();
@@ -175,7 +181,7 @@ const AnswerFormCard = ({ nickname, content, date }) => {
         <AskDetail>
           <Label>From.</Label>
           <Nickname>{nickname}</Nickname>
-          <Date>{date}</Date>
+          <Date>{dayjs(date).format('YYYY.MM.DD')}</Date>
         </AskDetail>
         <AskContent>{content}</AskContent>
       </AskWrapper>
