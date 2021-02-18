@@ -1,4 +1,4 @@
-import produce from 'immer';
+import produce from '../Utils/produce';
 
 // Init
 export const initialState = {
