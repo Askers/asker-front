@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addAnswerRequestAction } from '../../reducers/answer';
 import useInput from '../../hooks/useInput';
 import theme from '../../assets/theme';
-import XbtnSvg from '../../components/Image/XbtnSvg';
+import XbtnSvg from '../Image/XbtnSvg';
+// import TwitterSvg from '../Image/TwitterSvg';
 
 // Style
 const ToggleContainer = styled.div`
@@ -13,11 +14,11 @@ const ToggleContainer = styled.div`
   align-items: center;
   padding: ${theme.paddings.xl} ${theme.paddings.xl} 0 0;
 `;
+
 const Form = styled.form`
   width: 100%;
   min-width: ${theme.width.mb_sm};
-  min-height: ${theme.height.mb_sm};
-
+  height: auto;
   border-radius: ${theme.radius.mobile};
   background-color: ${theme.colors.white};
   box-shadow: ${theme.colors.shadow};
@@ -28,7 +29,7 @@ const Form = styled.form`
 
   @media only screen and (min-width: 768px) {
     border-radius: ${theme.radius.pc};
-    min-height: ${theme.height.pc_sm};
+    height: auto;
   }
 
   transition: all 0.5s ease-in-out;
@@ -39,8 +40,8 @@ const AskWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin: ${theme.gap.small};
-  padding: ${theme.paddings.mobile};
+  margin: 0 ${theme.gap.small};
+  padding: 0 ${theme.paddings.mobile};
   color: ${theme.colors.gray};
 `;
 
@@ -73,8 +74,8 @@ const FormWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin: ${theme.gap.small};
-  padding: ${theme.paddings.mobile};
+  margin: 0 ${theme.gap.small};
+  padding: 0 ${theme.paddings.mobile};
   color: ${theme.colors.gray};
 `;
 
@@ -110,9 +111,9 @@ const ButtonWrapper = styled.div`
 
 const Button = styled.button`
   all: unset;
-  width: ${theme.submitButton.width_mb_md};
+  width: ${theme.submitButton.width_sm};
   height: ${theme.submitButton.height_mb_md};
-  border-radius: ${theme.linkButton.radius};
+  border-radius: ${theme.submitButton.radius_mb_md};
   background-color: ${(props) =>
     props.type === 'submit'
       ? `${theme.colors.blue}`
@@ -134,7 +135,6 @@ const Button = styled.button`
   }
 
   @media only screen and (min-width: 768px) {
-    width: ${theme.submitButton.width_mb_md};
   }
 
   transition: all 0.5s ease-in-out;
@@ -180,7 +180,6 @@ const AnswerFormCard = ({ nickname, content, date }) => {
         <AskContent>{content}</AskContent>
       </AskWrapper>
       <FormWrapper>
-        <Label>질문에 대답하세요....</Label>
         <AnswerInput
           name="text"
           value={text}
@@ -190,6 +189,7 @@ const AnswerFormCard = ({ nickname, content, date }) => {
       </FormWrapper>
 
       <ButtonWrapper>
+        {/* <TwitterSvg width="2rem" fill={theme.colors.blue} /> */}
         <Button type="submit">
           <ButtonName>Answer</ButtonName>
         </Button>

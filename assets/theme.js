@@ -23,6 +23,8 @@ const width = {
 
   mb_sm: calcRem(300),
   mb_md: calcRem(400),
+  mb_lg: calcRem(500),
+  mb_xl: calcRem(600),
 
   pc_sm: calcRem(300),
   pc_md: calcRem(400),
@@ -36,6 +38,8 @@ const height = {
   mb_xs: calcRem(200),
   mb_sm: calcRem(300),
   mb_md: calcRem(400),
+  mb_lg: calcRem(450),
+  mb_xl: calcRem(500),
 
   pc_sm: calcRem(300),
   pc_md: calcRem(400),
@@ -111,7 +115,7 @@ const linkButton = {
     Layout Structure
 */
 const paddings = {
-  mobile: `${calcRem(16)} ${calcRem(16)}`,
+  mobile: calcRem(16),
   pc: `${calcRem(24)} ${calcRem(12)}`,
   lg: calcRem(12),
   xl: calcRem(18),
