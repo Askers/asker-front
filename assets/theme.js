@@ -63,6 +63,10 @@ const form = {
   radius_mb_xl: calcRem(36),
 
   width_pc_xs: calcRem(100),
+  width_pc_sm: calcRem(150),
+  width_pc_md: calcRem(200),
+  width_pc_lg: calcRem(250),
+  width_pc_xl: calcRem(300),
 
   height_mb_xs: calcRem(25),
   height_mb_sm: calcRem(50),
@@ -88,9 +92,11 @@ const submitButton = {
   height_mb_sm: calcRem(25),
   height_mb_md: calcRem(35),
   height_mb_lg: calcRem(50),
-  width_mb_sm: calcRem(50),
-  width_mb_md: calcRem(100),
-  width_mb_lg: calcRem(150),
+  width_xs: calcRem(50),
+  width_sm: calcRem(100),
+  width_md: calcRem(150),
+  width_lg: calcRem(200),
+  width_xl: calcRem(300),
 };
 
 const linkButton = {

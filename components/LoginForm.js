@@ -53,14 +53,14 @@ const Label = styled.span`
 
 const Input = styled.input`
   all: unset;
-  width: ${theme.inputButton.width_lg};
-  height: ${theme.inputButton.height};
-  border-radius: ${theme.inputButton.radius};
+  width: ${theme.form.width_mb_md};
+  height: ${theme.form.height_mb_sm};
+  border-radius: ${theme.form.radius_mb_xs};
   background-color: ${theme.colors.lightblue};
   padding-left: 1rem;
 
   @media only screen and (min-width: 768px) {
-    width: ${theme.inputButton.width_xl};
+    width: ${theme.form.width_pc_xl};
   }
 
   transition: all 0.5s ease-in-out;
@@ -73,10 +73,10 @@ const ButtonWrapper = styled.div`
   align-items: center;
 `;
 
-const Button = styled.input`
+const Button = styled.button`
   all: unset;
-  width: ${theme.linkButton.width_lg};
-  height: ${theme.linkButton.height};
+  width: ${theme.submitButton.width_lg};
+  height: ${theme.submitButton.height_mb_lg};
   border-radius: ${theme.linkButton.radius};
   background-color: ${(props) =>
     props.type === 'submit'
@@ -100,10 +100,14 @@ const Button = styled.input`
   }
 
   @media only screen and (min-width: 768px) {
-    width: ${theme.linkButton.width_xl};
+    width: ${theme.submitButton.width_xl};
   }
 
   transition: all 0.5s ease-in-out;
+`;
+const ButtonName = styled.span`
+  font-size: ${theme.fontSizes.small};
+  line-height: 1rem;
 `;
 
 const SubTitle = styled.span`
@@ -159,7 +163,9 @@ const LoginForm = () => {
         />
       </FormWrapper>
       <ButtonWrapper>
-        <Button type="submit" value="로그인" />
+        <Button type="submit">
+          <ButtonName>Send</ButtonName>
+        </Button>
       </ButtonWrapper>
       <ButtonWrapper>
         <SubTitle>유저가 아니신가요? 지금 가입하세요!</SubTitle>
@@ -167,9 +173,15 @@ const LoginForm = () => {
           type="button"
           onClick={() => router.push('/signup')}
           value="회원가입"
-        />
-        <Button type="button" onClick={googleAuth} value="구글로 로그인하기" />
-        <Button type="button" onClick={twitterAuth} value="트위터로 로그인" />
+        >
+          <ButtonName>회원가입</ButtonName>
+        </Button>
+        <Button type="button" onClick={googleAuth}>
+          <ButtonName>구글로 로그인</ButtonName>
+        </Button>
+        <Button type="button" onClick={twitterAuth}>
+          <ButtonName>트위터로 로그인</ButtonName>
+        </Button>
       </ButtonWrapper>
     </Form>
   );

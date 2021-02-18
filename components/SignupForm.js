@@ -68,10 +68,10 @@ const ButtonWrapper = styled.div`
   align-items: center;
 `;
 
-const Button = styled.input`
+const Button = styled.button`
   all: unset;
-  width: ${theme.linkButton.width_lg};
-  height: ${theme.linkButton.height};
+  width: ${theme.submitButton.width_lg};
+  height: ${theme.submitButton.height_mb_lg};
   border-radius: ${theme.linkButton.radius};
   background-color: ${(props) =>
     props.type === 'submit'
@@ -95,10 +95,14 @@ const Button = styled.input`
   }
 
   @media only screen and (min-width: 768px) {
-    width: ${theme.linkButton.width_xl};
+    width: ${theme.submitButton.width_xl};
   }
 
   transition: all 0.5s ease-in-out;
+`;
+const ButtonName = styled.span`
+  font-size: ${theme.fontSizes.small};
+  line-height: 1rem;
 `;
 
 const SubTitle = styled.span`
