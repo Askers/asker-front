@@ -82,7 +82,7 @@ const ButtonWrapper = styled.div`
 
 const Button = styled.button`
   all: unset;
-  width: ${theme.submitButton.width_mb_md};
+  width: ${theme.submitButton.width_sm};
   height: ${theme.submitButton.height_mb_md};
   border-radius: ${theme.linkButton.radius};
   background-color: ${(props) =>
@@ -106,7 +106,6 @@ const Button = styled.button`
   }
 
   @media only screen and (min-width: 768px) {
-    width: ${theme.submitButton.width_mb_md};
   }
 
   transition: all 0.5s ease-in-out;

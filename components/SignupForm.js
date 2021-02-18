@@ -141,7 +141,7 @@ const SignupForm = () => {
     <>
       <Form onSubmit={onSubmit}>
         <LogoContainer>
-          <LogoSvg width={'5rem'} />
+          <LogoSvg width="5rem" />
         </LogoContainer>
         <FormWrapper>
           <Label htmlFor="email">Email</Label>
@@ -185,7 +185,9 @@ const SignupForm = () => {
         </FormWrapper>
         <ButtonWrapper>
           <SubTitle>Welcome!!!</SubTitle>
-          <Button type="submit" value="회원가입" />
+          <Button type="submit">
+            <ButtonName>회원가입</ButtonName>
+          </Button>
         </ButtonWrapper>
       </Form>
       {/* {passwordError ? (
