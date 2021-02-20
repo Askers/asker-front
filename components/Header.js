@@ -31,7 +31,6 @@ const Span = styled.span``;
 
 const Header = () => {
   const { me } = useSelector((state) => state.auth);
-  const { username } = me;
 
   return (
     <Container>

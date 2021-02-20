@@ -24,7 +24,7 @@ function* loadAsks(action) {
   } catch (err) {
     yield put({
       type: LOAD_ASKS_FAILURE,
-      error: err.name,
+      error: err.message,
     });
   }
 }

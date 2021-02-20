@@ -151,26 +151,20 @@ const ButtonName = styled.span`
 // dayjs
 dayjs.locale('ko');
 
-const AnswerFormCard = ({ nickname, content, date }) => {
-  const { addAskDone } = useSelector((state) => state.ask);
+const AnswerFormCard = ({ askId, nickname, content, date }) => {
   const dispatch = useDispatch();
-  //   const id = useSelector((state)=>state.) ??????
   const [answer, onChangeAnswer] = useInput('');
-  const [text, setText] = useState('');
 
   // Functions
-  useEffect(() => {
-    if (addAskDone) {
-      setText('');
-    }
-  }, [addAskDone]);
-
   const handdleDelete = () => {};
 
-  const onSubmitForm = useCallback((e) => {
-    e.preventDefault();
-    dispatch(addAnswerRequestAction(answer));
-  }, []);
+  const onSubmitForm = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(addAnswerRequestAction({ answer, askId }));
+    },
+    [answer],
+  );
 
   return (
     <Form onSubmit={onSubmitForm}>
@@ -187,8 +181,8 @@ const AnswerFormCard = ({ nickname, content, date }) => {
       </AskWrapper>
       <FormWrapper>
         <AnswerInput
-          name="text"
-          value={text}
+          name="answer"
+          value={answer}
           onChange={onChangeAnswer}
           required
         />

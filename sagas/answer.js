@@ -34,7 +34,7 @@ function* loadAnswer() {
 
 // Add Answer
 function addAnswerAPI(data) {
-  return axios.post(`/answers/${data.targetAskId}`, data);
+  return axios.post(`/answers/${data.askId}`, data);
 }
 
 function* addAnswer(action) {
@@ -47,7 +47,7 @@ function* addAnswer(action) {
   } catch (err) {
     yield put({
       type: ADD_ANSWER_FAILURE,
-      error: err.name,
+      error: err.message,
     });
   }
 }

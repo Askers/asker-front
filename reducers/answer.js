@@ -72,6 +72,7 @@ const reducer = (state = initialState, action) =>
       case ADD_ANSWER_SUCCESS:
         draft.addAnswerLoading = false;
         draft.addAnswerDone = true;
+        draft.answer = action.data;
         break;
 
       case ADD_ANSWER_FAILURE:

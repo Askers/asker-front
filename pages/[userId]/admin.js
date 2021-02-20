@@ -52,6 +52,7 @@ const UserAdmin = () => {
       <AskListSection>
         {asks.map((ask) => (
           <AnswerFormCard
+            askId={ask.id}
             nickname={ask.nickname}
             content={ask.content}
             data={ask.createdAt}
