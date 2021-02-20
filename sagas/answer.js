@@ -12,9 +12,9 @@ import {
   REMOVE_ANSWER_FAILURE,
 } from '../reducers/answer';
 
-// LOAD ANSWER, GET ANSWERS
-function loadAnswerAPI() {
-  return axios.get('/answers');
+// 특정 유저의 answer 하나
+function loadAnswerAPI(data) {
+  return axios.get(`/answers/answer/${data}`);
 }
 
 function* loadAnswer() {

@@ -80,7 +80,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
     });
     context.store.dispatch({
       type: LOAD_ASKS_REQUEST,
+      data: context.params.userId,
     });
+
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
   },

@@ -5,7 +5,7 @@ import { END } from 'redux-saga';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
-import { LOAD_ANSWER_REQUEST } from '../../reducers/answer';
+import { LOAD_ANSWERS_REQUEST } from '../../reducers/answers';
 import Layout from '../../components/Layout';
 import ProfileBlock from '../../components/Blocks/ProfileBlock';
 import wrapper from '../../store/configureStore';
@@ -97,7 +97,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
     });
 
     context.store.dispatch({
-      type: LOAD_ANSWER_REQUEST,
+      type: LOAD_ANSWERS_REQUEST,
+      data: context.params.userId,
     });
 
     context.store.dispatch(END);

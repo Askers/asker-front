@@ -30,8 +30,8 @@ const reducer = (state = initialState, action) =>
         break;
 
       case LOAD_ASKS_FAILURE:
-        draft.loadAnswersLoading = false;
-        draft.loadAnswersError = action.error;
+        draft.loadAsksLoading = false;
+        draft.loadAsksError = action.error;
         break;
 
       default:

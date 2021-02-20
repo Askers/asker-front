@@ -6,14 +6,14 @@ import {
   LOAD_ANSWERS_REQUEST,
 } from '../reducers/answers';
 
-// LOAD ANSWER, GET ANSWERS
-function loadAnswersAPI() {
-  return axios.get('/answers');
+// 특정 유저의 answer 전부
+function loadAnswersAPI(data) {
+  return axios.get(`/answers/${data}`);
 }
 
-function* loadAnswers() {
+function* loadAnswers(action) {
   try {
-    const result = yield call(loadAnswersAPI);
+    const result = yield call(loadAnswersAPI, action.data);
     yield put({
       type: LOAD_ANSWERS_SUCCESS,
       data: result.data,

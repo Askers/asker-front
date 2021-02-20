@@ -6,14 +6,17 @@ import {
   LOAD_ASKS_SUCCESS,
 } from '../reducers/asks';
 
-// LOAD ASK, GET ASKS
-function loadAsksAPI() {
-  return axios.get('/asks');
+// 특정 유저가 받은 질문 다 가져오기
+function loadAsksAPI(data) {
+  console.log('--------');
+  console.log(data);
+  console.log('--------');
+  return axios.get(`/asks/${data}`);
 }
 
-function* loadAsks() {
+function* loadAsks(action) {
   try {
-    const result = yield call(loadAsksAPI);
+    const result = yield call(loadAsksAPI, action.data);
     yield put({
       type: LOAD_ASKS_SUCCESS,
       data: result.data,
