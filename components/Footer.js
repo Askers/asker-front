@@ -1,22 +1,60 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../assets/theme';
+import LogoSvg from './Image/LogoSvg';
 
-const Container = styled.footer`
-  display: none;
+const FooterContainer = styled.footer`
+  width: inherit;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  background-color: ${theme.colors.lightblue};
+  border-radius: ${theme.radius.mobile};
+  margin: ${theme.margins.xl} 0;
 
   @media only screen and (min-width: 768px) {
-    width: inherit;
-    height: inherit;
-    background-color: ${theme.colors.white};
-    box-shadow: ${theme.colors.shadow};
-    border-radius: ${theme.radius.mobile};
-    display: flex;
   }
 
   transition: all 0.5s ease-in-out;
 `;
 
-const Footer = () => <Container>Footer</Container>;
+const LogoWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InfoWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const Label = styled.span`
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.special};
+  margin-top: ${theme.margins.sm};
+  line-height: 0.5rem;
+  font-weight: bold;
+`;
+
+const Footer = () => (
+  <FooterContainer>
+    <LogoWrapper>
+      <LogoSvg width="4rem" fill={theme.colors.special} />
+    </LogoWrapper>
+    <InfoWrapper>
+      <Label>Policy</Label>
+      <Label>Contact</Label>
+      <Label>Twitter</Label>
+    </InfoWrapper>
+  </FooterContainer>
+);
 
 export default Footer;
