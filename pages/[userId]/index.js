@@ -71,6 +71,7 @@ const UserIndex = () => {
               <AnswerCard
                 key={answer.id}
                 answerId={answer.id}
+                askId={answer.Ask.id}
                 nickname={answer.Ask.nickname}
                 askContent={answer.Ask.content}
                 answerContent={answer.content}

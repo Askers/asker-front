@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import theme from '../../assets/theme';
 import TwitterSvg from '../Image/TwitterSvg';
 import XbtnSvg from '../Image/XbtnSvg';
+import { removeAnswerRequestAction } from '../../reducers/answer';
+import { patchAskToFalse } from '../../reducers/ask';
 
 /*
     Style
@@ -152,15 +155,24 @@ dayjs.locale('ko');
 
 const AnswerCard = ({
   answerId,
+  askId,
   nickname,
   askContent,
   answerContent,
   date,
 }) => {
-  const handleDelete = () => {};
+  const dispatch = useDispatch();
+
+  // Functions
+  const handdleDelete = () => {
+    // 질문 삭제
+    dispatch(removeAnswerRequestAction(answerId));
+    dispatch(patchAskToFalse(askId));
+  };
+
   return (
     <AsnwerCardContainer>
-      <ToggleContainer onClick={handleDelete}>
+      <ToggleContainer onClick={handdleDelete}>
         <XbtnSvg width="1.25rem" />
       </ToggleContainer>
 

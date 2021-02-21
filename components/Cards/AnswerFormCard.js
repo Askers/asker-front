@@ -1,11 +1,12 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addAnswerRequestAction } from '../../reducers/answer';
 import useInput from '../../hooks/useInput';
 import theme from '../../assets/theme';
 import XbtnSvg from '../Image/XbtnSvg';
+import { deleteAskRequestAction, patchAskToTrue } from '../../reducers/ask';
 // import TwitterSvg from '../Image/TwitterSvg';
 
 // Style
@@ -14,6 +15,11 @@ const ToggleContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: ${theme.paddings.xl} ${theme.paddings.xl} 0 0;
+`;
+const Icon = styled.span`
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const Form = styled.form`
@@ -156,12 +162,16 @@ const AnswerFormCard = ({ askId, nickname, content, date }) => {
   const [answer, onChangeAnswer] = useInput('');
 
   // Functions
-  const handdleDelete = () => {};
+  const handdleDelete = () => {
+    // 질문 삭제
+    dispatch(deleteAskRequestAction(askId));
+  };
 
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
       dispatch(addAnswerRequestAction({ answer, askId }));
+      dispatch(patchAskToTrue(askId));
     },
     [answer],
   );
@@ -169,7 +179,9 @@ const AnswerFormCard = ({ askId, nickname, content, date }) => {
   return (
     <Form onSubmit={onSubmitForm}>
       <ToggleContainer onClick={handdleDelete}>
-        <XbtnSvg width="1.25rem" />
+        <Icon>
+          <XbtnSvg width="1.25rem" />
+        </Icon>
       </ToggleContainer>
       <AskWrapper>
         <AskDetail>
