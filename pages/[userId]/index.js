@@ -52,13 +52,15 @@ const AnswerCardList = styled.section``;
 
 const UserIndex = () => {
   const { answers } = useSelector((state) => state.answers);
-  const { user } = useSelector((state) => state.auth);
+  const { user, me } = useSelector((state) => state.auth);
 
   return (
     <>
       <Layout>
         <UserIndexSection>
-          <ProfileBlock username={user.username} />
+          <ProfileBlock
+            username={user.username ? user.username : me.username}
+          />
           <AskFormCard targetUserId={user.id} />
         </UserIndexSection>
         <AnswerSection>
