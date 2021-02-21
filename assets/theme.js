@@ -35,6 +35,7 @@ const height = {
   mobile: calcRem(600),
   pc: calcRem(600),
 
+  mb_xxs: calcRem(100),
   mb_xs: calcRem(200),
   mb_sm: calcRem(300),
   mb_md: calcRem(400),
@@ -46,8 +47,8 @@ const height = {
 };
 
 const radius = {
-  mobile: calcRem(16),
-  pc: calcRem(24),
+  mobile: calcRem(5),
+  pc: calcRem(5),
 };
 
 /*

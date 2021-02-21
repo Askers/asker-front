@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
 import theme from '../../assets/theme';
 import TwitterSvg from '../Image/TwitterSvg';
 import XbtnSvg from '../Image/XbtnSvg';
@@ -56,13 +57,41 @@ const Nickname = styled.span`
   font-weight: bold;
 `;
 const Date = styled.span`
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.gray};
+  margin-top: ${theme.margins.sm};
   margin-left: ${theme.margins.xs};
-  color: ${theme.colors.dark};
-  font-size: ${theme.fontSizes.lg};
+  line-height: 1rem;
   font-weight: bold;
 `;
 
 const AskContent = styled.div`
+  margin: ${theme.margins.sm};
+  color: ${theme.colors.gray};
+  font-size: ${theme.fontSizes.medium};
+  line-height: 1.4rem;
+`;
+
+const AnswerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 ${theme.gap.small};
+  padding: 0 ${theme.paddings.mobile};
+  color: ${theme.colors.gray};
+`;
+
+const AnswerDetail = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: ${theme.colors.lightblue};
+  border-radius: ${theme.radius.mobile};
+`;
+
+const AnswerContent = styled.div`
   margin: ${theme.margins.sm};
   color: ${theme.colors.gray};
   font-size: ${theme.fontSizes.medium};
@@ -116,7 +145,16 @@ const Button = styled.button`
   transition: all 0.5s ease-in-out;
 `;
 
-const AnswerCard = ({ nickname, content, date }) => {
+// DayJs Parse
+dayjs.locale('ko');
+
+const AnswerCard = ({
+  answerId,
+  nickname,
+  askContent,
+  answerContent,
+  date,
+}) => {
   const handleDelete = () => {};
   return (
     <AsnwerCardContainer>
@@ -124,15 +162,22 @@ const AnswerCard = ({ nickname, content, date }) => {
         <XbtnSvg width="1.25rem" />
       </ToggleContainer>
 
-      <AskDetail>
-        <Label>From.</Label>
-        <Nickname>{nickname}</Nickname>
-        <Date>{date}</Date>
-      </AskDetail>
-      <AskContent>{content}</AskContent>
+      <AskWrapper>
+        <AskDetail>
+          <Label>To.</Label>
+          <Nickname>{nickname}</Nickname>
+        </AskDetail>
+        <AskContent>{askContent}</AskContent>
+      </AskWrapper>
+
+      <AnswerWrapper>
+        <AnswerDetail>
+          <AnswerContent>{answerContent}</AnswerContent>
+        </AnswerDetail>
+      </AnswerWrapper>
 
       <ButtonWrapper>
-        <TwitterSvg width="2rem" fill={theme.colors.blue} />
+        <TwitterSvg width="1.25rem" fill={theme.colors.blue} />
       </ButtonWrapper>
     </AsnwerCardContainer>
   );

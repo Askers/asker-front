@@ -31,6 +31,7 @@ const AnswerSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  flex-wrap: wrap;
 `;
 
 const AnswerSectionTitle = styled.div`
@@ -67,9 +68,12 @@ const UserIndex = () => {
           <AnswerCardList>
             {answers.map((answer) => (
               <AnswerCard
-                nickname={answer.nickname}
-                content={answer.content}
-                data={answer.createdAt}
+                key={answer.id}
+                answerId={answer.id}
+                nickname={answer.Ask.nickname}
+                askContent={answer.Ask.content}
+                answerContent={answer.content}
+                date={answer.createdAt}
               />
             ))}
           </AnswerCardList>
