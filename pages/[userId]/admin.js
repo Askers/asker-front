@@ -26,7 +26,7 @@ const UserAdminSection = styled.section`
   transition: all 0.5s ease-in-out;
 `;
 
-const AskListSection = styled.section``;
+const AskCardList = styled.section``;
 
 const UserAdmin = () => {
   const { me } = useSelector((state) => state.auth);
@@ -49,7 +49,7 @@ const UserAdmin = () => {
       <UserAdminSection>
         <AdminBlock />
       </UserAdminSection>
-      <AskListSection>
+      <AskCardList>
         {asks.map((ask) => (
           <AnswerFormCard
             key={ask.id}
@@ -59,7 +59,7 @@ const UserAdmin = () => {
             date={ask.createdAt}
           />
         ))}
-      </AskListSection>
+      </AskCardList>
     </Layout>
   );
 };

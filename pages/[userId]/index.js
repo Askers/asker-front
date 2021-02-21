@@ -30,8 +30,15 @@ const UserIndexSection = styled.section`
 const AnswerSection = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
+
+  @media only screen and (min-width: 768px) {
+    justify-content: space-between;
+    gap: ${theme.gap.large};
+  }
+
+  transition: all 0.5s ease-in-out;
 `;
 
 const AnswerSectionTitle = styled.div`
@@ -42,14 +49,7 @@ const AnswerSectionTitle = styled.div`
   color: ${theme.colors.special};
 `;
 
-const AnswerCardList = styled.section`
-  display: flex;
-  flex-direction: column;
-
-  @media only screen and (min-width: 768px) {
-    flex-direction: row;
-  }
-`;
+const AnswerCardList = styled.section``;
 
 const UserIndex = () => {
   const { answers } = useSelector((state) => state.answers);
