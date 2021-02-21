@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { END } from 'redux-saga';
-import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { LOAD_AUTH_REQUEST, LOAD_USER_REQUEST } from '../../reducers/auth';
 import { LOAD_ANSWERS_REQUEST } from '../../reducers/answers';
@@ -53,15 +52,14 @@ const AnswerCardList = styled.section``;
 
 const UserIndex = () => {
   const { answers } = useSelector((state) => state.answers);
-  const router = useRouter();
-  const { userId } = router.query;
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <>
       <Layout>
         <UserIndexSection>
-          <ProfileBlock />
-          <AskFormCard targetUserId={userId} />
+          <ProfileBlock username={user.username} />
+          <AskFormCard targetUserId={user.id} />
         </UserIndexSection>
         <AnswerSection>
           <AnswerSectionTitle>Answers</AnswerSectionTitle>

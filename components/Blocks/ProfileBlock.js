@@ -52,14 +52,14 @@ const UserBio = styled.div`
   margin: ${theme.margins.base};
 `;
 
-const ProfileBlock = () => {
+const ProfileBlock = ({ username }) => {
   return (
     <ProfileBlockContainer>
       <LogoWrapper>
         <LogoSvg width="4rem" fill={theme.colors.special} />
       </LogoWrapper>
       <ProfileWrapper>
-        <UserName>`@username`</UserName>
+        <UserName>`@{username}`</UserName>
         <UserBio>Everything begins with your stance.</UserBio>
       </ProfileWrapper>
     </ProfileBlockContainer>
