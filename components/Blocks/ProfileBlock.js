@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Router from 'next/router';
+import { useSelector } from 'react-redux';
 
 import theme from '../../assets/theme';
 import LogoSvg from '../Image/LogoSvg';
@@ -52,7 +54,43 @@ const UserBio = styled.div`
   margin: ${theme.margins.base};
 `;
 
+const NavList = styled.nav`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: ${theme.gap.nav};
+
+  @media only screen and (min-width: 768px) {
+    right: ${theme.margins.pc};
+  }
+
+  transition: all 0.5s ease-in-out;
+`;
+
+const NavLabel = styled.span`
+  margin: 0 ${theme.margins.mobile};
+  font-size: ${theme.fontSizes.small};
+  color: ${theme.colors.gray};
+  font-weight: bold;
+
+  :hover {
+    cursor: pointer;
+    color: ${theme.colors.blue};
+  }
+`;
+
 const ProfileBlock = ({ username }) => {
+  const { me } = useSelector((state) => state.auth);
+
+  const goToHome = () => {
+    Router.push(`/${me.id}`);
+  };
+  const goToAdmin = () => {
+    Router.push(`/${me.id}/admin`);
+  };
+  const goToShareLink = () => {};
+
   return (
     <ProfileBlockContainer>
       <LogoWrapper>
@@ -62,6 +100,11 @@ const ProfileBlock = ({ username }) => {
         <UserName>@{username}</UserName>
         <UserBio>Everything begins with your stance.</UserBio>
       </ProfileWrapper>
+      <NavList>
+        <NavLabel onClick={goToHome}>홈</NavLabel>
+        <NavLabel onClick={goToAdmin}>질</NavLabel>
+        <NavLabel onClick={goToShareLink}>공</NavLabel>
+      </NavList>
     </ProfileBlockContainer>
   );
 };
