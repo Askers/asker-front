@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
@@ -137,13 +138,17 @@ const AnswerCard = ({
     dispatch(removeAnswerRequestAction({ answerId, askId }));
   };
 
+  const goToAnswerDetail = () => {
+    Router.push(`/answers/${answerId}`);
+  };
+
   return (
     <AsnwerCardContainer>
       <ToggleContainer onClick={handdleDelete}>
         <XbtnSvg width="1.25rem" />
       </ToggleContainer>
 
-      <AskWrapper>
+      <AskWrapper onClick={goToAnswerDetail}>
         <AskDetail>
           <Label>To.</Label>
           <Nickname>{nickname}</Nickname>
