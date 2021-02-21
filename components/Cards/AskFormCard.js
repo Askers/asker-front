@@ -123,11 +123,13 @@ const AskFormCard = ({ userId }) => {
   const { addAskDone } = useSelector((state) => state.ask);
 
   // Functions
-  const onSubmitForm = useCallback((e) => {
-    e.preventDefault();
-    const data = { nickname, content, ...userId };
-    dispatch(addAskRequestAction(data));
-  }, []);
+  const onSubmitForm = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(addAskRequestAction({ nickname, content, ...userId }));
+    },
+    [nickname, content],
+  );
 
   //
   useEffect(() => {
