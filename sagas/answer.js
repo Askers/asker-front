@@ -54,7 +54,7 @@ function* addAnswer(action) {
 
 // REMOVE ANSWER
 function removeAnswerAPI(data) {
-  return axios.delete(`/answers/${data}`);
+  return axios.delete(`/answers/${data.answerId}/delete`, data.askId);
 }
 
 function* removeAnswer(action) {

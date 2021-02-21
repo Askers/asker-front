@@ -7,7 +7,6 @@ import theme from '../../assets/theme';
 import TwitterSvg from '../Image/TwitterSvg';
 import XbtnSvg from '../Image/XbtnSvg';
 import { removeAnswerRequestAction } from '../../reducers/answer';
-import { patchAskToFalse } from '../../reducers/ask';
 
 /*
     Style
@@ -135,8 +134,7 @@ const AnswerCard = ({
   // Functions
   const handdleDelete = () => {
     // 질문 삭제
-    dispatch(removeAnswerRequestAction(answerId));
-    dispatch(patchAskToFalse(askId));
+    dispatch(removeAnswerRequestAction({ answerId, askId }));
   };
 
   return (

@@ -6,7 +6,7 @@ import { addAnswerRequestAction } from '../../reducers/answer';
 import useInput from '../../hooks/useInput';
 import theme from '../../assets/theme';
 import XbtnSvg from '../Image/XbtnSvg';
-import { deleteAskRequestAction, patchAskToTrue } from '../../reducers/ask';
+import { deleteAskRequestAction } from '../../reducers/ask';
 // import TwitterSvg from '../Image/TwitterSvg';
 
 // Style
@@ -171,7 +171,6 @@ const AnswerFormCard = ({ askId, nickname, content, date }) => {
     (e) => {
       e.preventDefault();
       dispatch(addAnswerRequestAction({ answer, askId }));
-      dispatch(patchAskToTrue(askId));
     },
     [answer],
   );

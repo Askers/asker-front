@@ -21,7 +21,7 @@ function* loadAnswers(action) {
   } catch (err) {
     yield put({
       type: LOAD_ANSWERS_FAILURE,
-      error: err.name,
+      error: err.message,
     });
   }
 }
