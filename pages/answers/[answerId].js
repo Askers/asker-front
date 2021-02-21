@@ -5,6 +5,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import wrapper from '../../store/configureStore';
 import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
+import { LOAD_ANSWER_REQUEST } from '../../reducers/answer';
 
 const AnswerDetailContainer = styled.div`
   width: 100vw;
@@ -32,6 +33,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
     }
     context.store.dispatch({
       type: LOAD_AUTH_REQUEST,
+    });
+    context.store.dispatch({
+      type: LOAD_ANSWER_REQUEST,
     });
 
     context.store.dispatch(END);

@@ -14,7 +14,7 @@ import {
 
 // 특정 유저의 answer 하나
 function loadAnswerAPI(data) {
-  return axios.get(`/answers/answer/${data}`);
+  return axios.get(`/api/answer${data}`);
 }
 
 function* loadAnswer() {
@@ -27,7 +27,7 @@ function* loadAnswer() {
   } catch (err) {
     yield put({
       type: LOAD_ANSWER_FAILURE,
-      error: err.name,
+      error: err.message,
     });
   }
 }

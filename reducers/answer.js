@@ -57,6 +57,7 @@ const reducer = (state = initialState, action) =>
       case LOAD_ANSWER_SUCCESS:
         draft.loadAnswerLoading = false;
         draft.loadAnswerDone = true;
+        draft.answer = action.data;
         break;
 
       case LOAD_ANSWER_FAILURE:
