@@ -54,7 +54,7 @@ function* loadAsk() {
   } catch (err) {
     yield put({
       type: LOAD_ASK_FAILURE,
-      error: err.name,
+      error: err.message,
     });
   }
 }

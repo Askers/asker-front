@@ -54,7 +54,7 @@ function* addAnswer(action) {
 
 // REMOVE ANSWER
 function removeAnswerAPI(data) {
-  return axios.post('/api/remove/id', data);
+  return axios.delete(`/answers/${data}`);
 }
 
 function* removeAnswer(action) {
@@ -67,7 +67,7 @@ function* removeAnswer(action) {
   } catch (err) {
     yield put({
       type: REMOVE_ANSWER_FAILURE,
-      error: err.name,
+      error: err.message,
     });
   }
 }

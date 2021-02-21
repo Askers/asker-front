@@ -10,7 +10,7 @@ const FooterContainer = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.lightblue};
+  background-color: ${theme.colors.bgColor};
   border-radius: ${theme.radius.mobile};
   margin: ${theme.margins.xl} 0;
 

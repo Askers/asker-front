@@ -39,8 +39,9 @@ export const addAnswerRequestAction = (data) => ({
   data,
 });
 
-export const removeAnswerRequestAction = () => ({
+export const removeAnswerRequestAction = (data) => ({
   type: REMOVE_ANSWER_REQUEST,
+  data,
 });
 
 // Immer 적용한 Reducer
