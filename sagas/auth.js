@@ -19,6 +19,9 @@ import {
   TWITTER_LOGIN_FAILURE,
   TWITTER_LOGIN_REQUEST,
   TWITTER_LOGIN_SUCCESS,
+  LOAD_USER_SUCCESS,
+  LOAD_USER_FAILURE,
+  LOAD_USER_REQUEST,
 } from '../reducers/auth';
 
 // Load Auth
@@ -37,6 +40,27 @@ function* loadAuth() {
   } catch (err) {
     yield put({
       type: LOAD_AUTH_FAILURE,
+      error: err.message,
+    });
+  }
+}
+
+// Load User
+function loadUserAPI(data) {
+  return axios.get(`/auth/${data}`);
+}
+
+function* loadUser() {
+  try {
+    const result = yield call(loadUserAPI);
+
+    yield put({
+      type: LOAD_USER_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: LOAD_USER_FAILURE,
       error: err.message,
     });
   }
@@ -91,9 +115,7 @@ function signupAPI(data) {
 function* signup(action) {
   try {
     const result = yield call(signupAPI, action.data);
-    console.log('----------');
-    console.log(result);
-    console.log('----------');
+
     yield put({
       type: SIGN_UP_SUCCESS,
       data: result.data,
@@ -151,6 +173,10 @@ function* watchLoadAuth() {
   yield takeLatest(LOAD_AUTH_REQUEST, loadAuth);
 }
 
+function* watchLoadUser() {
+  yield takeLatest(LOAD_USER_REQUEST, loadUser);
+}
+
 function* watchLogin() {
   yield takeLatest(LOG_IN_REQUEST, login);
 }
@@ -174,6 +200,7 @@ function* watchGoogleLogin() {
 export default function* authSaga() {
   yield all([
     fork(watchLoadAuth),
+    fork(watchLoadUser),
     fork(watchLogin),
     fork(watchLogout),
     fork(watchSignup),

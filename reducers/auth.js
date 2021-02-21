@@ -6,6 +6,10 @@ export const initialState = {
   isLoadedAuth: false,
   loadAuthError: null,
 
+  isLoadingUser: false, // User Data
+  isLoadedUser: false,
+  loadUserError: null,
+
   isLoggingIn: false, // 로그인 시도 중
   isLoggedIn: false,
   loginError: null,
@@ -18,11 +22,16 @@ export const initialState = {
   signupError: null,
 
   me: null,
+  user: null,
 };
 
 export const LOAD_AUTH_REQUEST = 'LOAD_AUTH_REQUEST';
 export const LOAD_AUTH_SUCCESS = 'LOAD_AUTH_SUCCESS';
 export const LOAD_AUTH_FAILURE = 'LOAD_AUTH_FAILURE';
+
+export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
+export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
+export const LOAD_USER_FAILURE = 'LOAD_USER_FAILURE';
 
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
@@ -87,6 +96,23 @@ const reducer = (state = initialState, action) =>
       case LOAD_AUTH_FAILURE:
         draft.isLoadingAuth = false;
         draft.loadAuthError = action.error;
+        break;
+
+      case LOAD_USER_REQUEST:
+        draft.isLoadingUser = true;
+        draft.loadUserError = null;
+        draft.isLoadedUser = false;
+        break;
+
+      case LOAD_USER_SUCCESS:
+        draft.isLoadingUser = false;
+        draft.isLoadedUser = true;
+        draft.user = action.data;
+        break;
+
+      case LOAD_USER_FAILURE:
+        draft.isLoadingUser = false;
+        draft.loadUserError = action.error;
         break;
 
       case LOG_IN_REQUEST:
