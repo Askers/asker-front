@@ -5,15 +5,14 @@ import LogoSvg from './Image/LogoSvg';
 
 const FooterContainer = styled.footer`
   width: inherit;
-  height: inherit;
+  min-height: inherit;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: ${theme.colors.lightblue};
   border-radius: ${theme.radius.mobile};
   margin: ${theme.margins.xl} 0;
-
-  @media only screen and (min-width: 768px) {
-  }
 
   transition: all 0.5s ease-in-out;
 `;
@@ -53,6 +52,8 @@ const Footer = () => (
       <Label>Policy</Label>
       <Label>Contact</Label>
       <Label>Twitter</Label>
+      <Label>-</Label>
+      <Label>&copy;hyesech</Label>
     </InfoWrapper>
   </FooterContainer>
 );

@@ -36,8 +36,7 @@ const FooterContainer = styled.footer`
   width: 100%;
   max-width: 1000px;
   align-self: center;
-  height: 10vh;
-  max-height: 10vh;
+  min-height: 25vh;
 `;
 
 const Layout = ({ children }) => (
