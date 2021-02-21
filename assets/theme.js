@@ -49,6 +49,7 @@ const height = {
 const radius = {
   mobile: calcRem(5),
   pc: calcRem(5),
+  max: calcRem(16),
 };
 
 /*
@@ -149,6 +150,7 @@ const gap = {
   large: calcRem(12),
   mobile: calcRem(16),
   pc: calcRem(24),
+  nav: calcRem(42),
 };
 
 const colors = {
