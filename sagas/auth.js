@@ -50,9 +50,9 @@ function loadUserAPI(data) {
   return axios.get(`/auth/${data}`);
 }
 
-function* loadUser() {
+function* loadUser(action) {
   try {
-    const result = yield call(loadUserAPI);
+    const result = yield call(loadUserAPI, action.data);
 
     yield put({
       type: LOAD_USER_SUCCESS,
