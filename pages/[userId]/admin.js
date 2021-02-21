@@ -10,7 +10,7 @@ import wrapper from '../../store/configureStore';
 import Layout from '../../components/Layout';
 import theme from '../../assets/theme';
 import AnswerFormCard from '../../components/Cards/AnswerFormCard';
-import AdminBlock from '../../components/Blocks/AdminBlock';
+import ProfileBlock from '../../components/Blocks/ProfileBlock';
 
 const UserAdminSection = styled.section`
   display: flex;
@@ -19,7 +19,6 @@ const UserAdminSection = styled.section`
   flex-wrap: wrap;
 
   @media only screen and (min-width: 768px) {
-    justify-content: space-between;
     gap: ${theme.gap.large};
   }
 
@@ -29,7 +28,7 @@ const UserAdminSection = styled.section`
 const AskCardList = styled.section``;
 
 const UserAdmin = () => {
-  const { me } = useSelector((state) => state.auth);
+  const { me, user } = useSelector((state) => state.auth);
   const { asks } = useSelector((state) => state.asks);
   const router = useRouter();
   const { userId } = router.query;
@@ -47,7 +46,7 @@ const UserAdmin = () => {
   return (
     <Layout>
       <UserAdminSection>
-        <AdminBlock username={me.username} />
+        <ProfileBlock username={user !== null ? user.username : 'asker'} />
       </UserAdminSection>
       <AskCardList>
         {asks.map((ask) => (

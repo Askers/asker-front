@@ -23,7 +23,7 @@ const NavList = styled.nav`
   z-index: 99;
 
   @media only screen and (min-width: 768px) {
-    right: ${theme.margins.pc};
+    top: ${theme.margins.pc};
   }
 
   transition: all 0.5s ease-in-out;
@@ -50,14 +50,12 @@ const Header = () => {
   const goToAdmin = () => {
     Router.push(`/${me.id}/admin`);
   };
-  const goToShareLink = () => {};
 
   return (
     <Container>
       <NavList>
         <Label onClick={goToHome}>홈</Label>
         <Label onClick={goToAdmin}>질</Label>
-        <Label onClick={goToShareLink}>공</Label>
       </NavList>
     </Container>
   );

@@ -83,12 +83,6 @@ const NavLabel = styled.span`
 const ProfileBlock = ({ username }) => {
   const { me } = useSelector((state) => state.auth);
 
-  const goToHome = () => {
-    Router.push(`/${me.id}`);
-  };
-  const goToAdmin = () => {
-    Router.push(`/${me.id}/admin`);
-  };
   const goToShareLink = () => {};
 
   return (
@@ -101,8 +95,6 @@ const ProfileBlock = ({ username }) => {
         <UserBio>Everything begins with your stance.</UserBio>
       </ProfileWrapper>
       <NavList>
-        <NavLabel onClick={goToHome}>홈</NavLabel>
-        <NavLabel onClick={goToAdmin}>질</NavLabel>
         <NavLabel onClick={goToShareLink}>공</NavLabel>
       </NavList>
     </ProfileBlockContainer>
