@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addAskRequestAction } from '../../reducers/ask';
 import useInput from '../../hooks/useInput';
 import theme from '../../assets/theme';
@@ -116,24 +116,25 @@ const ButtonName = styled.span`
   line-height: 1rem;
 `;
 
-const AskFormCard = ({ targetUserId }) => {
+const AskFormCard = ({ userId }) => {
   const dispatch = useDispatch();
   const [nickname, onChangeNickname] = useInput('');
   const [content, onChangeContent] = useInput('');
+  const { addAskDone } = useSelector((state) => state.ask);
 
   // Functions
-  const onSubmitForm = useCallback(
-    (e) => {
-      e.preventDefault();
-      dispatch(addAskRequestAction({ nickname, content, targetUserId }));
-    },
-    [nickname, content],
-  );
+  const onSubmitForm = useCallback((e) => {
+    e.preventDefault();
+    const data = { nickname, content, ...userId };
+    dispatch(addAskRequestAction(data));
+  }, []);
 
-  const handlePopUp = () => {
-    alert('ask를 성공ㄱ적으로 보냈습니다.');
-    window.location.reload();
-  };
+  //
+  useEffect(() => {
+    if (addAskDone) {
+      alert('성공');
+    }
+  }, [addAskDone]);
 
   return (
     <Form onSubmit={onSubmitForm}>
@@ -159,7 +160,7 @@ const AskFormCard = ({ targetUserId }) => {
           수 있습니다.
         </Label>
         <ButtonWrapper>
-          <Button type="submit" onClick={handlePopUp}>
+          <Button type="submit">
             <ButtonName>Send</ButtonName>
           </Button>
         </ButtonWrapper>

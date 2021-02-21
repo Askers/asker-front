@@ -21,7 +21,7 @@ import {
 // POST ASKS/ID
 // 특졍유저에게 질문하기
 function addAskAPI(data) {
-  return axios.post(`/asks/${data.targetUserId}`, data);
+  return axios.post(`/asks/${data.target}`, data);
 }
 
 function* addAsk(action) {

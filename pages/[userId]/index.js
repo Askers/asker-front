@@ -62,7 +62,7 @@ const UserIndex = () => {
       <Layout>
         <UserIndexSection>
           <ProfileBlock username={user !== null ? user.username : 'asker'} />
-          <AskFormCard targetUserId={userId} />
+          <AskFormCard userId={userId} />
         </UserIndexSection>
         <AnswerSection>
           <AnswerSectionTitle>Answers</AnswerSectionTitle>

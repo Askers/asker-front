@@ -119,37 +119,6 @@ const ButtonWrapper = styled.div`
   margin: ${theme.margins.xl};
 `;
 
-const Button = styled.button`
-  all: unset;
-  width: ${theme.submitButton.width_sm};
-  height: ${theme.submitButton.height_mb_md};
-  border-radius: ${theme.submitButton.radius_mb_md};
-  background-color: ${(props) =>
-    props.type === 'submit'
-      ? `${theme.colors.blue}`
-      : `${theme.colors.lightblue}`};
-  color: ${(props) =>
-    props.type === 'submit' ? `${theme.colors.white}` : `${theme.colors.gray}`};
-  text-align: center;
-
-  :hover {
-    cursor: pointer;
-    background-color: ${(props) =>
-      props.type === 'submit'
-        ? `${theme.colors.lightblue}`
-        : `${theme.colors.blue}`};
-    color: ${(props) =>
-      props.type === 'submit'
-        ? `${theme.colors.lightblue}`
-        : `${theme.colors.white}`};
-  }
-
-  @media only screen and (min-width: 768px) {
-  }
-
-  transition: all 0.5s ease-in-out;
-`;
-
 // DayJs Parse
 dayjs.locale('ko');
 

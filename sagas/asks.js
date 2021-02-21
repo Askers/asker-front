@@ -8,9 +8,6 @@ import {
 
 // 특정 유저가 받은 질문 다 가져오기
 function loadAsksAPI(data) {
-  console.log('--------');
-  console.log(data);
-  console.log('--------');
   return axios.get(`/asks/${data}`);
 }
 
