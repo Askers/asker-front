@@ -59,7 +59,7 @@ const ProfileBlock = ({ username }) => {
         <LogoSvg width="4rem" fill={theme.colors.special} />
       </LogoWrapper>
       <ProfileWrapper>
-        <UserName>`@{username}`</UserName>
+        <UserName>@{username}</UserName>
         <UserBio>Everything begins with your stance.</UserBio>
       </ProfileWrapper>
     </ProfileBlockContainer>

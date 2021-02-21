@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { END } from 'redux-saga';
 import { useSelector } from 'react-redux';
@@ -52,16 +53,16 @@ const AnswerCardList = styled.section``;
 
 const UserIndex = () => {
   const { answers } = useSelector((state) => state.answers);
-  const { user, me } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
+  const router = useRouter();
+  const userId = router.query;
 
   return (
     <>
       <Layout>
         <UserIndexSection>
-          <ProfileBlock
-            username={user.username ? user.username : me.username}
-          />
-          <AskFormCard targetUserId={user.id} />
+          <ProfileBlock username={user !== null ? user.username : 'asker'} />
+          <AskFormCard targetUserId={userId} />
         </UserIndexSection>
         <AnswerSection>
           <AnswerSectionTitle>Answers</AnswerSectionTitle>
@@ -109,7 +110,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
       type: LOAD_USER_REQUEST,
       data: context.params.userId,
     });
-
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
   },

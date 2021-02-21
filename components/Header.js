@@ -4,7 +4,11 @@ import styled from 'styled-components';
 import theme from '../assets/theme';
 
 const Container = styled.header`
-  display: none;
+  width: 1rem;
+  height: 1rem;
+  background-color: ${theme.colors.white};
+  box-shadow: ${theme.colors.shadow};
+  border-radius: ${theme.radius.mobile};
 
   @media only screen and (min-width: 768px) {
     width: inherit;
