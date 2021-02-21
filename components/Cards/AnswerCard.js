@@ -57,12 +57,14 @@ const Nickname = styled.span`
   font-weight: bold;
 `;
 const Date = styled.span`
+  width: 100%;
   font-size: ${theme.fontSizes.small};
-  color: ${theme.colors.gray};
-  margin-top: ${theme.margins.sm};
+  color: ${theme.colors.lightgray};
+  margin-top: ${theme.margins.lg};
   margin-left: ${theme.margins.xs};
   line-height: 1rem;
   font-weight: bold;
+  text-align: center;
 `;
 
 const AskContent = styled.div`
@@ -174,6 +176,7 @@ const AnswerCard = ({
         <AnswerDetail>
           <AnswerContent>{answerContent}</AnswerContent>
         </AnswerDetail>
+        <Date>{dayjs(date).format('YYYY.MM.DD')}</Date>
       </AnswerWrapper>
 
       <ButtonWrapper>
