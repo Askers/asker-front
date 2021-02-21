@@ -47,7 +47,7 @@ const UserAdmin = () => {
   return (
     <Layout>
       <UserAdminSection>
-        <AdminBlock />
+        <AdminBlock username={me.username} />
       </UserAdminSection>
       <AskCardList>
         {asks.map((ask) => (

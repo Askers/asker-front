@@ -65,15 +65,15 @@ const SocialSection = styled.div`
   color: ${theme.colors.special};
 `;
 
-const AdminBlock = () => {
+const AdminBlock = ({ username }) => {
   return (
     <AdminBlockContainer>
       <LogoWrapper>
         <LogoSvg width="4rem" fill={theme.colors.special} />
-        <UserName>@username</UserName>
+        <UserName>`@{username}`</UserName>
       </LogoWrapper>
       <AdminWrapper>
-        <NavSection>@username</NavSection>
+        <NavSection>`@{username}`</NavSection>
         <SocialSection></SocialSection>
       </AdminWrapper>
     </AdminBlockContainer>
