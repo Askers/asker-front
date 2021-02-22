@@ -11,7 +11,7 @@ import { removeAnswerRequestAction } from '../../reducers/answer';
 
 /*
     Style
- */
+*/
 const ToggleContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -150,8 +150,7 @@ const AnswerCard = ({
 
       <AskWrapper onClick={goToAnswerDetail}>
         <AskDetail>
-          <Label>To.</Label>
-          <Nickname>{nickname}</Nickname>
+          <Label>FROM. {nickname}</Label>
         </AskDetail>
         <AskContent>{askContent}</AskContent>
       </AskWrapper>
