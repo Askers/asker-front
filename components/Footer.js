@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import theme from '../assets/theme';
+import { logoutRequestAction } from '../reducers/auth';
 import LogoSvg from './Image/LogoSvg';
 
 const FooterContainer = styled.footer`
@@ -49,21 +51,30 @@ const Label = styled.span`
   transition: all 0.5s ease-in;
 `;
 
-const Footer = () => (
-  <FooterContainer>
-    <LogoWrapper>
-      <LogoSvg width="4rem" fill={theme.colors.special} />
-    </LogoWrapper>
-    <InfoWrapper>
-      <Label>Policy</Label>
-      <Label>Contact</Label>
-      <Label>Twitter</Label>
-      <Label>-</Label>
-      <Label>로그아웃</Label>
-      <Label>-</Label>
-      <Label>&copy;Asker</Label>
-    </InfoWrapper>
-  </FooterContainer>
-);
+const Footer = () => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutRequestAction);
+  };
+
+  // logout 완료시 알림
+
+  return (
+    <FooterContainer>
+      <LogoWrapper>
+        <LogoSvg width="4rem" fill={theme.colors.special} />
+      </LogoWrapper>
+      <InfoWrapper>
+        <Label>Policy</Label>
+        <Label>Contact</Label>
+        <Label>Twitter</Label>
+        <Label>-</Label>
+        <Label onClick={handleLogout}>로그아웃</Label>
+        <Label>-</Label>
+        <Label>&copy;Asker</Label>
+      </InfoWrapper>
+    </FooterContainer>
+  );
+};
 
 export default Footer;

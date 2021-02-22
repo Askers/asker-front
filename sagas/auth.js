@@ -161,7 +161,6 @@ function* googleLogin() {
       data: result.data,
     });
   } catch (err) {
-    console.error(err);
     yield put({
       type: GOOGLE_LOGIN_FAILURE,
       error: err.name,
