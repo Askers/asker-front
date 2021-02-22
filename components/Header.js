@@ -39,6 +39,7 @@ const Label = styled.span`
     cursor: pointer;
     color: ${theme.colors.blue};
   }
+  transition: all 0.5s ease-in;
 `;
 
 const Header = () => {

@@ -41,6 +41,12 @@ const Label = styled.span`
   margin-top: ${theme.margins.sm};
   line-height: 0.5rem;
   font-weight: bold;
+
+  :hover {
+    cursor: pointer;
+    color: ${theme.colors.blue};
+  }
+  transition: all 0.5s ease-in;
 `;
 
 const Footer = () => (
@@ -53,7 +59,9 @@ const Footer = () => (
       <Label>Contact</Label>
       <Label>Twitter</Label>
       <Label>-</Label>
-      <Label>&copy;hyesech</Label>
+      <Label>로그아웃</Label>
+      <Label>-</Label>
+      <Label>&copy;Asker</Label>
     </InfoWrapper>
   </FooterContainer>
 );
