@@ -41,12 +41,7 @@ const AskDetail = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Nickname = styled.span`
-  margin-left: ${theme.margins.xs};
-  color: ${theme.colors.dark};
-  font-size: ${theme.fontSizes.lg};
-  font-weight: bold;
-`;
+
 const Date = styled.span`
   width: 100%;
   font-size: ${theme.fontSizes.small};
@@ -110,10 +105,6 @@ const ButtonWrapper = styled.div`
 const AnswerDetail = () => {
   return (
     <AsnwerCardContainer>
-      <ToggleContainer onClick={handdleDelete}>
-        <XbtnSvg width="1.25rem" />
-      </ToggleContainer>
-
       <AskWrapper onClick={goToAnswerDetail}>
         <AskDetail>
           <Label>FROM. {nickname}</Label>

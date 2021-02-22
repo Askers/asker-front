@@ -54,7 +54,7 @@ const Label = styled.span`
 const Footer = () => {
   const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(logoutRequestAction);
+    dispatch(logoutRequestAction());
   };
 
   // logout 완료시 알림
