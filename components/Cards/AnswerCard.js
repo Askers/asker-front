@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import theme from '../../assets/theme';
@@ -53,12 +53,7 @@ const AskDetail = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Nickname = styled.span`
-  margin-left: ${theme.margins.xs};
-  color: ${theme.colors.dark};
-  font-size: ${theme.fontSizes.lg};
-  font-weight: bold;
-`;
+
 const Date = styled.span`
   width: 100%;
   font-size: ${theme.fontSizes.small};
@@ -131,6 +126,7 @@ const AnswerCard = ({
   date,
 }) => {
   const dispatch = useDispatch();
+  const { me, user } = useSelector((state) => state.auth);
 
   // Functions
   const handdleDelete = () => {
@@ -144,9 +140,11 @@ const AnswerCard = ({
 
   return (
     <AsnwerCardContainer>
-      <ToggleContainer onClick={handdleDelete}>
-        <XbtnSvg width="1.25rem" />
-      </ToggleContainer>
+      {me && me.id === user.id ? (
+        <ToggleContainer onClick={handdleDelete}>
+          <XbtnSvg width="1.25rem" />
+        </ToggleContainer>
+      ) : null}
 
       <AskWrapper onClick={goToAnswerDetail}>
         <AskDetail>
