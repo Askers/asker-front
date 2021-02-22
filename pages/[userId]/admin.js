@@ -25,7 +25,9 @@ const UserAdminSection = styled.section`
   transition: all 0.5s ease-in-out;
 `;
 
-const AskCardList = styled.section``;
+const AskCardList = styled.section`
+  min-height: 25vh;
+`;
 
 const UserAdmin = () => {
   const dispatch = useDispatch();
