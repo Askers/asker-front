@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
+import { call, put, takeLatest, all, fork, throttle } from 'redux-saga/effects';
 import {
   LOAD_ANSWERS_SUCCESS,
   LOAD_ANSWERS_FAILURE,
@@ -8,7 +8,7 @@ import {
 
 // 특정 유저의 answer 전부
 function loadAnswersAPI(data) {
-  return axios.get(`/answers/${data}`);
+  return axios.get(`/answers/${data.userId}?lastId=${data.lastId || 0}`);
 }
 
 function* loadAnswers(action) {
@@ -29,7 +29,7 @@ function* loadAnswers(action) {
 // WATCHER
 
 function* watchLoadAnswers() {
-  yield takeLatest(LOAD_ANSWERS_REQUEST, loadAnswers);
+  yield throttle(2000, LOAD_ANSWERS_REQUEST, loadAnswers);
 }
 
 export default function* answerSaga() {

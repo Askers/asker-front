@@ -14,12 +14,12 @@ import {
 
 // 특정 유저의 answer 하나
 function loadAnswerAPI(data) {
-  return axios.get(`/api/answer/${data}`);
+  return axios.get(`answers/${data.answerId}?askId=${data.askId}`);
 }
 
-function* loadAnswer() {
+function* loadAnswer(action) {
   try {
-    const result = yield call(loadAnswerAPI);
+    const result = yield call(loadAnswerAPI, action.data);
     yield put({
       type: LOAD_ANSWER_SUCCESS,
       data: result.data,

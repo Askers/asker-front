@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { END } from 'redux-saga';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_AUTH_REQUEST, LOAD_USER_REQUEST } from '../../reducers/auth';
 import { LOAD_ANSWERS_REQUEST } from '../../reducers/answers';
 import Layout from '../../components/Layout';
@@ -52,10 +52,47 @@ const AnswerSectionTitle = styled.div`
 const AnswerCardList = styled.section``;
 
 const UserIndex = () => {
-  const { answers } = useSelector((state) => state.answers);
+  const dispatch = useDispatch();
+  const { answers, hasMoreAnswers, loadAnswersLoading } = useSelector(
+    (state) => state.answers,
+  );
   const { user } = useSelector((state) => state.auth);
   const router = useRouter();
   const userId = router.query;
+
+  // Infinite Scrolling
+  useEffect(() => {
+    function onScroll() {
+      console.log(
+        window.scrollY,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+      );
+      // scroll 끝까지 내렸을 때 로딩
+      if (
+        window.scrollY + document.documentElement.clientHeight >
+        document.documentElement.scrollHeight - 300
+      ) {
+        // 답변이 더 있고, 로딩중이 아닐 때 dispatch
+        if (hasMoreAnswers && !loadAnswersLoading) {
+          // lastID
+          const lastId = answers[answers.length - 1]?.id;
+          const data = { ...userId, ...lastId };
+          dispatch({
+            type: LOAD_ANSWERS_REQUEST,
+            data,
+          });
+        }
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+
+    // 반드시 해제해야 함
+    // 안그러면 메모리에 계속 쌓인다.
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [hasMoreAnswers, loadAnswersLoading, answers]);
 
   return (
     <>
@@ -102,10 +139,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
       type: LOAD_AUTH_REQUEST,
     });
 
-    context.store.dispatch({
-      type: LOAD_ANSWERS_REQUEST,
-      data: context.params.userId,
-    });
+    // context.store.dispatch({
+    //   type: LOAD_ANSWERS_REQUEST,
+    //   data: context.params.userId,
+    // });
 
     context.store.dispatch({
       type: LOAD_USER_REQUEST,

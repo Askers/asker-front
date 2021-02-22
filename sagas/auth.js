@@ -143,7 +143,7 @@ function* twitterLogin() {
   } catch (err) {
     yield put({
       type: TWITTER_LOGIN_FAILURE,
-      error: err.name,
+      error: err.response.data,
     });
   }
 }

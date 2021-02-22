@@ -34,7 +34,7 @@ function* addAsk(action) {
   } catch (err) {
     yield put({
       type: ADD_ASK_FAILURE,
-      error: err.name,
+      error: err.message,
     });
   }
 }

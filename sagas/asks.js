@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
+import { call, put, takeLatest, all, fork, throttle } from 'redux-saga/effects';
 import {
   LOAD_ASKS_REQUEST,
   LOAD_ASKS_FAILURE,
@@ -8,7 +8,11 @@ import {
 
 // 특정 유저가 받은 질문 다 가져오기
 function loadAsksAPI(data) {
-  return axios.get(`/asks/${data}`);
+  console.log('-----------');
+  console.log(data);
+  console.log('-----------');
+
+  return axios.get(`/asks/${data.userId}?lastId=${data.lastId || 0}`);
 }
 
 function* loadAsks(action) {
@@ -29,7 +33,7 @@ function* loadAsks(action) {
 // WATCHER
 
 function* watchLoadAsks() {
-  yield takeLatest(LOAD_ASKS_REQUEST, loadAsks);
+  yield throttle(2000, LOAD_ASKS_REQUEST, loadAsks);
 }
 
 export default function* asksSaga() {

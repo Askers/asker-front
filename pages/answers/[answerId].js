@@ -1,134 +1,50 @@
-import React, { useEffect } from 'react';
-import Router from 'next/router';
-import { END } from 'redux-saga';
-import axios from 'axios';
+import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { END } from 'redux-saga';
 import wrapper from '../../store/configureStore';
+
+import AnswerCard from '../../components/Cards/AnswerCard';
 import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
 import { LOAD_ANSWER_REQUEST } from '../../reducers/answer';
 
-const AsnwerCardContainer = styled.div`
-  width: 100%;
-  min-width: ${theme.width.mb_sm};
-  height: auto;
-  border-radius: ${theme.radius.mobile};
-  background-color: ${theme.colors.white};
-  box-shadow: ${theme.colors.shadow};
-  margin: ${theme.margins.mobile} 0;
-
+const AnswerDetailContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-
-  @media only screen and (min-width: 768px) {
-    border-radius: ${theme.radius.pc};
-    height: auto;
-  }
-
-  transition: all 0.5s ease-in-out;
-`;
-
-const AskWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 0 ${theme.gap.small};
-  padding: 0 ${theme.paddings.mobile};
-  color: ${theme.colors.gray};
-`;
-
-const AskDetail = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Date = styled.span`
-  width: 100%;
-  font-size: ${theme.fontSizes.small};
-  color: ${theme.colors.lightgray};
-  margin-top: ${theme.margins.lg};
-  margin-left: ${theme.margins.xs};
-  line-height: 1rem;
-  font-weight: bold;
-  text-align: center;
-`;
-
-const AskContent = styled.div`
-  margin: ${theme.margins.sm};
-  color: ${theme.colors.gray};
-  font-size: ${theme.fontSizes.medium};
-  line-height: 1.4rem;
-`;
-
-const AnswerWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 0 ${theme.gap.small};
-  padding: 0 ${theme.paddings.mobile};
-  color: ${theme.colors.gray};
-`;
-
-const AnswerDetail = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: ${theme.colors.lightblue};
-  border-radius: ${theme.radius.mobile};
-`;
-
-const AnswerContent = styled.div`
-  margin: ${theme.margins.sm};
-  color: ${theme.colors.gray};
-  font-size: ${theme.fontSizes.medium};
-  line-height: 1.4rem;
-`;
-
-const Label = styled.span`
-  font-size: ${theme.fontSizes.small};
-  color: ${theme.colors.gray};
-  margin-top: ${theme.margins.mobile};
-  margin-left: ${theme.margins.xs};
-  line-height: 1rem;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: ${theme.margins.xl};
 `;
 
 const AnswerDetail = () => {
+  const router = useRouter();
+  const { answer } = useSelector((state) => state.answer);
+  console.log(answer);
+
+  // 페이지가 백엔드 Redirect로 호출되는 경우
+
+  // 페이지가 index에서 클릭으로 호출되는 경우
+
   return (
-    <AsnwerCardContainer>
-      <AskWrapper onClick={goToAnswerDetail}>
-        <AskDetail>
-          <Label>FROM. {nickname}</Label>
-        </AskDetail>
-        <AskContent>{askContent}</AskContent>
-      </AskWrapper>
-
-      <AnswerWrapper>
-        <AnswerDetail>
-          <AnswerContent>{answerContent}</AnswerContent>
-        </AnswerDetail>
-        <Date>{dayjs(date).format('YYYY.MM.DD')}</Date>
-      </AnswerWrapper>
-
-      <ButtonWrapper>
-        <TwitterSvg width="1.25rem" fill={theme.colors.blue} />
-      </ButtonWrapper>
-    </AsnwerCardContainer>
+    <AnswerDetailContainer>
+      <AnswerCard
+        answerId={answer.id}
+        askId={answer.Ask.id}
+        nickname={answer.Ask.nickname}
+        askContent={answer.Ask.content}
+        answerContent={answer.content}
+        date={answer.createdAt}
+      />
+    </AnswerDetailContainer>
   );
 };
 
 /*
   SSR Dispatch
   LOAD_AUTH_REQUEST
+  LOAD_ANSWER_REQUEST
 */
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
@@ -141,8 +57,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
     context.store.dispatch({
       type: LOAD_AUTH_REQUEST,
     });
+
     context.store.dispatch({
       type: LOAD_ANSWER_REQUEST,
+      data: context.query,
     });
 
     context.store.dispatch(END);

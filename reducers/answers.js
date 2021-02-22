@@ -8,6 +8,9 @@ const initialState = {
   loadAnswersLoading: false,
   loadAnswersDone: false,
   loadAnswersError: null,
+
+  // Infinite Scrolling
+  hasMoreAnswers: true,
 };
 
 export const LOAD_ANSWERS_REQUEST = 'LOAD_ANSWERS_REQUEST';
@@ -27,7 +30,8 @@ const reducer = (state = initialState, action) =>
       case LOAD_ANSWERS_SUCCESS:
         draft.loadAnswersLoading = false;
         draft.loadAnswersDone = true;
-        draft.answers = action.data.concat(draft.answers);
+        draft.answers = draft.answers.concat(action.data);
+        draft.hasMoreAnswers = draft.answers.length === 10;
         break;
 
       case LOAD_ANSWERS_FAILURE:

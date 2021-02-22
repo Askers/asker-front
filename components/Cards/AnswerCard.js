@@ -135,7 +135,7 @@ const AnswerCard = ({
   };
 
   const goToAnswerDetail = () => {
-    Router.push(`/answers/${answerId}`);
+    Router.push(`/answers/${answerId}?askId=${askId}`);
   };
 
   return (

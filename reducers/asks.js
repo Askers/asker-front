@@ -7,6 +7,9 @@ const initialState = {
   loadAsksLoading: false,
   loadAsksDone: false,
   loadAsksError: null,
+
+  // Infinite Scrolling
+  hasMoreAsks: true,
 };
 
 export const LOAD_ASKS_REQUEST = 'LOAD_ASKS_REQUEST';
@@ -26,7 +29,8 @@ const reducer = (state = initialState, action) =>
       case LOAD_ASKS_SUCCESS:
         draft.loadAsksLoading = false;
         draft.loadAsksDone = true;
-        draft.asks = action.data.concat(draft.asks);
+        draft.asks = draft.asks.concat(action.data);
+        draft.hasMoreAsks = draft.asks.length === 10;
         break;
 
       case LOAD_ASKS_FAILURE:

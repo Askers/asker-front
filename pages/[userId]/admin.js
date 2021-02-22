@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { END } from 'redux-saga';
 import Router, { useRouter } from 'next/router';
@@ -28,20 +28,55 @@ const UserAdminSection = styled.section`
 const AskCardList = styled.section``;
 
 const UserAdmin = () => {
+  const dispatch = useDispatch();
   const { me, user } = useSelector((state) => state.auth);
-  const { asks } = useSelector((state) => state.asks);
+  const { asks, hasMoreAsks, loadAsksLoading } = useSelector(
+    (state) => state.asks,
+  );
   const router = useRouter();
-  const { userId } = router.query;
+  const userId = parseInt(router.query.userId);
 
   // 프론트 단에서 me의 정보와 me의 정보가 다르면 본인 index로 redirect
   // routeAdress와 me.id는 자료형이 다르다.
-  const myID = me.id;
-  const routeID = Number(userId);
   useEffect(() => {
-    if (myID !== routeID) {
-      Router.replace(`/${myID}`);
+    if (me.id !== userId) {
+      Router.replace(`/${me.id}`);
     }
-  }, [myID]);
+  }, [me.id]);
+
+  // Infinite Scrolling
+  useEffect(() => {
+    function onScroll() {
+      // scroll 끝까지 내렸을 때 로딩
+      console.log(
+        window.scrollY,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+      );
+      if (
+        window.scrollY + document.documentElement.clientHeight >
+        document.documentElement.scrollHeight - 300
+      ) {
+        // 답변이 더 있고, 로딩중이 아닐 때 dispatch
+        if (hasMoreAsks && !loadAsksLoading) {
+          // lastID
+          const lastId = asks[asks.length - 1]?.id;
+          const data = { ...userId, ...lastId };
+          dispatch({
+            type: LOAD_ASKS_REQUEST,
+            data,
+          });
+        }
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+
+    // 반드시 해제해야 함
+    // 안그러면 메모리에 계속 쌓인다.
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [hasMoreAsks, loadAsksLoading, asks]);
 
   return (
     <Layout>
@@ -79,10 +114,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
     context.store.dispatch({
       type: LOAD_AUTH_REQUEST,
     });
-    context.store.dispatch({
-      type: LOAD_ASKS_REQUEST,
-      data: context.params.userId,
-    });
+
+    // context.store.dispatch({
+    //   type: LOAD_ASKS_REQUEST,
+    //   data: context.params.userId,
+    // });
 
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
