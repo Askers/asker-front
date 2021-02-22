@@ -36,12 +36,13 @@ const UserAdmin = () => {
     (state) => state.asks,
   );
   const router = useRouter();
-  const userId = parseInt(router.query.userId);
+  const { userId } = router.query;
+  const parsedUserId = parseInt(userId);
 
   // 프론트 단에서 me의 정보와 me의 정보가 다르면 본인 index로 redirect
   // routeAdress와 me.id는 자료형이 다르다.
   useEffect(() => {
-    if (me.id !== userId) {
+    if (me.id !== parsedUserId) {
       Router.replace(`/${me.id}`);
     }
   }, [me.id]);
@@ -50,11 +51,7 @@ const UserAdmin = () => {
   useEffect(() => {
     function onScroll() {
       // scroll 끝까지 내렸을 때 로딩
-      console.log(
-        window.scrollY,
-        document.documentElement.clientHeight,
-        document.documentElement.scrollHeight,
-      );
+
       if (
         window.scrollY + document.documentElement.clientHeight >
         document.documentElement.scrollHeight - 300
@@ -63,7 +60,7 @@ const UserAdmin = () => {
         if (hasMoreAsks && !loadAsksLoading) {
           // lastID
           const lastId = asks[asks.length - 1]?.id;
-          const data = { ...userId, ...lastId };
+          const data = { userId, lastId };
           dispatch({
             type: LOAD_ASKS_REQUEST,
             data,

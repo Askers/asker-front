@@ -63,11 +63,6 @@ const UserIndex = () => {
   // Infinite Scrolling
   useEffect(() => {
     function onScroll() {
-      console.log(
-        window.scrollY,
-        document.documentElement.clientHeight,
-        document.documentElement.scrollHeight,
-      );
       // scroll 끝까지 내렸을 때 로딩
       if (
         window.scrollY + document.documentElement.clientHeight >
