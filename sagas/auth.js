@@ -47,7 +47,7 @@ function* loadAuth() {
 
 // Load User
 function loadUserAPI(data) {
-  return axios.get(`/auth/${data}`);
+  return axios.get(`/auth/users/${data}`);
 }
 
 function* loadUser(action) {
