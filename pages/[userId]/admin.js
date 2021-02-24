@@ -26,7 +26,7 @@ const UserAdminSection = styled.section`
 `;
 
 const AskCardList = styled.section`
-  min-height: 25vh;
+  min-height: 30vh;
 `;
 
 const UserAdmin = () => {
