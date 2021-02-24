@@ -131,8 +131,9 @@ const LoginForm = () => {
   );
 
   const twitterAuth = () => {
-    dispatch(twitterLoginRequestAction());
+    window.open('http://localhost:8000/auth/twitter', '_self');
   };
+
   const googleAuth = () => {
     window.open('http://localhost:8000/auth/google', '_self');
   };

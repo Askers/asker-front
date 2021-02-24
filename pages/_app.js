@@ -8,7 +8,7 @@ import GrobalStyles from '../assets/globalStyles';
 const Asker = ({ Component }) => (
   <>
     <Head>
-      <meta charset="utf-8" />
+      <meta charSet="utf-8" />
       <title>Asker</title>
     </Head>
     <GrobalStyles />
