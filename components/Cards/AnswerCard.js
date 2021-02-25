@@ -135,11 +135,13 @@ const AnswerCard = ({
     dispatch(removeAnswerRequestAction({ answerId, askId }));
   };
 
-  const goToAnswerDetail = () => {
-    console.log(answerId);
-    console.log(askId);
-    Router.push(`/answers/${answerId}?askId=${askId}`);
-  };
+  // Detail 페이지 이동
+
+  // const goToAnswerDetail = () => {
+  //   console.log(answerId);
+  //   console.log(askId);
+  //   Router.push(`/answers/${answerId}?askId=${askId}`);
+  // };
 
   return (
     <AsnwerCardContainer>
@@ -149,7 +151,7 @@ const AnswerCard = ({
         </ToggleContainer>
       ) : null}
 
-      <AskWrapper onClick={goToAnswerDetail}>
+      <AskWrapper>
         <AskDetail>
           <Label>Asker ID: {nickname}</Label>
         </AskDetail>

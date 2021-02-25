@@ -31,8 +31,6 @@ const AnswerDetail = () => {
 
   // 페이지가 백엔드 Redirect로 호출되는 경우
 
-  // 페이지가 index에서 클릭으로 호출되는 경우
-
   return (
     <AnswerDetailContainer>
       <AnswerCardWrapper>
