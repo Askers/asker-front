@@ -14,7 +14,7 @@ import {
 
 // 특정 유저의 answer 하나
 function loadAnswerAPI(data) {
-  return axios.get(`answers/${data.answerId}?askId=${data.askId}`);
+  return axios.get(`/answers/get/${data.answerId}?askId=${data.askId}`);
 }
 
 function* loadAnswer(action) {

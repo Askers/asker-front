@@ -19,7 +19,7 @@ const fontSizes = {
 */
 const width = {
   mobile: calcRem(300),
-  pc: calcRem(400),
+  pc: calcRem(450),
 
   mb_sm: calcRem(300),
   mb_md: calcRem(400),

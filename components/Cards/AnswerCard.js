@@ -135,20 +135,22 @@ const AnswerCard = ({
   };
 
   const goToAnswerDetail = () => {
+    console.log(answerId);
+    console.log(askId);
     Router.push(`/answers/${answerId}?askId=${askId}`);
   };
 
   return (
     <AsnwerCardContainer>
       {me && me.id === user.id ? (
-        <ToggleContainer onClick={handdleDelete}>
-          <XbtnSvg width="1.25rem" />
+        <ToggleContainer>
+          <XbtnSvg onClick={handdleDelete} width="1.25rem" />
         </ToggleContainer>
       ) : null}
 
       <AskWrapper onClick={goToAnswerDetail}>
         <AskDetail>
-          <Label>FROM. {nickname}</Label>
+          <Label>Asker: {nickname}</Label>
         </AskDetail>
         <AskContent>{askContent}</AskContent>
       </AskWrapper>

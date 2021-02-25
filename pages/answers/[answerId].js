@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { END } from 'redux-saga';
 import wrapper from '../../store/configureStore';
+import theme from '../../assets/theme';
 
 import AnswerCard from '../../components/Cards/AnswerCard';
 import { LOAD_AUTH_REQUEST } from '../../reducers/auth';
@@ -18,10 +19,15 @@ const AnswerDetailContainer = styled.div`
   align-items: center;
 `;
 
+const AnswerCardWrapper = styled.div`
+  @media only screen and (min-width: 768px) {
+    width: ${theme.width.pc};
+  }
+`;
+
 const AnswerDetail = () => {
   const router = useRouter();
   const { answer } = useSelector((state) => state.answer);
-  console.log(answer);
 
   // 페이지가 백엔드 Redirect로 호출되는 경우
 
@@ -29,14 +35,16 @@ const AnswerDetail = () => {
 
   return (
     <AnswerDetailContainer>
-      <AnswerCard
-        answerId={answer.id}
-        askId={answer.Ask.id}
-        nickname={answer.Ask.nickname}
-        askContent={answer.Ask.content}
-        answerContent={answer.content}
-        date={answer.createdAt}
-      />
+      <AnswerCardWrapper>
+        <AnswerCard
+          answerId={answer.id}
+          askId={answer.Ask.id}
+          nickname={answer.Ask.nickname}
+          askContent={answer.Ask.content}
+          answerContent={answer.content}
+          date={answer.createdAt}
+        />
+      </AnswerCardWrapper>
     </AnswerDetailContainer>
   );
 };
