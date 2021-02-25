@@ -102,6 +102,7 @@ const Label = styled.span`
   font-size: ${theme.fontSizes.small};
   color: ${theme.colors.gray};
   margin-top: ${theme.margins.mobile};
+  margin-bottom: ${theme.margins.mobile};
   margin-left: ${theme.margins.xs};
   line-height: 1rem;
 `;
@@ -150,7 +151,7 @@ const AnswerCard = ({
 
       <AskWrapper onClick={goToAnswerDetail}>
         <AskDetail>
-          <Label>Asker: {nickname}</Label>
+          <Label>Asker ID: {nickname}</Label>
         </AskDetail>
         <AskContent>{askContent}</AskContent>
       </AskWrapper>
