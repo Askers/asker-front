@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
@@ -44,11 +44,6 @@ const ProfileWrapper = styled.div`
   color: ${theme.colors.special};
 `;
 
-const ProfilePicture = styled.img`
-  border-radius: 100%;
-  margin: ${theme.margins.base};
-`;
-
 const UserName = styled.div`
   font-size: ${theme.fontSizes.small};
   font-weight: bold;
@@ -81,15 +76,12 @@ const NavLabel = styled.span`
 `;
 
 const ProfileBlock = ({ username }) => {
-  const { me } = useSelector((state) => state.auth);
-
   const goToShareLink = () => {};
 
   return (
     <ProfileBlockContainer>
       <LogoWrapper>
         <LogoSvg width="3rem" fill={theme.colors.special} />
-        <ProfilePicture src={me.profileImgUrl} />
       </LogoWrapper>
       <ProfileWrapper>
         <UserName>@{username}</UserName>

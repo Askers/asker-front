@@ -49,6 +49,8 @@ const NicknameInput = styled.input`
   height: ${theme.form.height_mb_xs};
   border-radius: ${theme.form.radius_mb_xs};
   background-color: ${theme.colors.lightblue};
+  font-size: ${theme.fontSizes.medium};
+  padding: 0.2rem;
 
   @media only screen and (min-width: 768px) {
     width: ${theme.form.width_pc_xs};
@@ -58,11 +60,17 @@ const NicknameInput = styled.input`
 `;
 
 const AskInput = styled.textarea`
-  all: unset;
   width: 100%;
+  border: none;
+  resize: none;
   height: ${theme.form.height_mb_md};
   border-radius: ${theme.form.radius_mb_sm};
   background-color: ${theme.colors.lightblue};
+  color: ${theme.colors.gray};
+
+  :focus {
+    outline: none;
+  }
 
   @media only screen and (min-width: 768px) {
     min-height: ${theme.form.height_mb_md};

@@ -1,5 +1,6 @@
+import Router from 'next/router';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import theme from '../assets/theme';
 import { logoutRequestAction } from '../reducers/auth';
@@ -52,9 +53,15 @@ const Label = styled.span`
 `;
 
 const Footer = () => {
+  const { me } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutRequestAction());
+  };
+
+  const handleLogin = () => {
+    Router.push('/login');
   };
 
   // logout 완료시 알림
@@ -69,7 +76,11 @@ const Footer = () => {
         <Label>Contact</Label>
         <Label>Twitter</Label>
         <Label>-</Label>
-        <Label onClick={handleLogout}>로그아웃</Label>
+        {me === null ? (
+          <Label onClick={handleLogin}>로그인</Label>
+        ) : (
+          <Label onClick={handleLogout}>로그아웃</Label>
+        )}
         <Label>-</Label>
         <Label>&copy;Asker</Label>
       </InfoWrapper>

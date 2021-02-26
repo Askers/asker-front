@@ -6,6 +6,7 @@ import theme from '../assets/theme';
 import HomeSvg from './Image/HomeSvg';
 import BoxSvg from './Image/BoxSvg';
 import NewSvg from './Image/NewSvg';
+import LoginSvg from './Image/loginSvg';
 
 const Container = styled.header`
   display: flex;
@@ -60,30 +61,40 @@ const Header = () => {
   console.log(router);
 
   const goToHome = () => {
-    if (me === null) {
-      Router.push('/login');
-    } else {
-      Router.push(`/${me.id}`);
-    }
+    Router.push(`/${me.id}`);
   };
+
   const goToAdmin = () => {
     Router.push(`/${me.id}/admin`);
   };
 
+  const goToLogin = () => {
+    Router.push('/login');
+  };
+
   return (
     <Container>
-      <NavList>
-        <Label onClick={goToHome}>
-          <HomeSvg width="1.1rem" fill={theme.colors.special} />
-        </Label>
+      {me === null ? (
+        <NavList>
+          <Label onClick={goToLogin}>
+            <LoginSvg width="1rem" fill={theme.colors.blue} />
+          </Label>
+          <Label onClick={goToLogin}>로그인</Label>
+        </NavList>
+      ) : (
+        <NavList>
+          <Label onClick={goToHome}>
+            <HomeSvg width="1.1rem" fill={theme.colors.special} />
+          </Label>
 
-        <Label onClick={goToAdmin}>
-          <BoxSvg width="1rem" fill={theme.colors.special} />
-          <NewIcon>
-            <NewSvg width="0.7rem" />
-          </NewIcon>
-        </Label>
-      </NavList>
+          <Label onClick={goToAdmin}>
+            <BoxSvg width="1rem" fill={theme.colors.special} />
+            <NewIcon>
+              <NewSvg width="0.7rem" />
+            </NewIcon>
+          </Label>
+        </NavList>
+      )}
     </Container>
   );
 };

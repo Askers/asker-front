@@ -102,6 +102,7 @@ const AnswerInput = styled.textarea`
   height: ${theme.form.height_mb_md};
   border-radius: ${theme.form.radius_mb_sm};
   background-color: ${theme.colors.lightblue};
+  padding: 10px;
 
   @media only screen and (min-width: 768px) {
     min-height: ${theme.form.height_mb_md};

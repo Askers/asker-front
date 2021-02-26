@@ -139,7 +139,7 @@ const ProfileCard = ({ targetUserId }) => {
   );
 
   const handlePopUp = () => {
-    alert('ask를 성공ㄱ적으로 보냈습니다.');
+    alert('Ask를 보냈습니다.');
     window.location.reload();
   };
 
