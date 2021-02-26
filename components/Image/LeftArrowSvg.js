@@ -8,7 +8,7 @@ const LeftArrowSvg = ({ ...props }) => (
     />
     <mask
       id="mask0"
-      mask-type="alpha"
+      maskType="alpha"
       maskUnits="userSpaceOnUse"
       x="0"
       y="2"

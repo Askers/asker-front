@@ -134,10 +134,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
       type: LOAD_AUTH_REQUEST,
     });
 
-    // context.store.dispatch({
-    //   type: LOAD_ANSWERS_REQUEST,
-    //   data: context.params.userId,
-    // });
+    context.store.dispatch({
+      type: LOAD_ANSWERS_REQUEST,
+      data: context.params.userId,
+    });
 
     context.store.dispatch({
       type: LOAD_USER_REQUEST,

@@ -11,9 +11,9 @@ const XbtnSvg = ({ ...props }) => (
     <path
       d="M12.0844 12.1561L14.9128 9.32764M12.0844 12.1561L9.25595 14.9845M12.0844 12.1561L9.25595 9.32764M12.0844 12.1561L14.9128 14.9845"
       stroke="#8E94A7"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

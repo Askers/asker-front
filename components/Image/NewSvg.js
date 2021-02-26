@@ -8,7 +8,7 @@ const NewSvg = ({ ...props }) => (
       r="6"
       fill="#0346F2"
       stroke="white"
-      stroke-width="2"
+      strokeWidth="2"
     />
     <circle cx="7.55096" cy="7.72778" r="1" fill="white" />
   </svg>

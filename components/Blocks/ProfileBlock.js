@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Router from 'next/router';
 import { useSelector } from 'react-redux';
 
 import theme from '../../assets/theme';
@@ -53,11 +52,6 @@ const ProfilePicture = styled.img`
 const UserName = styled.div`
   font-size: ${theme.fontSizes.small};
   font-weight: bold;
-`;
-const UserBio = styled.div`
-  font-weight: bold;
-  font-size: ${theme.fontSizes.small};
-  margin: ${theme.margins.base};
 `;
 
 const NavList = styled.nav`
