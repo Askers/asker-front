@@ -55,10 +55,7 @@ const NewIcon = styled.span`
 `;
 
 const Header = () => {
-  const router = useRouter();
   const { me } = useSelector((state) => state.auth);
-
-  console.log(router);
 
   const goToHome = () => {
     Router.push(`/${me.id}`);
