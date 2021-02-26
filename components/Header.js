@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import styled from 'styled-components';
 import theme from '../assets/theme';
 import HomeSvg from './Image/HomeSvg';
 import BoxSvg from './Image/BoxSvg';
+import NewSvg from './Image/NewSvg';
 
 const Container = styled.header`
   display: flex;
@@ -32,6 +33,7 @@ const NavList = styled.nav`
 `;
 
 const Label = styled.span`
+  position: relative;
   margin: 0 ${theme.margins.mobile};
   font-size: ${theme.fontSizes.small};
   color: ${theme.colors.gray};
@@ -41,14 +43,28 @@ const Label = styled.span`
     cursor: pointer;
     color: ${theme.colors.blue};
   }
+
   transition: all 0.5s ease-in;
 `;
 
+const NewIcon = styled.span`
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+`;
+
 const Header = () => {
+  const router = useRouter();
   const { me } = useSelector((state) => state.auth);
 
+  console.log(router);
+
   const goToHome = () => {
-    Router.push(`/${me.id}`);
+    if (me === null) {
+      Router.push('/login');
+    } else {
+      Router.push(`/${me.id}`);
+    }
   };
   const goToAdmin = () => {
     Router.push(`/${me.id}/admin`);
@@ -63,6 +79,9 @@ const Header = () => {
 
         <Label onClick={goToAdmin}>
           <BoxSvg width="1rem" fill={theme.colors.special} />
+          <NewIcon>
+            <NewSvg width="0.7rem" />
+          </NewIcon>
         </Label>
       </NavList>
     </Container>

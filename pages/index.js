@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { END } from 'redux-saga';
+import Router from 'next/router';
 import { LOAD_AUTH_REQUEST } from '../reducers/auth';
 import theme from '../assets/theme';
 import wrapper from '../store/configureStore';
@@ -96,7 +97,10 @@ const ButtonName = styled.span`
 `;
 
 const Home = () => {
-  const goToLogin = () => {};
+  const goToLogin = () => {
+    Router.push('/login');
+  };
+
   return (
     <HomeContainer>
       <LogoWrapper>
