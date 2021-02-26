@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import Router from 'next/router';
 import styled from 'styled-components';
 import theme from '../assets/theme';
+import HomeSvg from './Image/HomeSvg';
+import BoxSvg from './Image/BoxSvg';
 
 const Container = styled.header`
   display: flex;
@@ -55,8 +57,13 @@ const Header = () => {
   return (
     <Container>
       <NavList>
-        <Label onClick={goToHome}>홈</Label>
-        <Label onClick={goToAdmin}>질</Label>
+        <Label onClick={goToHome}>
+          <HomeSvg width="1.1rem" fill={theme.colors.special} />
+        </Label>
+
+        <Label onClick={goToAdmin}>
+          <BoxSvg width="1rem" fill={theme.colors.special} />
+        </Label>
       </NavList>
     </Container>
   );

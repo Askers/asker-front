@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LogoSvg = ({ ...props }) => (
+const XbtnSvg = ({ ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 25 25"
@@ -18,4 +18,4 @@ const LogoSvg = ({ ...props }) => (
   </svg>
 );
 
-export default LogoSvg;
+export default XbtnSvg;

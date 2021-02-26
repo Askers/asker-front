@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import theme from '../../assets/theme';
 import LogoSvg from '../Image/LogoSvg';
+import ShareSvg from '../Image/ShareSvg';
 
 // Style
 const ProfileBlockContainer = styled.div`
@@ -95,7 +96,9 @@ const ProfileBlock = ({ username }) => {
         <UserBio>Everything begins with your stance.</UserBio>
       </ProfileWrapper>
       <NavList>
-        <NavLabel onClick={goToShareLink}>공</NavLabel>
+        <NavLabel onClick={goToShareLink}>
+          <ShareSvg width="1rem" fill={theme.colors.special} />
+        </NavLabel>
       </NavList>
     </ProfileBlockContainer>
   );
