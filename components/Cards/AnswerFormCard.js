@@ -97,12 +97,14 @@ const Label = styled.span`
 `;
 
 const AnswerInput = styled.textarea`
-  all: unset;
   width: 100%;
   height: ${theme.form.height_mb_md};
   border-radius: ${theme.form.radius_mb_sm};
   background-color: ${theme.colors.lightblue};
-  padding: 10px;
+
+  :focus {
+    outline: none;
+  }
 
   @media only screen and (min-width: 768px) {
     min-height: ${theme.form.height_mb_md};
